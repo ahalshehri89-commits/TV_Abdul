@@ -77,7 +77,7 @@ This document preserves the comprehensive architecture, hardware findings, and i
 ## 5. Build, Package & Deployment Workflow
 
 ```bash
-# 1. Run unit tests (39 tests across 11 test suites)
+# 1. Run unit tests (41 tests across 11 test suites)
 npm test
 
 # 2. Compile Vite production bundle
