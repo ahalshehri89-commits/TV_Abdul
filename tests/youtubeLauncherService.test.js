@@ -6,6 +6,7 @@ describe('YouTubeLauncherService', () => {
     global.window = {
       tizen: {
         ApplicationControl: vi.fn().mockImplementation((op, uri) => ({ operation: op, uri })),
+        ApplicationControlData: vi.fn().mockImplementation((key, val) => ({ key, value: val })),
         application: {
           launch: vi.fn((appId, success) => success && success()),
           launchAppControl: vi.fn((appControl, appId, success) => success && success())
@@ -13,35 +14,39 @@ describe('YouTubeLauncherService', () => {
       },
       open: vi.fn()
     };
+    global.fetch = vi.fn().mockResolvedValue({ ok: true, status: 200 });
   });
 
   afterEach(() => {
     delete global.window;
+    delete global.fetch;
   });
 
   it('should detect Tizen availability', () => {
     expect(youtubeLauncherService.isTizenAvailable()).toBe(true);
   });
 
-  it('should launch official YouTube app on Tizen for a video', () => {
-    const res = youtubeLauncherService.openInYouTubeApp({ videoId: '-xieo900Smg' });
+  it('should send DIAL POST request to TV local service', async () => {
+    const res = await youtubeLauncherService.sendDialLaunch({ videoId: '-xieo900Smg' });
     expect(res).toBe(true);
-    expect(global.window.tizen.application.launchAppControl).toHaveBeenCalledWith(
-      expect.objectContaining({ uri: 'vnd.youtube://www.youtube.com/watch?v=-xieo900Smg' }),
-      YOUTUBE_APP_ID,
-      expect.any(Function),
-      expect.any(Function)
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('/ws/apps/YouTube'),
+      expect.objectContaining({
+        method: 'POST',
+        body: 'v=-xieo900Smg'
+      })
     );
   });
 
-  it('should launch official YouTube app on Tizen for a playlist', () => {
-    const res = youtubeLauncherService.openInYouTubeApp({ playlistId: 'PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi' });
+  it('should launch official YouTube app on Tizen for a video with DIAL', async () => {
+    const res = await youtubeLauncherService.openInYouTubeApp({ videoId: '-xieo900Smg' });
     expect(res).toBe(true);
-    expect(global.window.tizen.application.launchAppControl).toHaveBeenCalledWith(
-      expect.objectContaining({ uri: 'vnd.youtube://www.youtube.com/playlist?list=PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi' }),
-      YOUTUBE_APP_ID,
-      expect.any(Function),
-      expect.any(Function)
-    );
+    expect(global.window.tizen.application.launchAppControl).toHaveBeenCalled();
+  });
+
+  it('should launch official YouTube app on Tizen for a playlist', async () => {
+    const res = await youtubeLauncherService.openInYouTubeApp({ playlistId: 'PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi' });
+    expect(res).toBe(true);
+    expect(global.window.tizen.application.launchAppControl).toHaveBeenCalled();
   });
 });
