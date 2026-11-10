@@ -5,12 +5,14 @@
 
 import seedChannels from '../data/seedChannels.json';
 import rawCategories from '../data/categories.json';
+import fastChannels from '../data/fastChannels.json';
 import { storageService } from './storageService.js';
 import { channelSyncService } from './channelSyncService.js';
 
 export const PRIMARY_CATEGORIES = [
   { id: 'all', name: 'All Channels' },
   { id: 'arabic', name: 'Arabic' },
+  { id: 'fast', name: 'FAST Networks 24/7' },
   { id: 'favorites', name: 'Favorites' },
   { id: 'recent', name: 'Recently Watched' },
   { id: 'news', name: 'News' },
@@ -28,6 +30,9 @@ class CatalogService {
   constructor() {
     this.seedMap = new Map();
     seedChannels.forEach((ch) => {
+      this.seedMap.set(ch.id, ch);
+    });
+    fastChannels.forEach((ch) => {
       this.seedMap.set(ch.id, ch);
     });
     this.apiEndpoint = storageService.getSettings().apiEndpoint || 'https://freetv.fuckyouthisismywebsite.com';
@@ -151,7 +156,7 @@ class CatalogService {
       list = list.filter((ch) => ch.categories && ch.categories.includes(category));
     }
 
-    if (country && country !== 'all' && category !== 'favorites' && category !== 'recent') {
+    if (country && country !== 'all' && category !== 'favorites' && category !== 'recent' && category !== 'fast') {
       list = list.filter(
         (ch) =>
           ch.country?.toUpperCase() === country.toUpperCase() ||

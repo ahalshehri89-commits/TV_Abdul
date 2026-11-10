@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Settings, Heart, Tv, Globe, Film, Trophy } from 'lucide-react';
+import { Search, Settings, Heart, Tv, Globe, Film, Trophy, Grid, Calendar } from 'lucide-react';
 import { storageService } from '../services/storageService.js';
 import { catalogService } from '../services/catalogService.js';
 
@@ -9,6 +9,8 @@ export function Header({
   activeCountry,
   totalChannels = 0,
   favoritesCount = 0,
+  onOpenMultiView,
+  onOpenEPG,
   onOpenCountryModal,
   onOpenSearch,
   onOpenSettings,
@@ -79,6 +81,30 @@ export function Header({
       </nav>
 
       <div className="tv-header-actions">
+        {/* Multi-View Quad-Screen Button */}
+        <button
+          className="tv-header-btn"
+          data-nav="true"
+          data-nav-zone="header"
+          data-nav-id="btn-multiview"
+          onClick={onOpenMultiView}
+        >
+          <Grid size={18} color="#38bdf8" />
+          <span>Multi-View</span>
+        </button>
+
+        {/* EPG Program Guide Button */}
+        <button
+          className="tv-header-btn"
+          data-nav="true"
+          data-nav-zone="header"
+          data-nav-id="btn-epg"
+          onClick={onOpenEPG}
+        >
+          <Calendar size={18} color="#94a3b8" />
+          <span>EPG Guide</span>
+        </button>
+
         {/* Country / Region Filter Button */}
         <button
           className={`tv-header-btn ${activeCountry !== 'all' ? 'tv-header-btn-active' : ''}`}

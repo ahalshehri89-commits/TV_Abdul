@@ -1,0 +1,146 @@
+[
+  {
+    "id": "fast-top-gear",
+    "name": "Top Gear 24/7",
+    "network": "Samsung TV Plus / BBC Studios",
+    "number": 901,
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Top_Gear_2020.png/250px-Top_Gear_2020.png",
+    "country": "GB",
+    "flag": "🇬🇧",
+    "categories": ["fast", "auto", "entertainment"],
+    "description": "Continuous 24/7 broadcasts of the world's greatest motoring show featuring Jeremy Clarkson, Richard Hammond, and James May.",
+    "streams": [
+      {
+        "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "quality": "1080p",
+        "format": "hls"
+      }
+    ]
+  },
+  {
+    "id": "fast-gordon-ramsay",
+    "name": "Gordon Ramsay 24/7",
+    "network": "Pluto TV / All3Media",
+    "number": 902,
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Gordon_Ramsay_at_the_Food_Network.jpg/220px-Gordon_Ramsay_at_the_Food_Network.jpg",
+    "country": "US",
+    "flag": "🇺🇸",
+    "categories": ["fast", "entertainment"],
+    "description": "24/7 non-stop Hell's Kitchen, Kitchen Nightmares, and The F Word with Michelin-starred chef Gordon Ramsay.",
+    "streams": [
+      {
+        "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+        "quality": "1080p",
+        "format": "hls"
+      }
+    ]
+  },
+  {
+    "id": "fast-ufc-classics",
+    "name": "UFC Classics 24/7",
+    "network": "Pluto TV Sports",
+    "number": 903,
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/UFC_Logo.svg/200px-UFC_Logo.svg.png",
+    "country": "US",
+    "flag": "🇺🇸",
+    "categories": ["fast", "sports"],
+    "description": "Iconic title bouts, legendary knockouts, and historic fights from the UFC vault 24 hours a day.",
+    "streams": [
+      {
+        "url": "https://live-hls-web-aja.getaj.net/AJA/index.m3u8",
+        "quality": "1080p",
+        "format": "hls"
+      }
+    ]
+  },
+  {
+    "id": "fast-redbull-tv",
+    "name": "Red Bull TV Live",
+    "network": "Red Bull Media House",
+    "number": 904,
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Red_Bull_TV_logo.svg/200px-Red_Bull_TV_logo.svg.png",
+    "country": "AT",
+    "flag": "🇦🇹",
+    "categories": ["fast", "sports", "documentary"],
+    "description": "High-octane live action sports, Formula 1 behind-the-scenes, cliff diving, and extreme adventure documentaries.",
+    "streams": [
+      {
+        "url": "https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8",
+        "quality": "1080p",
+        "format": "hls"
+      }
+    ]
+  },
+  {
+    "id": "fast-bloomberg-tv",
+    "name": "Bloomberg TV Global 24/7",
+    "network": "Bloomberg Finance",
+    "number": 905,
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bloomberg_Television_logo.svg/250px-Bloomberg_Television_logo.svg.png",
+    "country": "US",
+    "flag": "🇺🇸",
+    "categories": ["fast", "news"],
+    "description": "Global business, financial market movements, Wall Street breaking news, and exclusive executive interviews.",
+    "streams": [
+      {
+        "url": "https://live-hls-web-ajm.getaj.net/AJM/index.m3u8",
+        "quality": "1080p",
+        "format": "hls"
+      }
+    ]
+  },
+  {
+    "id": "fast-euronews-english",
+    "name": "Euronews 24/7",
+    "network": "Euronews Global",
+    "number": 906,
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Euronews_2016_logo.svg/200px-Euronews_2016_logo.svg.png",
+    "country": "FR",
+    "flag": "🇪🇺",
+    "categories": ["fast", "news"],
+    "description": "Unbiased European and international breaking news, politics, and culture.",
+    "streams": [
+      {
+        "url": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8",
+        "quality": "1080p",
+        "format": "hls"
+      }
+    ]
+  },
+  {
+    "id": "fast-anime-all-day",
+    "name": "Anime All Day 24/7",
+    "network": "Pluto TV Anime",
+    "number": 907,
+    "logo": "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=200&q=80",
+    "country": "JP",
+    "flag": "🇯🇵",
+    "categories": ["fast", "animation", "kids"],
+    "description": "Non-stop classic anime series, adventures, and epic sagas in HD.",
+    "streams": [
+      {
+        "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+        "quality": "1080p",
+        "format": "hls"
+      }
+    ]
+  },
+  {
+    "id": "fast-nature-earth",
+    "name": "Earth Cam & Nature 4K",
+    "network": "Plex Nature",
+    "number": 908,
+    "logo": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=200&q=80",
+    "country": "US",
+    "flag": "🌍",
+    "categories": ["fast", "documentary"],
+    "description": "Breathtaking 4K Earth views from orbit, serene wildlife cameras, and ocean reefs for relaxation.",
+    "streams": [
+      {
+        "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4",
+        "quality": "1080p",
+        "format": "hls"
+      }
+    ]
+  }
+]

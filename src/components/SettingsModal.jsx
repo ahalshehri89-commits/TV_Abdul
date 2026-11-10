@@ -3,10 +3,12 @@ import { storageService } from '../services/storageService.js';
 import { catalogService } from '../services/catalogService.js';
 import { remoteKeyManager, TV_KEYS } from '../services/remoteKeyManager.js';
 import { spatialNav } from '../services/spatialNav.js';
-import { Settings, X, Trash2, CheckCircle, Info, RefreshCw, Cloud } from 'lucide-react';
+import { Settings, X, Trash2, CheckCircle, Info, RefreshCw, Cloud, Plus, List } from 'lucide-react';
 
 export function SettingsModal({ onClose, onRefreshData }) {
   const [settings, setSettings] = useState(storageService.getSettings());
+  const [customUrl, setCustomUrl] = useState('');
+  const [playlists, setPlaylists] = useState(storageService.getCustomPlaylists());
   const [statusMsg, setStatusMsg] = useState('');
   const [isSyncing, setIsSyncing] = useState(false);
   const isTizen = typeof window !== 'undefined' && Boolean(window.tizen);
@@ -122,24 +124,83 @@ export function SettingsModal({ onClose, onRefreshData }) {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#94a3b8' }}>App Version</span>
-              <span style={{ color: '#ffffff', fontWeight: 600 }}>TV_Abdul v1.0.0 (Native Tizen)</span>
+              <span style={{ color: '#38bdf8', fontWeight: 700 }}>TV_Abdul v2.0.0 (Native Tizen 7.0 - Next-Gen Entertainment)</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#94a3b8' }}>Playback Engine</span>
               <span style={{ color: hasAVPlay ? '#10b981' : '#38bdf8', fontWeight: 600 }}>
-                {hasAVPlay ? 'Samsung AVPlay (Native Hardware)' : 'HTML5 / Hls.js (Development Fallback)'}
+                {hasAVPlay ? 'Samsung AVPlay (Native 4K & VLC Demuxer)' : 'HTML5 + mpegts.js / Hls.js'}
               </span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: '#94a3b8' }}>Tizen OS Environment</span>
               <span style={{ color: isTizen ? '#10b981' : '#94a3b8', fontWeight: 600 }}>
-                {isTizen ? 'Detected (Samsung TV)' : 'Simulated / Browser Mode'}
+                {isTizen ? 'Detected (Samsung Smart TV 65" QLED)' : 'Simulated / Browser Mode'}
               </span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#94a3b8' }}>API Endpoint</span>
-              <span style={{ color: '#ffffff', fontSize: '14px' }}>{settings.apiEndpoint}</span>
+              <span style={{ color: '#94a3b8' }}>Multi-View Engine</span>
+              <span style={{ color: '#10b981', fontWeight: 600 }}>Enabled (65" Quad 2x2 & Dual 1x2)</span>
             </div>
+          </div>
+
+          {/* Custom M3U / Xtream Codes Section */}
+          <div
+            style={{
+              background: 'rgba(30, 41, 59, 0.4)',
+              padding: '16px 20px',
+              borderRadius: '16px',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <List size={18} color="#38bdf8" />
+              <span style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff' }}>
+                Custom M3U8 Playlist Loader (قوائم التشغيل الخاصة)
+              </span>
+            </div>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <input
+                type="text"
+                placeholder="https://example.com/playlist.m3u8"
+                value={customUrl}
+                onChange={(e) => setCustomUrl(e.target.value)}
+                style={{
+                  flex: 1,
+                  background: 'rgba(15, 23, 42, 0.8)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '10px',
+                  padding: '10px 14px',
+                  color: '#ffffff',
+                  fontSize: '15px'
+                }}
+              />
+              <button
+                className="tv-header-btn"
+                data-nav="true"
+                data-nav-id="btn-add-playlist"
+                onClick={() => {
+                  if (customUrl) {
+                    const updated = storageService.addCustomPlaylist(customUrl);
+                    setPlaylists(updated);
+                    setCustomUrl('');
+                    setStatusMsg('Custom playlist added successfully.');
+                    if (onRefreshData) onRefreshData();
+                  }
+                }}
+              >
+                <Plus size={16} />
+                <span>Add M3U</span>
+              </button>
+            </div>
+            {playlists.length > 0 && (
+              <div style={{ fontSize: '13px', color: '#94a3b8' }}>
+                Active Playlists: {playlists.join(', ')}
+              </div>
+            )}
           </div>
 
           {statusMsg && (

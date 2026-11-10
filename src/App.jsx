@@ -9,6 +9,8 @@ import { SettingsModal } from './components/SettingsModal.jsx';
 import { CountryModal } from './components/CountryModal.jsx';
 import { VODView } from './components/VODView.jsx';
 import { SportsMatchCenter } from './components/SportsMatchCenter.jsx';
+import { MultiViewDashboard } from './components/MultiViewDashboard.jsx';
+import { EPGModal } from './components/EPGModal.jsx';
 import { catalogService } from './services/catalogService.js';
 import { storageService } from './services/storageService.js';
 import { remoteKeyManager, TV_KEYS } from './services/remoteKeyManager.js';
@@ -26,6 +28,8 @@ export function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isCountryModalOpen, setIsCountryModalOpen] = useState(false);
+  const [isMultiViewOpen, setIsMultiViewOpen] = useState(false);
+  const [isEPGOpen, setIsEPGOpen] = useState(false);
   const [favoritesSet, setFavoritesSet] = useState(new Set(storageService.getFavorites()));
   const [toastMsg, setToastMsg] = useState(null);
 
@@ -280,6 +284,8 @@ export function App() {
         activeCountry={activeCountry}
         totalChannels={allChannels.length}
         favoritesCount={favoritesSet.size}
+        onOpenMultiView={() => setIsMultiViewOpen(true)}
+        onOpenEPG={() => setIsEPGOpen(true)}
         onOpenCountryModal={() => setIsCountryModalOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
@@ -372,6 +378,36 @@ export function App() {
           onRefreshData={() => {
             setFavoritesSet(new Set(storageService.getFavorites()));
             loadChannels(activeCategory, activeCountry);
+          }}
+        />
+      )}
+
+      {/* 65-inch Quad-Screen Multi-View Dashboard */}
+      {isMultiViewOpen && (
+        <MultiViewDashboard
+          channels={allChannels}
+          onClose={() => {
+            setIsMultiViewOpen(false);
+            setTimeout(() => spatialNav.focusFirst(), 150);
+          }}
+          onExpandChannel={(ch) => {
+            setIsMultiViewOpen(false);
+            handlePlayChannel(ch);
+          }}
+        />
+      )}
+
+      {/* Interactive Electronic Program Guide (EPG) */}
+      {isEPGOpen && (
+        <EPGModal
+          channels={allChannels}
+          onClose={() => {
+            setIsEPGOpen(false);
+            setTimeout(() => spatialNav.focusFirst(), 150);
+          }}
+          onTuneChannel={(ch) => {
+            setIsEPGOpen(false);
+            handlePlayChannel(ch);
           }}
         />
       )}

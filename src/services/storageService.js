@@ -7,7 +7,8 @@ const STORAGE_KEYS = {
   FAVORITES: 'freetv:favorites',
   RECENT: 'freetv:recent',
   LAST_CHANNEL: 'freetv:last_channel',
-  SETTINGS: 'freetv:settings'
+  SETTINGS: 'freetv:settings',
+  CUSTOM_PLAYLISTS: 'freetv:custom_playlists'
 };
 
 const DEFAULT_SETTINGS = {
@@ -116,6 +117,41 @@ class StorageService {
     } catch (e) {
       console.warn('Failed to save settings:', e);
       return DEFAULT_SETTINGS;
+    }
+  }
+
+  getCustomPlaylists() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.CUSTOM_PLAYLISTS);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  addCustomPlaylist(url) {
+    if (!url || typeof url !== 'string') return [];
+    try {
+      let list = this.getCustomPlaylists();
+      if (!list.includes(url)) {
+        list.push(url.trim());
+        localStorage.setItem(STORAGE_KEYS.CUSTOM_PLAYLISTS, JSON.stringify(list));
+      }
+      return list;
+    } catch (e) {
+      console.warn('Failed to add custom playlist:', e);
+      return this.getCustomPlaylists();
+    }
+  }
+
+  removeCustomPlaylist(url) {
+    try {
+      let list = this.getCustomPlaylists();
+      list = list.filter((item) => item !== url);
+      localStorage.setItem(STORAGE_KEYS.CUSTOM_PLAYLISTS, JSON.stringify(list));
+      return list;
+    } catch (e) {
+      return this.getCustomPlaylists();
     }
   }
 }
