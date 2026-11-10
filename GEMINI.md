@@ -99,9 +99,27 @@ cd dist && ../tools/data/tools/ide/bin/tizen.sh install -s <TV_IP>:26101 -n TV_A
 ---
 
 ## 6. Roadmap for Version 2.0 (v2.0)
-When resuming work for v2.0, the recommended feature roadmap includes:
-1. **Electronic Program Guide (EPG):** Full interactive timeline grid parsing XMLTV schedules for live TV channels.
-2. **Custom Playlist / Xtream Codes Loader:** UI in Settings allowing user to enter custom M3U URLs or Xtream Codes API credentials.
-3. **Numeric Keypad Quick Zapping:** Inputting 1-4 digits directly from traditional remotes to jump to specific channel numbers.
-4. **Picture-in-Picture (PiP):** Downsizing the AVPlay video to a corner thumbnail while browsing the channel guide.
-5. **Audio & Subtitle Track Selector:** In-player HUD menu to toggle alternative audio languages or DVB subtitles.
+When resuming work for v2.0, the prioritized feature roadmap includes:
+
+### Core Player & Streaming Enhancements
+1. **VLC Stream Compatibility Engine (MPEG-TS Demuxer & Header Spoofing):**
+   * Integrate client-side `mpegts.js` remuxing to convert raw `.ts` streams into `fMP4` via MSE in memory.
+   * Add AVPlay HTTP header spoofing (`USERAGENT`, `Referer`, cookies) to unlock the 137 VLC-dependent channels (e.g., OSN Movies Action, Cartoon Network Arabic, Arryadia, Canal+ Sport).
+2. **Instant Channel Zapping (Pre-Buffering Pipeline):**
+   * Preload adjacent stream manifests (`idx + 1` / `idx - 1`) in memory when highlighting cards, cutting channel change time from ~2.5s down to ~0.3s.
+3. **Electronic Program Guide (EPG):**
+   * Full interactive schedule grid parsing XMLTV feeds for live TV channels ("Now Playing" & "Coming Up Next").
+4. **Custom Playlist & Xtream Codes Loader:**
+   * Settings UI allowing users to input private M3U/M3U8 URLs or Xtream Codes credentials (server, user, pass) with category auto-grouping.
+
+### UI & Remote Control Features
+5. **Numeric Keypad Quick Zapping:**
+   * Direct channel number input using remote digits 0–9 with a mini-overlay HUD (e.g. typing `1` jumps to channel #1).
+6. **Picture-in-Picture (PiP) Browsing:**
+   * Downsize the active AVPlay video to a 480x270 thumbnail in the bottom corner while browsing the channel grid.
+7. **Favorites Custom Sorting & Numbering:**
+   * Allow users to reorder favorite channels and assign custom quick-dial numbers (e.g. #1 for Saudi TV, #2 for Al Arabiya).
+8. **Audio & Subtitle Track Selector:**
+   * In-player HUD menu allowing users to switch audio commentary (Arabic/English) or toggle DVB subtitles.
+9. **Screen-Off / Audio-Only Mode:**
+   * Mode for news and radio stations (Quran, Rotana FM) turning off the QLED panel while keeping audio playing to conserve power.
