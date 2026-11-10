@@ -99,27 +99,45 @@ cd dist && ../tools/data/tools/ide/bin/tizen.sh install -s <TV_IP>:26101 -n TV_A
 ---
 
 ## 6. Roadmap for Version 2.0 (v2.0)
-When resuming work for v2.0, the prioritized feature roadmap includes:
+When resuming work for **v2.0**, the application transforms from a live streaming app into a complete **Next-Gen Entertainment & Content Platform**:
 
-### Core Player & Streaming Enhancements
-1. **VLC Stream Compatibility Engine (MPEG-TS Demuxer & Header Spoofing):**
+### Pillar 1: Revolutionary Content Explosion (VOD & Mega-Networks)
+1. **Free Movies & TV Series Hub (VOD On-Demand):**
+   * Expand into on-demand streaming with a Netflix/Shahid-style catalog.
+   * Ingest 10,000+ Arabic and global films, classic Egyptian cinema, historic Ramadan drama series, and classic theatrical plays (مسرحيات).
+   * Rich media UI with posters, synopsis, cast, genres, resume playback, and watch history.
+2. **FAST Channel Network Ingestion (Pluto TV, Samsung TV Plus, Plex, Rakuten):**
+   * Direct integration of free ad-supported television networks, adding thousands of dedicated single-show 24/7 channels (Top Gear, Gordon Ramsay, National Geographic, Anime, UFC Classics).
+   * High-bitrate 1080p commercial CDN delivery with 99.9% uptime.
+3. **Official 24/7 YouTube Live Stream Channels (Zero-Buffer Feeds):**
+   * Direct ingestion of official 24/7 YouTube live feeds as numbered linear channels:
+     * 24/7 Makkah & Madinah Haramain 4K live broadcasts.
+     * 24/7 Official news networks (Sky News Arabia, Al Jazeera Mubasher, France 24 Arabic, Bloomberg, DW).
+     * 24/7 4K Earth from Space (NASA) and relaxing nature/wildlife cameras.
+   * 100% reliable streams that never expire or suffer from geo-blocks.
+
+### Pillar 2: Revolutionary Live Sports & 65" Screen Experience
+4. **Live Sports Event Match Center (Auto-Routed Game Channels):**
+   * Real-time fixture schedule for Saudi Pro League, UEFA Champions League, Premier League, La Liga, and El Clásico.
+   * Live match cards with kick-off timers on the home screen.
+   * One-click tuning: clicking a match automatically routes directly to the working broadcast channel with Arabic or English commentary indicators.
+5. **65" Multi-View / Quad-Screen Sports Dashboard:**
+   * Split the 65-inch QLED screen into 2 or 4 simultaneous live streams (watch 4 Premier League or Saudi matches side-by-side).
+   * Remote D-Pad toggles audio between windows; pressing OK expands any box to fullscreen.
+
+### Pillar 3: Core Player & Engine Optimization
+6. **VLC Stream Compatibility Engine (MPEG-TS Demuxer & Header Spoofing):**
    * Integrate client-side `mpegts.js` remuxing to convert raw `.ts` streams into `fMP4` via MSE in memory.
    * Add AVPlay HTTP header spoofing (`USERAGENT`, `Referer`, cookies) to unlock the 137 VLC-dependent channels (e.g., OSN Movies Action, Cartoon Network Arabic, Arryadia, Canal+ Sport).
-2. **Instant Channel Zapping (Pre-Buffering Pipeline):**
+7. **Instant Channel Zapping (Pre-Buffering Pipeline):**
    * Preload adjacent stream manifests (`idx + 1` / `idx - 1`) in memory when highlighting cards, cutting channel change time from ~2.5s down to ~0.3s.
-3. **Electronic Program Guide (EPG):**
+8. **Electronic Program Guide (EPG):**
    * Full interactive schedule grid parsing XMLTV feeds for live TV channels ("Now Playing" & "Coming Up Next").
-4. **Custom Playlist & Xtream Codes Loader:**
+9. **Custom Playlist & Xtream Codes Loader:**
    * Settings UI allowing users to input private M3U/M3U8 URLs or Xtream Codes credentials (server, user, pass) with category auto-grouping.
-
-### UI & Remote Control Features
-5. **Numeric Keypad Quick Zapping:**
-   * Direct channel number input using remote digits 0–9 with a mini-overlay HUD (e.g. typing `1` jumps to channel #1).
-6. **Picture-in-Picture (PiP) Browsing:**
-   * Downsize the active AVPlay video to a 480x270 thumbnail in the bottom corner while browsing the channel grid.
-7. **Favorites Custom Sorting & Numbering:**
-   * Allow users to reorder favorite channels and assign custom quick-dial numbers (e.g. #1 for Saudi TV, #2 for Al Arabiya).
-8. **Audio & Subtitle Track Selector:**
-   * In-player HUD menu allowing users to switch audio commentary (Arabic/English) or toggle DVB subtitles.
-9. **Screen-Off / Audio-Only Mode:**
-   * Mode for news and radio stations (Quran, Rotana FM) turning off the QLED panel while keeping audio playing to conserve power.
+10. **Screen-Off / Audio-Only Mode:**
+    * Mode for news and radio stations (Quran, Rotana FM) turning off the QLED panel while keeping audio playing to conserve power.
+11. **Picture-in-Picture (PiP) Browsing:**
+    * Downsize the active AVPlay video to a 480x270 thumbnail in the bottom corner while browsing the channel grid.
+12. **Numeric Keypad Quick Zapping & Custom Reordering:**
+    * Direct channel number input using remote digits 0–9 and custom sorting for favorite channels.
