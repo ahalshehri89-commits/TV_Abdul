@@ -150,7 +150,7 @@ Representative live stream URLs from the catalog were probed directly using `ffp
 ### Samsung TV Hardware Runtime (Verified on Physical Hardware)
 - Target Hardware: Samsung Q60CA 65" (`QA65Q60CAUXSA`, 2023 model, Tizen 7.0 / Platform 9.0)
 - On physical Samsung Smart TVs running Tizen OS, the application automatically engages `SamsungAVPlayer` (`webapis.avplay`) for hardware acceleration.
-- Certificate Generation: Official Samsung CA certificates generated via Samsung v3 CA endpoints and registered for DUID `7XCPQL4LHV522`.
+- Certificate Generation: Official Samsung CA certificates generated via Samsung v3 CA endpoints and registered for device DUID.
 - Permission Grant: Device permission (`device-profile.xml`) installed and permitted via `tizen install-permit`.
 - Installation: Signed package `TV_Abdul.wgt` (App ID `Abdul00101.TVAbdul`) installed directly to TV storage via SDB/wascmd.
 - Execution: Successfully launched with PID `26439`. Verified running and visible via TV REST API (`/api/v2/applications/Abdul00101.TVAbdul`).
@@ -163,9 +163,9 @@ Representative live stream URLs from the catalog were probed directly using `ffp
 | :--- | :--- |
 | **TV Model** | Samsung Q60CA 65" (`QA65Q60CAUXSA`) |
 | **Tizen Platform** | Version 9.0 (Product 4.0 / Tizen 7.0) |
-| **DUID** | `7XCPQL4LHV522` |
-| **IP Address** | `192.168.100.17:26101` |
-| **Developer Mode** | Enabled (Host IP `192.168.100.46`) |
+| **DUID** | `<DEVICE_DUID>` |
+| **IP Address** | `<TV_IP>:26101` |
+| **Developer Mode** | Enabled (Host IP `<HOST_IP>`) |
 | **App ID** | `Abdul00101.TVAbdul` |
 | **Package ID** | `Abdul00101` |
 | **Install Status** | **100% Completed** (`wascmd [1863]ms`) |
@@ -201,10 +201,10 @@ Tizen application is successfully installed.
 
 ### Application Launch & Verification Output:
 ```bash
-$ sdb -s 192.168.100.17:26101 shell 0 execute Abdul00101.TVAbdul
+$ sdb -s <TV_IP>:26101 shell 0 execute Abdul00101.TVAbdul
 ... successfully launched pid = 26439 with debug 0
 
-$ curl -s http://192.168.100.17:8001/api/v2/applications/Abdul00101.TVAbdul
+$ curl -s http://<TV_IP>:8001/api/v2/applications/Abdul00101.TVAbdul
 {"id":"Abdul00101.TVAbdul","name":"TV_Abdul","running":true,"version":"1.0.0","visible":true}
 ```
 
