@@ -42,7 +42,7 @@ export function App() {
     try {
       const data = catalogService.getChannels({
         category: catId,
-        country: countryCode,
+        country: catId === 'favorites' ? 'all' : countryCode,
         limit: null
       });
       const items = data.items || [];
@@ -266,16 +266,23 @@ export function App() {
       <Header
         activeCountry={activeCountry}
         totalChannels={allChannels.length}
+        favoritesCount={favoritesSet.size}
         onOpenCountryModal={() => setIsCountryModalOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
-        onSelectCategory={(catId) => setActiveCategory(catId)}
+        onSelectCategory={(catId) => {
+          setActiveCategory(catId);
+          if (catId === 'favorites') setActiveCountry('all');
+        }}
       />
 
       {/* Category Pills Navigation */}
       <CategoryBar
         activeCategory={activeCategory}
-        onSelectCategory={(catId) => setActiveCategory(catId)}
+        onSelectCategory={(catId) => {
+          setActiveCategory(catId);
+          if (catId === 'favorites') setActiveCountry('all');
+        }}
       />
 
       {/* Main Channel Grid */}

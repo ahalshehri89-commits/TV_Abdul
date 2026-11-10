@@ -6,13 +6,13 @@ import { catalogService } from '../services/catalogService.js';
 export function Header({
   activeCountry,
   totalChannels = 0,
+  favoritesCount = 0,
   onOpenCountryModal,
   onOpenSearch,
   onOpenSettings,
   onSelectCategory
 }) {
   const [timeStr, setTimeStr] = useState('');
-  const [favCount, setFavCount] = useState(0);
 
   const countries = catalogService.getCountries();
   const activeCountryObj = countries.find((c) => c.code === activeCountry) || countries[0];
@@ -27,10 +27,6 @@ export function Header({
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    setFavCount(storageService.getFavorites().length);
   }, []);
 
   return (
@@ -67,7 +63,7 @@ export function Header({
           onClick={() => onSelectCategory('favorites')}
         >
           <Heart size={18} color="#f43f5e" fill="#f43f5e" />
-          <span>Favorites ({favCount})</span>
+          <span>Favorites ({favoritesCount})</span>
         </button>
 
         <button

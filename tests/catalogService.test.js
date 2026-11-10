@@ -1,7 +1,23 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { catalogService, PRIMARY_CATEGORIES } from '../src/services/catalogService.js';
+import { storageService } from '../src/services/storageService.js';
 
 describe('CatalogService', () => {
+  beforeEach(() => {
+    const store = {};
+    global.localStorage = {
+      getItem: (key) => store[key] || null,
+      setItem: (key, val) => {
+        store[key] = String(val);
+      },
+      removeItem: (key) => {
+        delete store[key];
+      },
+      clear: () => {
+        for (const k in store) delete store[k];
+      }
+    };
+  });
   it('should provide predefined primary categories', () => {
     const cats = catalogService.getCategories();
     expect(cats.length).toBeGreaterThan(5);
@@ -53,5 +69,25 @@ describe('CatalogService', () => {
     saChannels.forEach((ch) => {
       expect(ch.country).toBe('SA');
     });
+  });
+
+  it('should return favorited channels when filtered by category: "favorites"', () => {
+    const all = catalogService.getSeedChannels();
+    const ch1 = all[0];
+    const ch2 = all[1];
+
+    storageService.toggleFavorite(ch1.id);
+    storageService.toggleFavorite(ch2.id);
+
+    // Filtering by category: 'favorites'
+    const favChannels = catalogService.getSeedChannels({ category: 'favorites' });
+    expect(favChannels.length).toBe(2);
+    const favIds = favChannels.map((c) => c.id);
+    expect(favIds).toContain(ch1.id);
+    expect(favIds).toContain(ch2.id);
+
+    // Should also ignore country restriction when viewing favorites
+    const favChannelsWithCountry = catalogService.getSeedChannels({ category: 'favorites', country: 'ZZ' });
+    expect(favChannelsWithCountry.length).toBe(2);
   });
 });

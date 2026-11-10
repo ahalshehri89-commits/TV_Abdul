@@ -135,14 +135,14 @@ class CatalogService {
     const { category, country, q, favorites, recent } = filter;
     let list = Array.from(this.seedMap.values());
 
-    if (favorites) {
-      const favIds = new Set(storageService.getFavorites());
-      list = list.filter((ch) => favIds.has(ch.id));
-    } else if (recent) {
+    if (favorites || category === 'favorites') {
+      const favIds = new Set(storageService.getFavorites().map(String));
+      list = list.filter((ch) => favIds.has(String(ch.id)));
+    } else if (recent || category === 'recent') {
       const recentList = storageService.getRecentChannels();
-      const recentIds = recentList.map((item) => (typeof item === 'string' ? item : item.id));
+      const recentIds = recentList.map((item) => String(typeof item === 'string' ? item : item.id));
       list = recentIds
-        .map((id) => this.seedMap.get(id) || recentList.find((r) => r.id === id))
+        .map((id) => this.seedMap.get(id) || recentList.find((r) => String(r.id) === id))
         .filter(Boolean);
     } else if (category === 'arabic') {
       const arabicCodes = new Set(['SA', 'AE', 'EG', 'LB', 'QA', 'KW', 'OM', 'BH', 'JO', 'IQ', 'SY', 'PS', 'YE', 'MA', 'DZ', 'TN', 'SD', 'LY']);
@@ -151,7 +151,7 @@ class CatalogService {
       list = list.filter((ch) => ch.categories && ch.categories.includes(category));
     }
 
-    if (country && country !== 'all') {
+    if (country && country !== 'all' && category !== 'favorites' && category !== 'recent') {
       list = list.filter(
         (ch) =>
           ch.country?.toUpperCase() === country.toUpperCase() ||
