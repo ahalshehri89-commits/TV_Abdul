@@ -153,3 +153,47 @@ All pillars of **v2.0** have been fully engineered, verified with 39 Vitest test
     * Downsize the active AVPlay video to a 480x270 thumbnail in the bottom corner while browsing the channel grid.
 12. **Numeric Keypad Quick Zapping & Custom Reordering:**
     * Direct channel number input using remote digits 0–9 and custom sorting for favorite channels.
+
+---
+
+## 7. Priority Development Notes & Action Items (To Solve Upon Return)
+
+The following priority notes were logged prior to user travel and define the exact roadmap when development resumes:
+
+### Note 1: VOD Videos Do Not Open Directly in YouTube App
+* **Problem Description:** Clicking a VOD item launches the Samsung TV YouTube app (`9Ur5IzDKqV.TizenYouTube`), but it lands on the YouTube home screen rather than automatically starting the specific selected movie, play, or playlist.
+* **Technical Findings & Analysis:**
+  1. **Tizen API Limitations:** Standard Tizen `tizen.application.launch()` only opens the application package root.
+  2. **Google TV Sandbox:** Modern builds of `9Ur5IzDKqV.TizenYouTube` on Tizen 7.0 (Chromium 94+) intentionally ignore arbitrary URI deep-link parameters (`vnd.youtube://` or `http://tizen.org/appcontrol/data/url`) passed via `launchAppControl` for security and platform isolation.
+  3. **DIAL REST Service:** The TV runs a DIAL server on port `8080` (`http://127.0.0.1:8080/ws/apps/YouTube`). While it accepts POST commands with `Origin: package://Abdul00101.TVAbdul`, modern YouTube TV clients require an active DIAL pairing token (`screenId` / `loungeToken`) to bind video commands to the active playback session.
+* **Action Plan for Next Session:**
+  - **Option A (In-App Fullscreen Leanback Player):** Embed the full YouTube player inside TV_Abdul using a dedicated, zero-chrome WebKit view with full remote control mapping (OK to play/pause, Left/Right to seek/skip episodes, Back to exit). This eliminates app switching entirely and guarantees instant playback.
+  - **Option B (DIAL Lounge Token Pairing):** Implement the DIAL multiscreen WebSocket lounge pairing handshake (`http://127.0.0.1:8080/ws/apps/YouTube/run`) to pass the video ID directly into YouTube's active playback queue.
+  - **Option C (Direct MP4/HLS Storage):** Host or link direct `.mp4` and `.m3u8` video files playing natively via Samsung AVPlay hardware acceleration without relying on the external YouTube app.
+
+---
+
+### Note 2: Sport Channels Do Not Open Real Games
+* **Problem Description:** Match cards in the Live Sports Center (e.g., Al Hilal vs Al Nassr, Real Madrid vs Man City) route to free-to-air regional broadcast streams (Bahrain Sports, Oman Sports, Jordan Sport). These channels show regular regional programming (talk shows, local sports, recordings) rather than the actual live encrypted match (SSC 1 HD / beIN Sports Premium).
+* **Technical Findings & Analysis:**
+  1. **Broadcast Rights Protection:** High-profile commercial matches (Saudi Pro League on SSC, UEFA Champions League & Premier League on beIN Sports) are pay-per-view encrypted streams. Free global IPTV feeds (IPTV-org) do not provide unauthorized live commercial feeds.
+  2. **Static Fixtures vs Live API:** The match cards currently displayed are static mock schedules rather than real-time fixtures fetched from a sports API.
+* **Action Plan for Next Session:**
+  - **Private IPTV / Xtream Codes Integration:** Allow the user to input their private M3U/M3U8 playlist URL or Xtream Codes credentials (server, user, password) that contain genuine, active SSC and beIN Sports commercial streams.
+  - **Automated Stream Routing:** Map live match cards to the user's specific provider channel IDs (`SSC 1 HD`, `beIN Sports 1 Premium`) so clicking a match auto-tunes directly to the authentic game broadcast.
+  - **Real-Time Sports API Integration:** Connect a live sports data API (e.g., Football-Data.org or API-Football) to automatically pull genuine live fixtures, kickoff timers, and real-time scoreboards for today's active games.
+
+---
+
+### Note 3: More VOD Content Needed (Massive Catalog Expansion)
+* **Problem Description:** The current VOD catalog contains 18 curated classic theatrical plays, Egyptian golden cinema, and historical series. A massive expansion is needed to turn TV_Abdul into a comprehensive on-demand entertainment hub.
+* **Target Categories & Expansion Goals:**
+  1. **Classic Arabic Plays (مسرحيات كاملة):** Complete collections of Adel Imam, Samir Ghanem, Fouad El-Mohandes, Mohamed Sobhy, and Kuwaiti comedy theater.
+  2. **Golden Arabic Cinema (أفلام كلاسيكية):** Thousands of Egyptian and Arab cinematic classics across comedy, drama, and romance.
+  3. **Ramadan & Historical Drama Series (مسلسلات كاملة):** Full multi-season drama series (Bab Al-Hara, Al-Zeer Salem, Raafat Al-Haggan, Layali Al-Helmiya, Omar).
+  4. **World Cinema Classics (أفلام عالمية من الملكية العامة):** Charlie Chaplin collections, Hitchcock classics, film noir, and timeless Hollywood masterpieces.
+* **Action Plan for Next Session:**
+  - **Xtream Codes VOD API Ingestion:** Implement direct fetching from IPTV provider VOD endpoints (`player_api.php?action=get_vod_streams` and `get_series`) with movie covers, plot summary, cast, ratings, and multi-episode series hierarchy.
+  - **M3U VOD Playlist Parser:** Support loading local or remote `.m3u` files containing `#EXTINF` VOD entries with category auto-grouping (Plays, Movies, Series, Anime, Documentaries).
+  - **Public Domain & Cultural Archive Ingestion:** Ingest curated direct MP4/M3U8 links from Internet Archive and public cultural institutions for zero-buffer playback.
+  - **Global Universal Search:** Implement a unified search bar that queries across both Live TV channels (4,300+) and on-demand VOD titles simultaneously.
