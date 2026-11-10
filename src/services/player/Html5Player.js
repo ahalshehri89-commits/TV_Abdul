@@ -6,11 +6,26 @@
 import Hls from 'hls.js';
 import { BasePlayer, PLAYER_STATES } from './PlayerInterface.js';
 
+let mpegtsModule = null;
+async function getMpegts() {
+  if (mpegtsModule) return mpegtsModule;
+  if (typeof window !== 'undefined' && typeof window.MediaSource !== 'undefined') {
+    try {
+      const mod = await import('mpegts.js');
+      mpegtsModule = mod.default || mod;
+    } catch (e) {
+      console.warn('mpegts.js dynamic load error:', e);
+    }
+  }
+  return mpegtsModule;
+}
+
 export class Html5Player extends BasePlayer {
   constructor(options = {}) {
     super(options);
     this.videoElement = options.videoElement || null;
     this.hls = null;
+    this.mpegtsPlayer = null;
     this.currentUrl = null;
 
     this.onWaiting = this.onWaiting.bind(this);
@@ -87,7 +102,47 @@ export class Html5Player extends BasePlayer {
       throw new Error('Html5Player requires an attached <video> element.');
     }
 
+    const isMpegTs = url.includes('.ts') || options.isMpegTs || options.format === 'mpegts';
     const isHls = url.includes('.m3u8') || url.includes('/hls');
+
+    if (isMpegTs) {
+      const mpegts = await getMpegts();
+      if (mpegts && mpegts.isSupported()) {
+        return new Promise((resolve, reject) => {
+          this.mpegtsPlayer = mpegts.createPlayer(
+            {
+              type: 'mse',
+              isLive: true,
+              url: url
+            },
+            {
+              enableWorker: true,
+              lazyLoad: false,
+              liveBufferLatencyChasing: true
+            }
+          );
+          this.mpegtsPlayer.attachMediaElement(this.videoElement);
+          this.mpegtsPlayer.load();
+          this.mpegtsPlayer
+            .play()
+            .then(() => {
+              this.setState(PLAYER_STATES.PLAYING);
+              resolve();
+            })
+            .catch((err) => {
+              console.warn('mpegts play error:', err);
+              this.setState(PLAYER_STATES.PLAYING);
+              resolve();
+            });
+
+          this.mpegtsPlayer.on(mpegts.Events.ERROR, (errorType, errorDetail) => {
+            console.error('mpegts.js error:', errorType, errorDetail);
+            this.setState(PLAYER_STATES.ERROR, { error: errorDetail });
+            this.emit('error', { error: `MPEG-TS error: ${errorDetail}` });
+          });
+        });
+      }
+    }
 
     if (isHls && Hls.isSupported()) {
       return new Promise((resolve, reject) => {
@@ -186,6 +241,12 @@ export class Html5Player extends BasePlayer {
     if (this.hls) {
       this.hls.destroy();
       this.hls = null;
+    }
+    if (this.mpegtsPlayer) {
+      try {
+        this.mpegtsPlayer.destroy();
+      } catch (e) {}
+      this.mpegtsPlayer = null;
     }
     if (this.videoElement) {
       this.videoElement.pause();

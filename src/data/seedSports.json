@@ -1,0 +1,97 @@
+[
+  {
+    "id": "match-spl-derby-riyadh",
+    "league": "Saudi Pro League",
+    "leagueAr": "دوري روشن السعودي",
+    "round": "الجولة 24",
+    "status": "live",
+    "minute": "68'",
+    "score": "2 - 1",
+    "homeTeam": {
+      "name": "Al Hilal",
+      "nameAr": "الهلال",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Al_Hilal_SFC_Logo.svg/200px-Al_Hilal_SFC_Logo.svg.png"
+    },
+    "awayTeam": {
+      "name": "Al Nassr",
+      "nameAr": "النصر",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Al-Nassr_FC_Logo.svg/200px-Al-Nassr_FC_Logo.svg.png"
+    },
+    "commentary": "فارس عوض (عربي) / Martin Tyler (English)",
+    "broadcastChannelName": "SSC 1 HD / KSA Sports",
+    "targetChannelQuery": "KSA Sports",
+    "targetStreamUrl": "https://live-hls-web-aja.getaj.net/AJA/index.m3u8"
+  },
+  {
+    "id": "match-ucl-madrid-city",
+    "league": "UEFA Champions League",
+    "leagueAr": "دوري أبطال أوروبا",
+    "round": "الدور ربع النهائي",
+    "status": "upcoming",
+    "minute": null,
+    "score": null,
+    "time": "Today 22:00",
+    "homeTeam": {
+      "name": "Real Madrid",
+      "nameAr": "ريال مدريد",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/200px-Real_Madrid_CF.svg.png"
+    },
+    "awayTeam": {
+      "name": "Manchester City",
+      "nameAr": "مانشستر سيتي",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Manchester_City_FC_badge.svg/200px-Manchester_City_FC_badge.svg.png"
+    },
+    "commentary": "عصام الشوالي (beIN 1)",
+    "broadcastChannelName": "beIN Sports 1 Premium",
+    "targetChannelQuery": "beIN",
+    "targetStreamUrl": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8"
+  },
+  {
+    "id": "match-spl-derby-jeddah",
+    "league": "Saudi Pro League",
+    "leagueAr": "دوري روشن السعودي",
+    "round": "الجولة 24",
+    "status": "upcoming",
+    "minute": null,
+    "score": null,
+    "time": "Tomorrow 20:30",
+    "homeTeam": {
+      "name": "Al Ittihad",
+      "nameAr": "الاتحاد",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Al-Ittihad_Club_Logo.svg/200px-Al-Ittihad_Club_Logo.svg.png"
+    },
+    "awayTeam": {
+      "name": "Al Ahli",
+      "nameAr": "الأهلي",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Al-Ahli_Saudi_FC_logo.svg/200px-Al-Ahli_Saudi_FC_logo.svg.png"
+    },
+    "commentary": "فهد العتيبي (SSC Extra)",
+    "broadcastChannelName": "SSC Extra 1 HD",
+    "targetChannelQuery": "SSC",
+    "targetStreamUrl": "https://live-hls-web-ajm.getaj.net/AJM/index.m3u8"
+  },
+  {
+    "id": "match-epl-arsenal-chelsea",
+    "league": "Premier League",
+    "leagueAr": "الدوري الإنجليزي الممتاز",
+    "round": "Matchday 29",
+    "status": "upcoming",
+    "minute": null,
+    "score": null,
+    "time": "Saturday 19:30",
+    "homeTeam": {
+      "name": "Arsenal",
+      "nameAr": "أرسنال",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/200px-Arsenal_FC.svg.png"
+    },
+    "awayTeam": {
+      "name": "Chelsea",
+      "nameAr": "تشيلسي",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/200px-Chelsea_FC.svg.png"
+    },
+    "commentary": "خليل البلوشي",
+    "broadcastChannelName": "beIN Sports 2 HD",
+    "targetChannelQuery": "beIN",
+    "targetStreamUrl": "https://live-hls-web-aja.getaj.net/AJA/index.m3u8"
+  }
+]

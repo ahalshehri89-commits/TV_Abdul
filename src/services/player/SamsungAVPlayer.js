@@ -49,18 +49,29 @@ export class SamsungAVPlayer extends BasePlayer {
         this.avplay.setDisplayMethod('PLAYER_DISPLAY_MODE_LETTER_BOX');
       } catch (err) {}
 
-      // Configure streaming properties
-      if (options.userAgent) {
+      // Configure streaming properties (VLC compatibility header spoofing)
+      const userAgent = options.userAgent || 'VLC/3.0.20 LibVLC/3.0.20 (TV_Abdul v2.0)';
+      try {
+        this.avplay.setStreamingProperty('USER_AGENT', userAgent);
+      } catch (e) {
         try {
-          this.avplay.setStreamingProperty('USERAGENT', options.userAgent);
-        } catch (e) {
-          try {
-            this.avplay.setStreamingProperty('USER_AGENT', options.userAgent);
-          } catch (e2) {}
-        }
+          this.avplay.setStreamingProperty('USERAGENT', userAgent);
+        } catch (e2) {}
       }
 
-      // Configure adaptive bitrate
+      if (options.referer) {
+        try {
+          this.avplay.setStreamingProperty('CUSTOM_MESSAGE', `Referer: ${options.referer}`);
+        } catch (e) {}
+      }
+
+      if (options.cookie) {
+        try {
+          this.avplay.setStreamingProperty('COOKIE', options.cookie);
+        } catch (e) {}
+      }
+
+      // Configure adaptive bitrate & 4K decoding if supported
       try {
         this.avplay.setStreamingProperty('ADAPTIVE_INFO', 'STARTBITRATE=HIGHEST');
       } catch (e) {}

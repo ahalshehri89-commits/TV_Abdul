@@ -600,3 +600,575 @@ body.tv-in-player #root,
   border-color: var(--focus-border);
   box-shadow: 0 0 0 3px var(--accent-glow);
 }
+
+/* ============================================================
+   TV_Abdul v2.0 Platform Navigation & VOD & Sports Center
+   ============================================================ */
+
+/* Top Platform Navigation (Live TV / Movies / Sports) */
+.tv-platform-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px;
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+}
+
+.tv-platform-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tv-platform-tab.active {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+}
+
+.tv-platform-tab:focus,
+.tv-platform-tab.tv-focused {
+  background: #38bdf8 !important;
+  color: #040814 !important;
+  transform: scale(1.05);
+}
+
+/* ------------------------------------------------------------
+   VOD: Free Movies & Series Hub Styling
+   ------------------------------------------------------------ */
+.tv-vod-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(1080px - 140px);
+  padding-bottom: 40px;
+}
+
+.tv-vod-categories {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 2px;
+}
+
+.tv-pill-sub {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-left: 4px;
+}
+
+/* Hero Showcase */
+.tv-vod-hero {
+  position: relative;
+  min-height: 420px;
+  border-radius: 24px;
+  background-size: cover;
+  background-position: center top;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  padding: 40px 48px;
+}
+
+.tv-vod-hero-content {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tv-vod-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #fde68a;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.tv-vod-hero-title-ar {
+  font-size: 40px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.tv-vod-hero-title-en {
+  font-size: 22px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.tv-vod-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 16px;
+  color: #cbd5e1;
+}
+
+.tv-vod-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+.tv-vod-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tv-vod-genre-tag {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 3px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.tv-vod-hero-synopsis {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.tv-vod-hero-cast {
+  font-size: 15px;
+  color: #94a3b8;
+}
+
+.tv-vod-hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.tv-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 28px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tv-btn-primary:focus,
+.tv-btn-primary.tv-focused {
+  background: #38bdf8 !important;
+  color: #040814 !important;
+  transform: scale(1.06);
+  box-shadow: 0 0 0 3px var(--focus-border), 0 8px 24px var(--accent-glow) !important;
+}
+
+.tv-btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  border-radius: 14px;
+  padding: 14px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tv-btn-secondary:focus,
+.tv-btn-secondary.tv-focused {
+  background: #475569 !important;
+  transform: scale(1.06);
+  box-shadow: 0 0 0 3px var(--focus-border);
+}
+
+/* VOD Grid & Cards */
+.tv-vod-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tv-vod-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tv-vod-section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tv-vod-count {
+  font-size: 16px;
+  color: #94a3b8;
+}
+
+.tv-vod-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+
+.tv-vod-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tv-vod-card:focus,
+.tv-vod-card.tv-focused {
+  transform: scale(1.06);
+  border-color: var(--focus-border);
+  box-shadow: 0 0 0 3px var(--focus-border), 0 12px 28px rgba(14, 165, 233, 0.4) !important;
+}
+
+.tv-vod-card-poster-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background: #0f172a;
+  overflow: hidden;
+}
+
+.tv-vod-card-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tv-vod-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #f59e0b;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.tv-vod-card-type {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.tv-vod-card-hover-play {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.tv-vod-card:focus .tv-vod-card-hover-play,
+.tv-vod-card.tv-focused .tv-vod-card-hover-play {
+  opacity: 1;
+}
+
+.tv-vod-card-info {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tv-vod-card-title-ar {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tv-vod-card-title-en {
+  font-size: 14px;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tv-vod-card-sub {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------------------
+   Sports Match Center Styling
+   ------------------------------------------------------------ */
+.tv-sports-center {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-y: auto;
+  max-height: calc(1080px - 140px);
+  padding-bottom: 40px;
+}
+
+.tv-sports-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tv-sports-header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tv-sports-header-title h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.tv-sports-header-sub {
+  font-size: 16px;
+  color: #94a3b8;
+}
+
+.tv-sports-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tv-sports-section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tv-sports-section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tv-sports-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.tv-match-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tv-match-card:focus,
+.tv-match-card.tv-focused {
+  transform: scale(1.03);
+  border-color: var(--focus-border);
+  box-shadow: 0 0 0 3px var(--focus-border), 0 12px 28px rgba(14, 165, 233, 0.4) !important;
+}
+
+.tv-match-card-live {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+.tv-match-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tv-match-league {
+  font-size: 15px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.tv-match-live-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.tv-match-time-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.tv-match-scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tv-match-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 140px;
+  text-align: center;
+}
+
+.tv-match-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.tv-match-team-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tv-match-team-en {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.tv-match-score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tv-match-score {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #38bdf8;
+}
+
+.tv-match-status-label {
+  font-size: 13px;
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.tv-match-vs-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tv-match-vs {
+  font-size: 26px;
+  font-weight: 800;
+  color: #64748b;
+}
+
+.tv-match-kickoff {
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.tv-match-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tv-match-channel-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.tv-match-tune-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(2, 132, 199, 0.25);
+  border: 1px solid rgba(2, 132, 199, 0.6);
+  color: #7dd3fc;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 8px;
+}
+
+.tv-match-tune-upcoming {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+}
+

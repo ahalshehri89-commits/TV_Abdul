@@ -7,12 +7,15 @@ import { VideoPlayerView } from './components/VideoPlayerView.jsx';
 import { SearchModal } from './components/SearchModal.jsx';
 import { SettingsModal } from './components/SettingsModal.jsx';
 import { CountryModal } from './components/CountryModal.jsx';
+import { VODView } from './components/VODView.jsx';
+import { SportsMatchCenter } from './components/SportsMatchCenter.jsx';
 import { catalogService } from './services/catalogService.js';
 import { storageService } from './services/storageService.js';
 import { remoteKeyManager, TV_KEYS } from './services/remoteKeyManager.js';
 import { spatialNav } from './services/spatialNav.js';
 
 export function App() {
+  const [activeView, setActiveView] = useState('live_tv'); // 'live_tv' | 'vod' | 'sports'
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeCountry, setActiveCountry] = useState('all');
   const [allChannels, setAllChannels] = useState([]);
@@ -138,6 +141,11 @@ export function App() {
           break;
         }
         case TV_KEYS.BACK:
+          if (activeView !== 'live_tv') {
+            setActiveView('live_tv');
+            setTimeout(() => spatialNav.focusFirst(), 100);
+            return true;
+          }
           if (activeCountry !== 'all') {
             setActiveCountry('all');
             return true;
@@ -264,6 +272,11 @@ export function App() {
 
       {/* Top Header */}
       <Header
+        activeView={activeView}
+        onSelectView={(v) => {
+          setActiveView(v);
+          setTimeout(() => spatialNav.focusFirst(), 100);
+        }}
         activeCountry={activeCountry}
         totalChannels={allChannels.length}
         favoritesCount={favoritesSet.size}
@@ -272,29 +285,55 @@ export function App() {
         onOpenSettings={() => setIsSettingsOpen(true)}
         onSelectCategory={(catId) => {
           setActiveCategory(catId);
+          setActiveView('live_tv');
           if (catId === 'favorites') setActiveCountry('all');
         }}
       />
 
-      {/* Category Pills Navigation */}
-      <CategoryBar
-        activeCategory={activeCategory}
-        onSelectCategory={(catId) => {
-          setActiveCategory(catId);
-          if (catId === 'favorites') setActiveCountry('all');
-        }}
-      />
+      {/* Main Platform Views */}
+      {activeView === 'live_tv' && (
+        <>
+          {/* Category Pills Navigation */}
+          <CategoryBar
+            activeCategory={activeCategory}
+            onSelectCategory={(catId) => {
+              setActiveCategory(catId);
+              if (catId === 'favorites') setActiveCountry('all');
+            }}
+          />
 
-      {/* Main Channel Grid */}
-      <ChannelGrid
-        channels={visibleChannels}
-        totalCount={allChannels.length}
-        loading={loading}
-        category={activeCategory}
-        favoritesSet={favoritesSet}
-        onPlay={handlePlayChannel}
-        onToggleFavorite={handleToggleFavorite}
-      />
+          {/* Main Channel Grid */}
+          <ChannelGrid
+            channels={visibleChannels}
+            totalCount={allChannels.length}
+            loading={loading}
+            category={activeCategory}
+            favoritesSet={favoritesSet}
+            onPlay={handlePlayChannel}
+            onToggleFavorite={handleToggleFavorite}
+          />
+        </>
+      )}
+
+      {activeView === 'vod' && (
+        <VODView
+          onPlayItem={(vodItem) =>
+            handlePlayChannel({
+              id: vodItem.id,
+              number: 1,
+              name: `${vodItem.titleAr} (${vodItem.title})`,
+              logo: vodItem.poster,
+              streams: [{ url: vodItem.streamUrl, quality: '1080p' }],
+              country: 'EG',
+              categories: ['movies']
+            })
+          }
+        />
+      )}
+
+      {activeView === 'sports' && (
+        <SportsMatchCenter onTuneChannel={handlePlayChannel} />
+      )}
 
       {/* Country & Language Modal */}
       {isCountryModalOpen && (
