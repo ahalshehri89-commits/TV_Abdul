@@ -903,6 +903,23 @@ body.tv-in-player #root,
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+.tv-vod-yt-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(239, 68, 68, 0.95);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
 .tv-youtube-embed-wrapper {
   position: absolute;
   inset: 0;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Play, Star, Clock, Calendar, Film, Info, Sparkles } from 'lucide-react';
+import { Play, Star, Clock, Calendar, Film, Info, Sparkles, ExternalLink } from 'lucide-react';
 import { vodService, VOD_CATEGORIES } from '../services/vodService.js';
+import { youtubeLauncherService } from '../services/youtubeLauncherService.js';
 
 export function VODView({ onPlayItem }) {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -9,6 +10,17 @@ export function VODView({ onPlayItem }) {
   const categories = vodService.getCategories();
   const items = vodService.getItems({ category: activeCategory });
   const featuredItem = items[0] || vodService.getItems()[0];
+
+  const handleItemSelect = (item) => {
+    if (item.youtubeId || item.youtubePlaylistId) {
+      youtubeLauncherService.openInYouTubeApp({
+        videoId: item.youtubeId,
+        playlistId: item.youtubePlaylistId
+      });
+    } else {
+      onPlayItem(item);
+    }
+  };
 
   const getPosterFallback = (titleAr) =>
     `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="300" height="450" fill="%231e293b"/><circle cx="150" cy="180" r="48" fill="%230f172a" stroke="%2338bdf8" stroke-width="2"/><polygon points="142,160 166,180 142,200" fill="%2338bdf8"/><text x="150" y="270" font-family="sans-serif" font-size="18" font-weight="bold" fill="%23ffffff" text-anchor="middle">${encodeURIComponent(titleAr || 'TV Abdul')}</text><text x="150" y="300" font-family="sans-serif" font-size="14" fill="%2394a3b8" text-anchor="middle">TV_Abdul VOD</text></svg>`;
@@ -82,10 +94,14 @@ export function VODView({ onPlayItem }) {
                 data-nav="true"
                 data-nav-zone="vod_hero"
                 data-nav-id="btn-hero-play"
-                onClick={() => onPlayItem(featuredItem)}
+                onClick={() => handleItemSelect(featuredItem)}
               >
                 <Play size={20} fill="#ffffff" />
-                <span>مشاهدة الآن • Watch Now</span>
+                <span>
+                  {featuredItem.youtubeId || featuredItem.youtubePlaylistId
+                    ? 'تشغيل في تطبيق YouTube • Open in YouTube'
+                    : 'مشاهدة الآن • Watch Now'}
+                </span>
               </button>
               <button
                 className="tv-btn-secondary"
@@ -122,7 +138,7 @@ export function VODView({ onPlayItem }) {
               data-nav-zone="grid"
               data-nav-id={`vod-${item.id}`}
               data-index={idx}
-              onClick={() => onPlayItem(item)}
+              onClick={() => handleItemSelect(item)}
             >
               <div className="tv-vod-card-poster-wrapper">
                 <img
@@ -135,6 +151,12 @@ export function VODView({ onPlayItem }) {
                     e.currentTarget.src = getPosterFallback(item.titleAr);
                   }}
                 />
+                {(item.youtubeId || item.youtubePlaylistId) && (
+                  <div className="tv-vod-yt-tag">
+                    <Play size={10} fill="#ffffff" />
+                    <span>YouTube App</span>
+                  </div>
+                )}
                 {item.youtubePlaylistId && (
                   <div className="tv-vod-playlist-badge">
                     <Sparkles size={11} color="#f59e0b" />
@@ -191,19 +213,54 @@ export function VODView({ onPlayItem }) {
               </div>
             </div>
             <div className="tv-vod-modal-actions">
-              <button
-                className="tv-btn-primary"
-                data-nav="true"
-                data-nav-zone="modal"
-                data-nav-id="btn-modal-play"
-                onClick={() => {
-                  setSelectedItem(null);
-                  onPlayItem(selectedItem);
-                }}
-              >
-                <Play size={20} fill="#ffffff" />
-                <span>تشغيل الآن</span>
-              </button>
+              {(selectedItem.youtubeId || selectedItem.youtubePlaylistId) ? (
+                <>
+                  <button
+                    className="tv-btn-primary"
+                    style={{ background: '#ef4444', borderColor: '#dc2626' }}
+                    data-nav="true"
+                    data-nav-zone="modal"
+                    data-nav-id="btn-modal-yt"
+                    onClick={() => {
+                      youtubeLauncherService.openInYouTubeApp({
+                        videoId: selectedItem.youtubeId,
+                        playlistId: selectedItem.youtubePlaylistId
+                      });
+                      setSelectedItem(null);
+                    }}
+                  >
+                    <ExternalLink size={20} />
+                    <span>فتح في تطبيق YouTube على التلفزيون</span>
+                  </button>
+                  <button
+                    className="tv-btn-secondary"
+                    data-nav="true"
+                    data-nav-zone="modal"
+                    data-nav-id="btn-modal-play"
+                    onClick={() => {
+                      setSelectedItem(null);
+                      onPlayItem(selectedItem);
+                    }}
+                  >
+                    <Play size={18} />
+                    <span>المشغل المدمج • In-App Player</span>
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="tv-btn-primary"
+                  data-nav="true"
+                  data-nav-zone="modal"
+                  data-nav-id="btn-modal-play"
+                  onClick={() => {
+                    setSelectedItem(null);
+                    onPlayItem(selectedItem);
+                  }}
+                >
+                  <Play size={20} fill="#ffffff" />
+                  <span>مشاهدة الآن • Watch Now</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
