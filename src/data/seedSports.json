@@ -2,7 +2,7 @@
   {
     "id": "match-spl-derby-riyadh",
     "league": "Saudi Pro League",
-    "leagueAr": "دوري روشن السعودي",
+    "leagueAr": "دوري روشن السعودي للمحترفين",
     "round": "الجولة 24",
     "status": "live",
     "minute": "68'",
@@ -17,10 +17,14 @@
       "nameAr": "النصر",
       "logo": "logos/al-nassr.svg"
     },
-    "commentary": "فارس عوض (عربي) / Martin Tyler (English)",
-    "broadcastChannelName": "SSC 1 HD / KSA Sports",
-    "targetChannelQuery": "KSA Sports",
-    "targetStreamUrl": "https://live-hls-web-aja.getaj.net/AJA/index.m3u8"
+    "commentary": "فارس عوض (عربي) • بث مباشر عالي الدقة",
+    "broadcastChannelName": "Bahrain Sports 1 HD (البحرين الرياضية)",
+    "targetChannelQuery": "Bahrain Sports 1",
+    "targetStreamUrl": "https://5c7b683162943.streamlock.net/live/ngrp:sportsone_all/playlist.m3u8",
+    "backupStreams": [
+      { "url": "https://5c7b683162943.streamlock.net/live/ngrp:sportsone_all/playlist.m3u8", "quality": "1080p" },
+      { "url": "https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8", "quality": "720p" }
+    ]
   },
   {
     "id": "match-ucl-madrid-city",
@@ -41,15 +45,19 @@
       "nameAr": "مانشستر سيتي",
       "logo": "logos/man-city.svg"
     },
-    "commentary": "عصام الشوالي (beIN 1)",
-    "broadcastChannelName": "beIN Sports 1 Premium",
-    "targetChannelQuery": "beIN",
-    "targetStreamUrl": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8"
+    "commentary": "عصام الشوالي (عربي) • بي إن سبورتس",
+    "broadcastChannelName": "Oman Sports HD (عُمان الرياضية)",
+    "targetChannelQuery": "Oman Sports",
+    "targetStreamUrl": "https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8",
+    "backupStreams": [
+      { "url": "https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8", "quality": "1080p" },
+      { "url": "https://5c7b683162943.streamlock.net/live/ngrp:sportsone_all/playlist.m3u8", "quality": "720p" }
+    ]
   },
   {
     "id": "match-spl-derby-jeddah",
     "league": "Saudi Pro League",
-    "leagueAr": "دوري روشن السعودي",
+    "leagueAr": "دوري روشن السعودي للمحترفين",
     "round": "الجولة 24",
     "status": "upcoming",
     "minute": null,
@@ -65,16 +73,20 @@
       "nameAr": "الأهلي",
       "logo": "logos/al-ahli.svg"
     },
-    "commentary": "فهد العتيبي (SSC Extra)",
-    "broadcastChannelName": "SSC Extra 1 HD",
-    "targetChannelQuery": "SSC",
-    "targetStreamUrl": "https://live-hls-web-ajm.getaj.net/AJM/index.m3u8"
+    "commentary": "فهد العتيبي (عربي) • SSC تغطية مباشرة",
+    "broadcastChannelName": "Bahrain Sports 2 HD (البحرين الرياضية 2)",
+    "targetChannelQuery": "Bahrain Sports 2",
+    "targetStreamUrl": "https://5c7b683162943.streamlock.net/live/ngrp:bahrainsportstwo_all/playlist.m3u8",
+    "backupStreams": [
+      { "url": "https://5c7b683162943.streamlock.net/live/ngrp:bahrainsportstwo_all/playlist.m3u8", "quality": "1080p" },
+      { "url": "https://jrtv-live.ercdn.net/jordansporthd/jordansporthd.m3u8", "quality": "720p" }
+    ]
   },
   {
     "id": "match-epl-arsenal-chelsea",
     "league": "Premier League",
     "leagueAr": "الدوري الإنجليزي الممتاز",
-    "round": "Matchday 29",
+    "round": "الجولة 29",
     "status": "upcoming",
     "minute": null,
     "score": null,
@@ -89,9 +101,13 @@
       "nameAr": "تشيلسي",
       "logo": "logos/chelsea.svg"
     },
-    "commentary": "خليل البلوشي",
-    "broadcastChannelName": "beIN Sports 2 HD",
-    "targetChannelQuery": "beIN",
-    "targetStreamUrl": "https://live-hls-web-aja.getaj.net/AJA/index.m3u8"
+    "commentary": "خليل البلوشي (عربي) • الدوري الإنجليزي",
+    "broadcastChannelName": "Jordan Sport HD (الأردن الرياضية)",
+    "targetChannelQuery": "Jordan Sport",
+    "targetStreamUrl": "https://jrtv-live.ercdn.net/jordansporthd/jordansporthd.m3u8",
+    "backupStreams": [
+      { "url": "https://jrtv-live.ercdn.net/jordansporthd/jordansporthd.m3u8", "quality": "1080p" },
+      { "url": "https://imn-live.esite-lab.com/hls/iraqia-sports-1.m3u8", "quality": "720p" }
+    ]
   }
 ]

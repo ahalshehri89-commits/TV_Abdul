@@ -1,6 +1,66 @@
 import React from 'react';
-import { Trophy, Play, Radio, Clock, Shield, Volume2 } from 'lucide-react';
+import { Trophy, Play, Radio, Clock, Shield, Volume2, Tv } from 'lucide-react';
 import { sportsService } from '../services/sportsService.js';
+
+const LIVE_SPORTS_CHANNELS = [
+  {
+    id: 'live-ch-bahrain-1',
+    name: 'Bahrain Sports 1 HD',
+    nameAr: 'البحرين الرياضية 1',
+    flag: '🇧🇭',
+    url: 'https://5c7b683162943.streamlock.net/live/ngrp:sportsone_all/playlist.m3u8'
+  },
+  {
+    id: 'live-ch-oman-sports',
+    name: 'Oman Sports HD',
+    nameAr: 'عُمان الرياضية',
+    flag: '🇴🇲',
+    url: 'https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8'
+  },
+  {
+    id: 'live-ch-jordan-sport',
+    name: 'Jordan Sport HD',
+    nameAr: 'الأردن الرياضية',
+    flag: '🇯🇴',
+    url: 'https://jrtv-live.ercdn.net/jordansporthd/jordansporthd.m3u8'
+  },
+  {
+    id: 'live-ch-bahrain-2',
+    name: 'Bahrain Sports 2 HD',
+    nameAr: 'البحرين الرياضية 2',
+    flag: '🇧🇭',
+    url: 'https://5c7b683162943.streamlock.net/live/ngrp:bahrainsportstwo_all/playlist.m3u8'
+  },
+  {
+    id: 'live-ch-ktv-sport',
+    name: 'KTV Sport Plus HD',
+    nameAr: 'كويت سبورت بلس',
+    flag: '🇰🇼',
+    url: 'https://kwtsplta.cdn.mangomolo.com/spl/smil:spl.stream.smil/chunklist.m3u8'
+  },
+  {
+    id: 'live-ch-iraqia-sport',
+    name: 'Al Iraqia Sport HD',
+    nameAr: 'العراقية الرياضية',
+    flag: '🇮🇶',
+    url: 'https://imn-live.esite-lab.com/hls/iraqia-sports-1.m3u8'
+  },
+  {
+    id: 'live-ch-bein-news',
+    name: 'beIN SPORTS News HD',
+    nameAr: 'بي إن سبورتس الإخبارية',
+    flag: '🇶🇦',
+    youtubeId: '2lJZPT6OljI',
+    url: 'https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8'
+  },
+  {
+    id: 'live-ch-redbull-tv',
+    name: 'Red Bull TV Sports',
+    nameAr: 'ريد بول للرياضات العالمية',
+    flag: '🔴',
+    url: 'https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8'
+  }
+];
 
 export function SportsMatchCenter({ onTuneChannel }) {
   const matches = sportsService.getMatches();
@@ -13,7 +73,20 @@ export function SportsMatchCenter({ onTuneChannel }) {
       number: 1,
       name: `${match.homeTeam.nameAr} ضد ${match.awayTeam.nameAr} (${match.broadcastChannelName})`,
       logo: match.homeTeam.logo,
-      streams: [{ url: match.targetStreamUrl, quality: '1080p' }],
+      streams: match.backupStreams || [{ url: match.targetStreamUrl, quality: '1080p' }],
+      country: 'SA',
+      categories: ['sports']
+    });
+  };
+
+  const handleTuneSportsChannel = (ch) => {
+    onTuneChannel({
+      id: ch.id,
+      number: 1,
+      name: `${ch.nameAr} (${ch.name})`,
+      logo: 'logos/al-hilal.svg',
+      streams: [{ url: ch.url, quality: '1080p Full HD' }],
+      youtubeId: ch.youtubeId,
       country: 'SA',
       categories: ['sports']
     });
@@ -30,7 +103,31 @@ export function SportsMatchCenter({ onTuneChannel }) {
           <h2>مركز المباريات والرياضة المباشرة • Live Match Center</h2>
         </div>
         <div className="tv-sports-header-sub">
-          جدول مباريات دوري روشن السعودي، دوري أبطال أوروبا والدوريات الكبرى مع البث المباشر الفوري
+          جدول مباريات دوري روشن السعودي، دوري أبطال أوروبا والدوريات الكبرى مع البث الرياضي المباشر الفوري
+        </div>
+      </div>
+
+      {/* 24/7 Live Sports Dedicated Channels Bar */}
+      <div className="tv-sports-channels-section">
+        <div className="tv-sports-channels-header">
+          <Tv size={20} color="#38bdf8" />
+          <span>القنوات الرياضية الفضائية المباشرة (24/7 Live Sports Channels):</span>
+        </div>
+        <div className="tv-sports-channels-bar" role="tablist">
+          {LIVE_SPORTS_CHANNELS.map((ch) => (
+            <button
+              key={ch.id}
+              className="tv-sports-channel-pill"
+              data-nav="true"
+              data-nav-zone="categories"
+              data-nav-id={`pill-${ch.id}`}
+              onClick={() => handleTuneSportsChannel(ch)}
+            >
+              <span className="tv-sports-pill-flag">{ch.flag}</span>
+              <span className="tv-sports-pill-name">{ch.nameAr}</span>
+              <span className="tv-sports-pill-badge">مباشر HD</span>
+            </button>
+          ))}
         </div>
       </div>
 
