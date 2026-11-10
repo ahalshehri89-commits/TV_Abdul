@@ -1,0 +1,176 @@
+[
+  {
+    "id": "animation",
+    "name": "Animation",
+    "description": "Programming is mostly 2D or 3D animation",
+    "channelCount": 126
+  },
+  {
+    "id": "auto",
+    "name": "Auto",
+    "description": "Programming related to cars, motorcycles, and other automobiles",
+    "channelCount": 29
+  },
+  {
+    "id": "business",
+    "name": "Business",
+    "description": "Programming related to business",
+    "channelCount": 68
+  },
+  {
+    "id": "classic",
+    "name": "Classic",
+    "description": "Programming is mostly from earlier decades",
+    "channelCount": 84
+  },
+  {
+    "id": "comedy",
+    "name": "Comedy",
+    "description": "Programming is mostly comedy",
+    "channelCount": 164
+  },
+  {
+    "id": "cooking",
+    "name": "Cooking",
+    "description": "Programs related to cooking or food in general",
+    "channelCount": 57
+  },
+  {
+    "id": "culture",
+    "name": "Culture",
+    "description": "Programming is mostly about art and culture",
+    "channelCount": 187
+  },
+  {
+    "id": "documentary",
+    "name": "Documentary",
+    "description": "Programming that depicts a person or real-world event",
+    "channelCount": 219
+  },
+  {
+    "id": "education",
+    "name": "Education",
+    "description": "Programming is intended to be educational",
+    "channelCount": 195
+  },
+  {
+    "id": "entertainment",
+    "name": "Entertainment",
+    "description": "Channels with a variety of entertainment programs",
+    "channelCount": 807
+  },
+  {
+    "id": "family",
+    "name": "Family",
+    "description": "Programming that is be suitable for all members of a family",
+    "channelCount": 49
+  },
+  {
+    "id": "general",
+    "name": "General",
+    "description": "Provides a variety of different programming",
+    "channelCount": 2506
+  },
+  {
+    "id": "interactive",
+    "name": "Interactive",
+    "description": "Programming that allows viewers to actively engage with the content",
+    "channelCount": 2
+  },
+  {
+    "id": "kids",
+    "name": "Kids",
+    "description": "Programming targeted to children",
+    "channelCount": 372
+  },
+  {
+    "id": "legislative",
+    "name": "Legislative",
+    "description": "Programming specific to the operation of government",
+    "channelCount": 179
+  },
+  {
+    "id": "lifestyle",
+    "name": "Lifestyle",
+    "description": "Programs related to health, fitness, leisure, fashion, decor, etc.",
+    "channelCount": 148
+  },
+  {
+    "id": "movies",
+    "name": "Movies",
+    "description": "Channels that only show movies",
+    "channelCount": 629
+  },
+  {
+    "id": "music",
+    "name": "Music",
+    "description": "Programming is music or music related",
+    "channelCount": 757
+  },
+  {
+    "id": "news",
+    "name": "News",
+    "description": "Programming is mostly news",
+    "channelCount": 1010
+  },
+  {
+    "id": "outdoor",
+    "name": "Outdoor",
+    "description": "Programming related to outdoor activities like fishing, hunting, etc.",
+    "channelCount": 65
+  },
+  {
+    "id": "public",
+    "name": "Public",
+    "description": "Non-commercial channels that prioritize public service",
+    "channelCount": 36
+  },
+  {
+    "id": "relax",
+    "name": "Relax",
+    "description": "Programming is calm sounding and beautiful views",
+    "channelCount": 10
+  },
+  {
+    "id": "religious",
+    "name": "Religious",
+    "description": "Religious programming",
+    "channelCount": 777
+  },
+  {
+    "id": "science",
+    "name": "Science",
+    "description": "Science and Technology",
+    "channelCount": 22
+  },
+  {
+    "id": "series",
+    "name": "Series",
+    "description": "Channels that only show series",
+    "channelCount": 404
+  },
+  {
+    "id": "shop",
+    "name": "Shop",
+    "description": "Programming is for shopping",
+    "channelCount": 80
+  },
+  {
+    "id": "sports",
+    "name": "Sports",
+    "description": "Programming is sports",
+    "channelCount": 445
+  },
+  {
+    "id": "travel",
+    "name": "Travel",
+    "description": "Programming is travel related",
+    "channelCount": 60
+  },
+  {
+    "id": "weather",
+    "name": "Weather",
+    "description": "Programming is focused on weather",
+    "channelCount": 17
+  }
+]

@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build output
+dist/
+build/
+*.wgt
+
+# Tizen CLI & Binary Tools
+tools/
+
+# Certificates & Private Keys
+certs/
+*.p12
+*.pwd
+*.crt
+*.key
+tv_token.txt
+
+# Environment & Local Configuration
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# System & Editor Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
