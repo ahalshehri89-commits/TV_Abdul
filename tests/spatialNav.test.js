@@ -130,4 +130,20 @@ describe('SpatialNav Zone-Based Navigation', () => {
     expect(triggered).toBe(true);
     unsub();
   });
+
+  it('should navigate 2-column sports match grid correctly with match- ids', () => {
+    const match1 = new MockElement('div', { 'data-nav': 'true', 'data-nav-zone': 'grid', 'data-nav-id': 'match-1' });
+    const match2 = new MockElement('div', { 'data-nav': 'true', 'data-nav-zone': 'grid', 'data-nav-id': 'match-2' });
+    const match3 = new MockElement('div', { 'data-nav': 'true', 'data-nav-zone': 'grid', 'data-nav-id': 'match-3' });
+    const match4 = new MockElement('div', { 'data-nav': 'true', 'data-nav-zone': 'grid', 'data-nav-id': 'match-4' });
+    elements.push(match1, match2, match3, match4);
+
+    spatialNav.focus('match-1');
+    spatialNav.move('DOWN');
+    // match-1 (idx 11 in elements array with 2 columns moves by 2: idx 13 is match-3)
+    expect(global.document.activeElement.getAttribute('data-nav-id')).toBe('match-3');
+
+    spatialNav.move('UP');
+    expect(global.document.activeElement.getAttribute('data-nav-id')).toBe('match-1');
+  });
 });

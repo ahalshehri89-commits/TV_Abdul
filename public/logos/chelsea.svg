@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="cheBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="92" fill="#034694" stroke="#fbbf24" stroke-width="4"/>
+  <circle cx="100" cy="100" r="84" fill="#ffffff"/>
+  <circle cx="100" cy="100" r="64" fill="url(#cheBlue)" stroke="#fbbf24" stroke-width="2"/>
+  <!-- Rampant Lion holding staff -->
+  <!-- Staff -->
+  <line x1="88" y1="58" x2="88" y2="135" stroke="#fbbf24" stroke-width="3"/>
+  <circle cx="88" cy="55" r="4" fill="#fbbf24"/>
+  <!-- Lion body -->
+  <path d="M102 75 C108 70 120 72 120 80 C120 90 108 95 112 110 C114 118 122 125 125 132 L112 135 C105 125 100 115 100 105 C95 100 95 90 102 75 Z" fill="#ffffff"/>
+  <circle cx="112" cy="74" r="3" fill="#ef4444"/>
+  <!-- Text -->
+  <text x="100" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14" fill="#034694" text-anchor="middle" letter-spacing="3">CHELSEA</text>
+  <text x="100" y="180" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" fill="#034694" text-anchor="middle" letter-spacing="2">FOOTBALL CLUB</text>
+</svg>

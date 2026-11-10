@@ -19,6 +19,9 @@ export function SportsMatchCenter({ onTuneChannel }) {
     });
   };
 
+  const getTeamLogoFallback = (nameAr) =>
+    `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="%231e293b" stroke="%2338bdf8" stroke-width="2"/><text x="32" y="38" font-family="sans-serif" font-size="14" font-weight="bold" fill="%2338bdf8" text-anchor="middle">${encodeURIComponent(nameAr?.slice(0, 3) || 'FC')}</text></svg>`;
+
   return (
     <div className="tv-sports-center">
       <div className="tv-sports-header">
@@ -61,7 +64,15 @@ export function SportsMatchCenter({ onTuneChannel }) {
                 <div className="tv-match-scoreboard">
                   {/* Home Team */}
                   <div className="tv-match-team">
-                    <img src={match.homeTeam.logo} alt={match.homeTeam.name} className="tv-match-logo" />
+                    <img
+                      src={match.homeTeam.logo}
+                      alt={match.homeTeam.name}
+                      className="tv-match-logo"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = getTeamLogoFallback(match.homeTeam.nameAr);
+                      }}
+                    />
                     <span className="tv-match-team-name">{match.homeTeam.nameAr}</span>
                     <span className="tv-match-team-en">{match.homeTeam.name}</span>
                   </div>
@@ -74,7 +85,15 @@ export function SportsMatchCenter({ onTuneChannel }) {
 
                   {/* Away Team */}
                   <div className="tv-match-team">
-                    <img src={match.awayTeam.logo} alt={match.awayTeam.name} className="tv-match-logo" />
+                    <img
+                      src={match.awayTeam.logo}
+                      alt={match.awayTeam.name}
+                      className="tv-match-logo"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = getTeamLogoFallback(match.awayTeam.nameAr);
+                      }}
+                    />
                     <span className="tv-match-team-name">{match.awayTeam.nameAr}</span>
                     <span className="tv-match-team-en">{match.awayTeam.name}</span>
                   </div>
@@ -124,7 +143,15 @@ export function SportsMatchCenter({ onTuneChannel }) {
 
               <div className="tv-match-scoreboard">
                 <div className="tv-match-team">
-                  <img src={match.homeTeam.logo} alt={match.homeTeam.name} className="tv-match-logo" />
+                  <img
+                    src={match.homeTeam.logo}
+                    alt={match.homeTeam.name}
+                    className="tv-match-logo"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = getTeamLogoFallback(match.homeTeam.nameAr);
+                    }}
+                  />
                   <span className="tv-match-team-name">{match.homeTeam.nameAr}</span>
                   <span className="tv-match-team-en">{match.homeTeam.name}</span>
                 </div>
@@ -135,7 +162,15 @@ export function SportsMatchCenter({ onTuneChannel }) {
                 </div>
 
                 <div className="tv-match-team">
-                  <img src={match.awayTeam.logo} alt={match.awayTeam.name} className="tv-match-logo" />
+                  <img
+                    src={match.awayTeam.logo}
+                    alt={match.awayTeam.name}
+                    className="tv-match-logo"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = getTeamLogoFallback(match.awayTeam.nameAr);
+                    }}
+                  />
                   <span className="tv-match-team-name">{match.awayTeam.nameAr}</span>
                   <span className="tv-match-team-en">{match.awayTeam.name}</span>
                 </div>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="rmGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <clipPath id="rmCircleClip">
+      <circle cx="100" cy="118" r="62"/>
+    </clipPath>
+  </defs>
+  <!-- Royal Crown -->
+  <g transform="translate(0, -5)">
+    <path d="M72 58 L62 40 L82 48 L100 28 L118 48 L138 40 L128 58 Z" fill="url(#rmGold)" stroke="#ca8a04" stroke-width="2"/>
+    <circle cx="100" cy="24" r="5" fill="#facc15"/>
+    <line x1="97" y1="24" x2="103" y2="24" stroke="#ffffff" stroke-width="2"/>
+    <line x1="100" y1="21" x2="100" y2="27" stroke="#ffffff" stroke-width="2"/>
+    <rect x="70" y="56" width="60" height="8" rx="3" fill="#ca8a04"/>
+  </g>
+  <!-- Main Circle -->
+  <circle cx="100" cy="118" r="62" fill="#ffffff" stroke="url(#rmGold)" stroke-width="6"/>
+  <!-- Purple Sash -->
+  <g clip-path="url(#rmCircleClip)">
+    <path d="M50 70 L150 170 L170 150 L70 50 Z" fill="#6366f1" opacity="0.9"/>
+  </g>
+  <!-- Inner Ring -->
+  <circle cx="100" cy="118" r="52" fill="none" stroke="url(#rmGold)" stroke-width="2"/>
+  <!-- Monogram text MCF -->
+  <text x="100" y="126" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="28" fill="url(#rmGold)" text-anchor="middle" letter-spacing="1">RMA</text>
+  <text x="100" y="146" font-family="system-ui, -apple-system, sans-serif" font-weight="bold" font-size="10" fill="#1e3a8a" text-anchor="middle">REAL MADRID</text>
+</svg>

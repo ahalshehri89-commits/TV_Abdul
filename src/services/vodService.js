@@ -12,6 +12,7 @@ const STORAGE_KEYS = {
 
 export const VOD_CATEGORIES = [
   { id: 'all', name: 'All VOD', nameAr: 'كل المحتوى' },
+  { id: 'playlists', name: 'YouTube Playlists & Collections', nameAr: 'قوائم تشغيل يوتيوب كاملة' },
   { id: 'plays', name: 'Classic Plays', nameAr: 'مسرحيات كلاسيكية' },
   { id: 'cinema', name: 'Egyptian Cinema', nameAr: 'السينما المصرية الذهبية' },
   { id: 'drama', name: 'Ramadan & Historical Series', nameAr: 'مسلسلات ودراما تاريخية' },
@@ -36,7 +37,7 @@ class VODService {
     let list = this.vodList;
 
     if (category && category !== 'all') {
-      list = list.filter((item) => item.category === category);
+      list = list.filter((item) => item.category === category || item.categories?.includes(category));
     }
 
     if (type) {

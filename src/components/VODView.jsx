@@ -10,6 +10,9 @@ export function VODView({ onPlayItem }) {
   const items = vodService.getItems({ category: activeCategory });
   const featuredItem = items[0] || vodService.getItems()[0];
 
+  const getPosterFallback = (titleAr) =>
+    `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450"><rect width="300" height="450" fill="%231e293b"/><circle cx="150" cy="180" r="48" fill="%230f172a" stroke="%2338bdf8" stroke-width="2"/><polygon points="142,160 166,180 142,200" fill="%2338bdf8"/><text x="150" y="270" font-family="sans-serif" font-size="18" font-weight="bold" fill="%23ffffff" text-anchor="middle">${encodeURIComponent(titleAr || 'TV Abdul')}</text><text x="150" y="300" font-family="sans-serif" font-size="14" fill="%2394a3b8" text-anchor="middle">TV_Abdul VOD</text></svg>`;
+
   return (
     <div className="tv-vod-view">
       {/* VOD Category Bar */}
@@ -128,9 +131,16 @@ export function VODView({ onPlayItem }) {
                   className="tv-vod-card-poster"
                   loading="lazy"
                   onError={(e) => {
-                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = getPosterFallback(item.titleAr);
                   }}
                 />
+                {item.youtubePlaylistId && (
+                  <div className="tv-vod-playlist-badge">
+                    <Sparkles size={11} color="#f59e0b" />
+                    <span>قائمة تشغيل</span>
+                  </div>
+                )}
                 <div className="tv-vod-card-badge">
                   <Star size={13} color="#f59e0b" fill="#f59e0b" />
                   <span>{item.rating}</span>

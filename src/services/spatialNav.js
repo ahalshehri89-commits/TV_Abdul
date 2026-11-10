@@ -118,8 +118,23 @@ class SpatialNav {
       return this.handleHeaderMove(direction, activeEl);
     }
 
+    if (zone === 'vod_hero') {
+      return this.handleHeroMove(direction, activeEl);
+    }
+
     // Fallback if focus is not in any recognized zone
     return this.focusFirst();
+  }
+
+  getGridColumns(activeEl) {
+    if (activeEl && typeof activeEl.closest === 'function' && activeEl.closest('.tv-sports-grid')) {
+      return 2;
+    }
+    const navId = activeEl?.getAttribute('data-nav-id') || '';
+    if (navId.startsWith('match-')) {
+      return 2;
+    }
+    return 5;
   }
 
   handleGridMove(direction, activeEl) {
@@ -131,7 +146,7 @@ class SpatialNav {
       return this.focus(cards[0]);
     }
 
-    const COLUMNS = 5;
+    const COLUMNS = this.getGridColumns(activeEl);
 
     switch (direction) {
       case 'RIGHT':
@@ -166,15 +181,55 @@ class SpatialNav {
         if (idx >= COLUMNS) {
           return this.focus(cards[idx - COLUMNS]);
         }
-        // Top row of channels (idx < 5): Transition UP into Categories
+        // Top row of channels / cards: Transition UP into Hero or Categories or Header
+        const heroPlay = document.querySelector('[data-nav-id="btn-hero-play"]');
+        if (heroPlay && heroPlay.offsetParent !== null) {
+          return this.focus(heroPlay);
+        }
         const activeCat = document.querySelector('.tv-category-pill.active') ||
                           document.querySelector('[data-nav-zone="categories"]');
-        if (activeCat) {
+        if (activeCat && activeCat.offsetParent !== null) {
           return this.focus(activeCat);
+        }
+        // In sports center or views without categories, transition straight to active header tab
+        const activeTab = document.querySelector('.tv-platform-tab.active') ||
+                          document.querySelector('[data-nav-zone="header"]');
+        if (activeTab) {
+          return this.focus(activeTab);
         }
         return true;
       }
 
+      default:
+        return false;
+    }
+  }
+
+  handleHeroMove(direction, activeEl) {
+    const heroBtns = Array.from(document.querySelectorAll('[data-nav-zone="vod_hero"]'));
+    const idx = heroBtns.indexOf(activeEl);
+
+    switch (direction) {
+      case 'RIGHT':
+        if (idx < heroBtns.length - 1) return this.focus(heroBtns[idx + 1]);
+        return true;
+      case 'LEFT':
+        if (idx > 0) return this.focus(heroBtns[idx - 1]);
+        return true;
+      case 'UP': {
+        const activeCat = document.querySelector('.tv-category-pill.active') ||
+                          document.querySelector('[data-nav-zone="categories"]');
+        if (activeCat) return this.focus(activeCat);
+        const activeTab = document.querySelector('.tv-platform-tab.active') ||
+                          document.querySelector('[data-nav-zone="header"]');
+        if (activeTab) return this.focus(activeTab);
+        return true;
+      }
+      case 'DOWN': {
+        const firstCard = document.querySelector('[data-nav-zone="grid"]');
+        if (firstCard) return this.focus(firstCard);
+        return true;
+      }
       default:
         return false;
     }
@@ -203,10 +258,15 @@ class SpatialNav {
         return true;
 
       case 'DOWN': {
+        // In VOD view, transition DOWN into hero button first if available
+        const heroPlay = document.querySelector('[data-nav-id="btn-hero-play"]');
+        if (heroPlay && heroPlay.offsetParent !== null) {
+          return this.focus(heroPlay);
+        }
         // Transition DOWN into Channel Grid
         if (this.lastFocusedChannelId) {
           const lastEl = document.querySelector(`[data-nav-id="${this.lastFocusedChannelId}"]`);
-          if (lastEl) return this.focus(lastEl);
+          if (lastEl && lastEl.offsetParent !== null) return this.focus(lastEl);
         }
         const firstCard = document.querySelector('[data-nav-zone="grid"]');
         if (firstCard) {
@@ -216,7 +276,7 @@ class SpatialNav {
       }
 
       case 'UP': {
-        // Transition UP into Header
+        // Transition UP into Header (prefer country button or active tab)
         const countryBtn = document.querySelector('[data-nav-id="btn-country"]') ||
                            document.querySelector('[data-nav-zone="header"]');
         if (countryBtn) {
@@ -256,8 +316,18 @@ class SpatialNav {
         // Transition DOWN into active category pill
         const activeCat = document.querySelector('.tv-category-pill.active') ||
                           document.querySelector('[data-nav-zone="categories"]');
-        if (activeCat) {
+        if (activeCat && activeCat.offsetParent !== null) {
           return this.focus(activeCat);
+        }
+        // If in VOD without categories, check hero
+        const heroPlay = document.querySelector('[data-nav-id="btn-hero-play"]');
+        if (heroPlay && heroPlay.offsetParent !== null) {
+          return this.focus(heroPlay);
+        }
+        // If in Sports Center or other view without categories, jump directly into first grid card
+        const firstGrid = document.querySelector('[data-nav-zone="grid"]');
+        if (firstGrid) {
+          return this.focus(firstGrid);
         }
         return true;
       }

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="cityBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer Ring -->
+  <circle cx="100" cy="100" r="92" fill="#03254c" stroke="#38bdf8" stroke-width="4"/>
+  <circle cx="100" cy="100" r="84" fill="#ffffff"/>
+  <circle cx="100" cy="100" r="64" fill="url(#cityBlue)" stroke="#03254c" stroke-width="3"/>
+  <!-- Golden Ship -->
+  <path d="M75 90 L125 90 L115 105 L85 105 Z" fill="#fbbf24"/>
+  <path d="M100 70 L100 90 M90 75 L100 70 L100 85 Z" fill="#ffffff" stroke="#03254c" stroke-width="1.5"/>
+  <!-- Red Rose representation -->
+  <circle cx="100" cy="120" r="8" fill="#ef4444"/>
+  <!-- Text in white ring -->
+  <text x="100" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14" fill="#03254c" text-anchor="middle" letter-spacing="2">MANCHESTER</text>
+  <text x="100" y="180" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14" fill="#03254c" text-anchor="middle" letter-spacing="3">CITY</text>
+</svg>

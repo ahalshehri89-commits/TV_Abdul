@@ -10,12 +10,12 @@
     "homeTeam": {
       "name": "Al Hilal",
       "nameAr": "الهلال",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Al_Hilal_SFC_Logo.svg/200px-Al_Hilal_SFC_Logo.svg.png"
+      "logo": "logos/al-hilal.svg"
     },
     "awayTeam": {
       "name": "Al Nassr",
       "nameAr": "النصر",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Al-Nassr_FC_Logo.svg/200px-Al-Nassr_FC_Logo.svg.png"
+      "logo": "logos/al-nassr.svg"
     },
     "commentary": "فارس عوض (عربي) / Martin Tyler (English)",
     "broadcastChannelName": "SSC 1 HD / KSA Sports",
@@ -34,12 +34,12 @@
     "homeTeam": {
       "name": "Real Madrid",
       "nameAr": "ريال مدريد",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/200px-Real_Madrid_CF.svg.png"
+      "logo": "logos/real-madrid.svg"
     },
     "awayTeam": {
       "name": "Manchester City",
       "nameAr": "مانشستر سيتي",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Manchester_City_FC_badge.svg/200px-Manchester_City_FC_badge.svg.png"
+      "logo": "logos/man-city.svg"
     },
     "commentary": "عصام الشوالي (beIN 1)",
     "broadcastChannelName": "beIN Sports 1 Premium",
@@ -58,12 +58,12 @@
     "homeTeam": {
       "name": "Al Ittihad",
       "nameAr": "الاتحاد",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Al-Ittihad_Club_Logo.svg/200px-Al-Ittihad_Club_Logo.svg.png"
+      "logo": "logos/al-ittihad.svg"
     },
     "awayTeam": {
       "name": "Al Ahli",
       "nameAr": "الأهلي",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Al-Ahli_Saudi_FC_logo.svg/200px-Al-Ahli_Saudi_FC_logo.svg.png"
+      "logo": "logos/al-ahli.svg"
     },
     "commentary": "فهد العتيبي (SSC Extra)",
     "broadcastChannelName": "SSC Extra 1 HD",
@@ -82,12 +82,12 @@
     "homeTeam": {
       "name": "Arsenal",
       "nameAr": "أرسنال",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/200px-Arsenal_FC.svg.png"
+      "logo": "logos/arsenal.svg"
     },
     "awayTeam": {
       "name": "Chelsea",
       "nameAr": "تشيلسي",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/200px-Chelsea_FC.svg.png"
+      "logo": "logos/chelsea.svg"
     },
     "commentary": "خليل البلوشي",
     "broadcastChannelName": "beIN Sports 2 HD",

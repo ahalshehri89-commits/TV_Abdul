@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="arsRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield shape -->
+  <path d="M100 15 L170 38 C170 125 100 185 100 185 C100 185 30 125 30 38 Z" fill="url(#arsRed)" stroke="#fbbf24" stroke-width="5"/>
+  <path d="M100 25 L160 45 C160 118 100 172 100 172 C100 172 40 118 40 45 Z" fill="#991b1b" stroke="#ffffff" stroke-width="2"/>
+  <!-- Cannon -->
+  <rect x="65" y="90" width="70" height="14" rx="4" fill="#fbbf24" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="85" cy="115" r="14" fill="#fbbf24" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="85" cy="115" r="5" fill="#78350f"/>
+  <line x1="85" y1="104" x2="85" y2="90" stroke="#fbbf24" stroke-width="6"/>
+  <!-- Header Text -->
+  <path d="M50 48 L150 48 L142 70 L58 70 Z" fill="#0284c7"/>
+  <text x="100" y="65" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14" fill="#ffffff" text-anchor="middle" letter-spacing="2">ARSENAL</text>
+  <text x="100" y="152" font-family="system-ui, -apple-system, sans-serif" font-weight="bold" font-size="12" fill="#ffffff" text-anchor="middle">أرسنال</text>
+</svg>

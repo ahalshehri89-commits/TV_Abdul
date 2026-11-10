@@ -41,6 +41,15 @@ describe('VODService', () => {
     const item = vodService.getItemById('play-madrasat-al-mushaghbeen');
     expect(item).not.toBeNull();
     expect(item.titleAr).toContain('مدرسة المشاغبين');
+    expect(item.youtubeId).toBe('-xieo900Smg');
+    expect(item.poster).toContain('img.youtube.com');
+  });
+
+  it('should support YouTube playlists and collections', () => {
+    const playlists = vodService.getItems({ category: 'playlists' });
+    expect(playlists.length).toBeGreaterThan(0);
+    const hasPlaylistId = playlists.some((p) => Boolean(p.youtubePlaylistId));
+    expect(hasPlaylistId).toBe(true);
   });
 
   it('should save and retrieve resume position', () => {

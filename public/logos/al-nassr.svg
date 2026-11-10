@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="nassrGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield shape -->
+  <path d="M100 20 L165 48 C165 125 100 178 100 178 C100 178 35 125 35 48 Z" fill="#1e3a8a" stroke="url(#nassrGold)" stroke-width="6"/>
+  <!-- Inner Shield -->
+  <path d="M100 32 L153 55 C153 118 100 162 100 162 C100 162 47 118 47 55 Z" fill="#0f172a" stroke="#fbbf24" stroke-width="2"/>
+  <!-- Crown on Top -->
+  <path d="M75 80 L85 98 L100 70 L115 98 L125 80 L125 110 L75 110 Z" fill="url(#nassrGold)"/>
+  <!-- Text -->
+  <text x="100" y="132" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="16" fill="#fbbf24" text-anchor="middle" letter-spacing="2">AL NASSR</text>
+  <text x="100" y="148" font-family="system-ui, -apple-system, sans-serif" font-weight="bold" font-size="11" fill="#ffffff" text-anchor="middle">نادي النصر</text>
+</svg>

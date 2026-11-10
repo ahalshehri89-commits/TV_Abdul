@@ -180,13 +180,17 @@ export function App() {
   }, [activeChannel, isSearchOpen, isSettingsOpen, isCountryModalOpen, activeCategory, activeCountry]);
 
   const handlePlayChannel = async (channel) => {
-    lastFocusedChannelIdRef.current = `channel-${channel.id}`;
+    lastFocusedChannelIdRef.current = document.activeElement?.getAttribute('data-nav-id') || `channel-${channel.id}`;
     // Fetch full stream details if not yet fully loaded
-    const fullChannel = await catalogService.getChannelDetails(channel.id);
+    const fullChannel = channel.streams?.[0]?.url ? channel : await catalogService.getChannelDetails(channel.id);
     const resolved = fullChannel || channel;
     const index = allChannels.findIndex((c) => c.id === channel.id);
     setActiveChannelIndex(index);
-    setActiveChannel(resolved);
+    setActiveChannel({
+      ...resolved,
+      youtubeId: channel.youtubeId || resolved.youtubeId,
+      youtubePlaylistId: channel.youtubePlaylistId || resolved.youtubePlaylistId
+    });
     setIsSearchOpen(false);
   };
 
@@ -279,7 +283,19 @@ export function App() {
         activeView={activeView}
         onSelectView={(v) => {
           setActiveView(v);
-          setTimeout(() => spatialNav.focusFirst(), 100);
+          setTimeout(() => {
+            if (v === 'vod') {
+              const cat = document.querySelector('.tv-vod-categories .tv-category-pill.active') ||
+                          document.querySelector('[data-nav-id="btn-hero-play"]');
+              if (cat) spatialNav.focus(cat);
+            } else if (v === 'sports') {
+              const match = document.querySelector('.tv-sports-grid [data-nav-zone="grid"]');
+              if (match) spatialNav.focus(match);
+            } else {
+              const cat = document.querySelector('.tv-categories .tv-category-pill.active');
+              if (cat) spatialNav.focus(cat);
+            }
+          }, 100);
         }}
         activeCountry={activeCountry}
         totalChannels={allChannels.length}
@@ -330,6 +346,8 @@ export function App() {
               name: `${vodItem.titleAr} (${vodItem.title})`,
               logo: vodItem.poster,
               streams: [{ url: vodItem.streamUrl, quality: '1080p' }],
+              youtubeId: vodItem.youtubeId,
+              youtubePlaylistId: vodItem.youtubePlaylistId,
               country: 'EG',
               categories: ['movies']
             })
