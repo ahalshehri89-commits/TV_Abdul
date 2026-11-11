@@ -67,6 +67,20 @@
         }
 
         window.onYouTubeIframeAPIReady = function () {
+          send({ type: 'api' });
+          var events = {
+            onReady: function () {
+              send({ type: 'ready' });
+              try {
+                player.playVideo();
+              } catch (e) {}
+              setInterval(tick, 500);
+            },
+            onStateChange: tick,
+            onError: function (event) {
+              send({ type: 'error', code: event.data });
+            }
+          };
           var playerVars = {
             autoplay: 1,
             controls: 0,
@@ -77,30 +91,33 @@
             rel: 0,
             start: start
           };
+
           if (listId) {
-            playerVars.listType = 'playlist';
-            playerVars.list = listId;
-            playerVars.index = index;
+            // A playlist is embedded through YouTube's own playlist address and the player API
+            // is attached to that frame. Creating an empty player and loading the list
+            // afterwards never becomes ready on TV browsers.
+            var query = ['list=' + encodeURIComponent(listId), 'enablejsapi=1', 'origin=' + encodeURIComponent(window.location.origin)];
+            if (index > 0) query.push('index=' + index);
+            Object.keys(playerVars).forEach(function (key) {
+              query.push(key + '=' + playerVars[key]);
+            });
+            var frame = document.createElement('iframe');
+            frame.id = 'player';
+            frame.allow = 'autoplay; encrypted-media';
+            frame.style.cssText = 'border:0;width:100%;height:100%';
+            frame.src = 'https://www.youtube.com/embed/videoseries?' + query.join('&');
+            var placeholder = document.getElementById('player');
+            placeholder.parentNode.replaceChild(frame, placeholder);
+            player = new YT.Player(frame, { events: events });
+          } else {
+            player = new YT.Player('player', {
+              width: '100%',
+              height: '100%',
+              videoId: videoId,
+              playerVars: playerVars,
+              events: events
+            });
           }
-          player = new YT.Player('player', {
-            width: '100%',
-            height: '100%',
-            videoId: listId ? undefined : videoId,
-            playerVars: playerVars,
-            events: {
-              onReady: function () {
-                send({ type: 'ready' });
-                try {
-                  player.playVideo();
-                } catch (e) {}
-                setInterval(tick, 500);
-              },
-              onStateChange: tick,
-              onError: function (event) {
-                send({ type: 'error', code: event.data });
-              }
-            }
-          });
         };
 
         window.addEventListener('message', function (event) {
