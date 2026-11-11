@@ -13,6 +13,7 @@ import { MultiViewDashboard } from './components/MultiViewDashboard.jsx';
 import { EPGModal } from './components/EPGModal.jsx';
 import { MyFilesView } from './components/MyFilesView.jsx';
 import { FilePlayerView } from './components/FilePlayerView.jsx';
+import { YouTubePlayerView } from './components/YouTubePlayerView.jsx';
 import { uiLock } from './services/uiLock.js';
 import { catalogService } from './services/catalogService.js';
 import { storageService } from './services/storageService.js';
@@ -22,6 +23,7 @@ import { spatialNav } from './services/spatialNav.js';
 export function App() {
   const [activeView, setActiveView] = useState('live_tv'); // 'live_tv' | 'vod' | 'sports' | 'files'
   const [activeFile, setActiveFile] = useState(null); // seekable media playing in FilePlayerView
+  const [activeYouTube, setActiveYouTube] = useState(null); // YouTube title playing in YouTubePlayerView
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeCountry, setActiveCountry] = useState('all');
   const [allChannels, setAllChannels] = useState([]);
@@ -71,6 +73,17 @@ export function App() {
     loadChannels(activeCategory, activeCountry);
   }, [activeCategory, activeCountry, loadChannels]);
 
+  // Debug builds only: open a YouTube title on launch so on-TV playback can be checked from the logs
+  useEffect(() => {
+    const autoplay = import.meta.env.VITE_DEBUG_HOST && import.meta.env.VITE_DEBUG_AUTOPLAY_YT;
+    if (!autoplay) return undefined;
+    const [kind, id] = autoplay.split(':');
+    const timer = setTimeout(() => {
+      setActiveYouTube({ id: 'debug', title: `debug ${id}`, [kind === 'list' ? 'youtubePlaylistId' : 'youtubeId']: id });
+    }, 7000);
+    return () => clearTimeout(timer);
+  }, []);
+
   // Subscribe to infinite scroll requests from spatial navigation engine
   useEffect(() => {
     const unsub = spatialNav.onLoadMore(() => {
@@ -112,7 +125,7 @@ export function App() {
   useEffect(() => {
     const handleRemoteAction = (action, event) => {
       // If player is active, VideoPlayerView handles its own keys
-      if (activeChannel || activeFile) return false;
+      if (activeChannel || activeFile || activeYouTube) return false;
 
       // If modal is active, modal handles its own keys
       if (isSearchOpen || isSettingsOpen || isCountryModalOpen) return false;
@@ -188,10 +201,21 @@ export function App() {
 
     const unsubscribe = remoteKeyManager.subscribe(handleRemoteAction);
     return () => unsubscribe();
-  }, [activeChannel, activeFile, activeView, isSearchOpen, isSettingsOpen, isCountryModalOpen, activeCategory, activeCountry]);
+  }, [activeChannel, activeFile, activeYouTube, activeView, isSearchOpen, isSettingsOpen, isCountryModalOpen, activeCategory, activeCountry]);
 
   const handlePlayChannel = async (channel) => {
     lastFocusedChannelIdRef.current = document.activeElement?.getAttribute('data-nav-id') || `channel-${channel.id}`;
+    // YouTube-backed entries play in the embedded YouTube player, not the stream player
+    if (channel.youtubeId || channel.youtubePlaylistId) {
+      setActiveYouTube({
+        id: channel.id,
+        title: channel.name,
+        youtubeId: channel.youtubeId,
+        youtubePlaylistId: channel.youtubePlaylistId
+      });
+      setIsSearchOpen(false);
+      return;
+    }
     // Fetch full stream details if not yet fully loaded
     const fullChannel = channel.streams?.[0]?.url ? channel : await catalogService.getChannelDetails(channel.id);
     const resolved = fullChannel || channel;
@@ -259,8 +283,25 @@ export function App() {
     setActiveFile(fileItem);
   };
 
+  const handlePlayVodItem = (vodItem) => {
+    lastFocusedChannelIdRef.current = document.activeElement?.getAttribute('data-nav-id') || `vod-${vodItem.id}`;
+    const title = vodItem.titleAr || vodItem.title;
+    setIsSearchOpen(false);
+    if (vodItem.youtubeId || vodItem.youtubePlaylistId) {
+      setActiveYouTube({
+        id: vodItem.id,
+        title,
+        youtubeId: vodItem.youtubeId,
+        youtubePlaylistId: vodItem.youtubePlaylistId
+      });
+    } else if (vodItem.url) {
+      setActiveFile({ id: vodItem.id, name: title, url: vodItem.url, resumeKey: `vod:${vodItem.id}` });
+    }
+  };
+
   const handleCloseFilePlayer = () => {
     setActiveFile(null);
+    setActiveYouTube(null);
     // My Files restores its own highlight; other views fall back to the remembered card.
     if (activeView !== 'files') {
       setTimeout(() => {
@@ -273,6 +314,10 @@ export function App() {
 
   if (activeFile) {
     return <FilePlayerView item={activeFile} onClose={handleCloseFilePlayer} />;
+  }
+
+  if (activeYouTube) {
+    return <YouTubePlayerView item={activeYouTube} onClose={handleCloseFilePlayer} />;
   }
 
   // If video player is active, render ONLY the video player to free the hardware video plane
@@ -372,21 +417,7 @@ export function App() {
       )}
 
       {activeView === 'vod' && (
-        <VODView
-          onPlayItem={(vodItem) =>
-            handlePlayChannel({
-              id: vodItem.id,
-              number: 1,
-              name: `${vodItem.titleAr} (${vodItem.title})`,
-              logo: vodItem.poster,
-              streams: [{ url: vodItem.streamUrl, quality: '1080p' }],
-              youtubeId: vodItem.youtubeId,
-              youtubePlaylistId: vodItem.youtubePlaylistId,
-              country: 'EG',
-              categories: ['movies']
-            })
-          }
-        />
+        <VODView onPlayItem={handlePlayVodItem} />
       )}
 
       {activeView === 'files' && <MyFilesView onPlayFile={handlePlayFile} backHandlerRef={filesBackRef} />}
@@ -419,6 +450,7 @@ export function App() {
             setTimeout(() => spatialNav.focusFirst(), 150);
           }}
           onPlayChannel={handlePlayChannel}
+          onPlayVodItem={handlePlayVodItem}
         />
       )}
 

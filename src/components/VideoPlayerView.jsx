@@ -27,19 +27,16 @@ export function VideoPlayerView({
 
   // AVPlay hardware engine flag (Direct check against window.webapis for 100% accuracy)
   const isAVPlay = typeof window !== 'undefined' && Boolean(window.webapis && window.webapis.avplay);
-  const isYouTube = Boolean(channel?.youtubeId || channel?.youtubePlaylistId);
 
   // Manage html & body class for transparency so TV hardware video plane shines through
   useEffect(() => {
-    if (!isYouTube) {
-      document.documentElement.classList.add('tv-in-player');
-      document.body.classList.add('tv-in-player');
-    }
+    document.documentElement.classList.add('tv-in-player');
+    document.body.classList.add('tv-in-player');
     return () => {
       document.documentElement.classList.remove('tv-in-player');
       document.body.classList.remove('tv-in-player');
     };
-  }, [isYouTube]);
+  }, []);
 
   // Clock in OSD
   useEffect(() => {
@@ -70,39 +67,8 @@ export function VideoPlayerView({
     }, 5500);
   };
 
-  const sendYouTubeCommand = (func, args = []) => {
-    try {
-      const iframe = document.getElementById('tv-yt-iframe');
-      if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage(
-          JSON.stringify({ event: 'command', func, args }),
-          '*'
-        );
-      }
-    } catch (e) {}
-  };
-
   // Attach video element and subscribe to player controller
   useEffect(() => {
-    if (isYouTube) {
-      setIsBuffering(false);
-      setErrorMessage(null);
-      setStreamInfo({
-        index: 0,
-        total: 1,
-        stream: {
-          quality: channel.youtubePlaylistId
-            ? 'HD • قائمة تشغيل يوتيوب كاملة (YouTube Playlist)'
-            : '1080p Full HD • يوتيوب رسمي (YouTube)'
-        }
-      });
-      triggerOsd();
-      return () => {
-        if (osdTimerRef.current) clearTimeout(osdTimerRef.current);
-        if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-      };
-    }
-
     if (videoRef.current && !isAVPlay) {
       playerController.attachVideoElement(videoRef.current);
     }
@@ -195,12 +161,6 @@ export function VideoPlayerView({
           return true;
 
         case TV_KEYS.LEFT: {
-          if (isYouTube && channel?.youtubePlaylistId) {
-            sendYouTubeCommand('previousVideo');
-            showToast('Previous Video in Playlist ◀');
-            triggerOsd();
-            return true;
-          }
           const total = channel?.streams?.length || 1;
           const curr = streamInfo?.index ?? 0;
           const prev = (curr - 1 + total) % total;
@@ -212,12 +172,6 @@ export function VideoPlayerView({
         }
 
         case TV_KEYS.RIGHT: {
-          if (isYouTube && channel?.youtubePlaylistId) {
-            sendYouTubeCommand('nextVideo');
-            showToast('Next Video in Playlist ▶');
-            triggerOsd();
-            return true;
-          }
           const total = channel?.streams?.length || 1;
           const curr = streamInfo?.index ?? 0;
           const next = (curr + 1) % total;
@@ -229,11 +183,6 @@ export function VideoPlayerView({
         }
 
         case TV_KEYS.PLAY_PAUSE:
-          if (isYouTube) {
-            sendYouTubeCommand('pauseVideo');
-            triggerOsd();
-            return true;
-          }
           if (playerController.getState() === 'PLAYING') {
             playerController.pause();
           } else {
@@ -275,22 +224,7 @@ export function VideoPlayerView({
   return (
     <div className="tv-player-view" onClick={triggerOsd}>
       {/* Video Surface */}
-      {isYouTube ? (
-        <div className="tv-youtube-embed-wrapper">
-          <iframe
-            id="tv-yt-iframe"
-            className="tv-youtube-iframe"
-            src={
-              channel.youtubePlaylistId
-                ? `https://www.youtube-nocookie.com/embed/videoseries?list=${channel.youtubePlaylistId}&autoplay=1&enablejsapi=1&rel=0`
-                : `https://www.youtube-nocookie.com/embed/${channel.youtubeId}?autoplay=1&enablejsapi=1&rel=0`
-            }
-            title={channel.name}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-      ) : isAVPlay ? (
+      {isAVPlay ? (
         <object
           id="av-player"
           type="application/avplayer"

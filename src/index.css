@@ -2054,3 +2054,55 @@ body.tv-in-player #root,
 .tv-file-menu-item.focused .tv-file-menu-check {
   color: #ffffff;
 }
+
+/* Embedded YouTube player */
+.tv-youtube-view {
+  background: #000000 !important;
+  background-color: #000000 !important;
+}
+
+.tv-youtube-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  border: none;
+  pointer-events: none;
+}
+
+.tv-youtube-handoff {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.92);
+  text-align: center;
+  color: #ffffff;
+}
+
+.tv-youtube-handoff h2 {
+  font-size: 34px;
+}
+
+.tv-youtube-handoff p {
+  font-size: 20px;
+  color: #94a3b8;
+  max-width: 1100px;
+  unicode-bidi: plaintext;
+}
+
+.tv-youtube-episode {
+  margin-left: 12px;
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.tv-remote-key-red {
+  background: #dc2626;
+}

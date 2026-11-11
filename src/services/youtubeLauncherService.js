@@ -1,10 +1,24 @@
 /**
  * TV_Abdul: YouTube TV Application Launcher Service
- * Launches the native Samsung Smart TV YouTube application (9Ur5IzDKqV.TizenYouTube)
- * and uses Samsung DIAL protocol to deep-link directly into the specific video ID or playlist ID.
+ * Hands a video or playlist off to the TV's own YouTube application.
+ *
+ * Three routes are tried in order, most specific first:
+ *   1. App control with Samsung's deep-link payload ({"values": "v=<id>"} under the PAYLOAD key),
+ *      the format the TV itself uses when another surface deep-links into an app.
+ *   2. The TV's local DIAL service, which launches YouTube with the same parameters.
+ *   3. A plain launch of the YouTube app (lands on its home screen).
  */
 
 export const YOUTUBE_APP_ID = '9Ur5IzDKqV.TizenYouTube';
+const DEEP_LINK_OPERATION = 'http://tizen.org/appcontrol/operation/default';
+
+/** Build the "v=...&list=..." parameter string YouTube's TV app understands. */
+export function buildYouTubeParams({ videoId, playlistId }) {
+  const parts = [];
+  if (videoId) parts.push(`v=${encodeURIComponent(videoId)}`);
+  if (playlistId) parts.push(`list=${encodeURIComponent(playlistId)}`);
+  return parts.join('&');
+}
 
 export const youtubeLauncherService = {
   /**
@@ -15,55 +29,52 @@ export const youtubeLauncherService = {
   },
 
   /**
-   * Get TV local IP address if available via Samsung webapis
+   * Launch YouTube through app control carrying the deep-link payload.
+   * @returns {Promise<boolean>} true when the TV accepted the launch
    */
-  getTVIP() {
-    try {
-      if (typeof window !== 'undefined' && window.webapis && window.webapis.network) {
-        return window.webapis.network.getIP();
+  launchWithPayload(params) {
+    return new Promise((resolve) => {
+      try {
+        const { tizen } = window;
+        const appControl = new tizen.ApplicationControl(DEEP_LINK_OPERATION, null, null, null, [
+          new tizen.ApplicationControlData('PAYLOAD', [JSON.stringify({ values: params })])
+        ]);
+        tizen.application.launchAppControl(
+          appControl,
+          YOUTUBE_APP_ID,
+          () => {
+            console.log('[YouTubeLauncher] deep-link launch accepted:', params);
+            resolve(true);
+          },
+          (err) => {
+            console.warn('[YouTubeLauncher] deep-link launch rejected:', err && err.message);
+            resolve(false);
+          }
+        );
+      } catch (e) {
+        console.warn('[YouTubeLauncher] deep-link launch threw:', e && e.message);
+        resolve(false);
       }
-    } catch (e) {}
-    return null;
+    });
   },
 
   /**
    * Send DIAL protocol POST to TV's local REST service to launch specific YouTube video/playlist
-   * @param {Object} options
-   * @param {string} [options.videoId]
-   * @param {string} [options.playlistId]
    * @returns {Promise<boolean>}
    */
   async sendDialLaunch({ videoId, playlistId }) {
-    let body = '';
-    if (videoId && playlistId) {
-      body = `v=${encodeURIComponent(videoId)}&list=${encodeURIComponent(playlistId)}`;
-    } else if (playlistId) {
-      body = `list=${encodeURIComponent(playlistId)}`;
-    } else if (videoId) {
-      body = `v=${encodeURIComponent(videoId)}`;
-    }
-
+    const body = buildYouTubeParams({ videoId, playlistId });
     if (!body) return false;
 
-    const tvIp = this.getTVIP();
-    const endpoints = [
-      'http://127.0.0.1:8080/ws/apps/YouTube',
-      'http://localhost:8080/ws/apps/YouTube'
-    ];
-    if (tvIp) {
-      endpoints.unshift(`http://${tvIp}:8080/ws/apps/YouTube`);
-    }
-
+    const endpoints = ['http://127.0.0.1:8080/ws/apps/YouTube', 'http://localhost:8080/ws/apps/YouTube'];
     for (const endpoint of endpoints) {
       try {
         const res = await fetch(endpoint, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: body
+          headers: { 'Content-Type': 'text/plain' },
+          body
         });
-        if (res.ok || res.status === 200 || res.status === 201) {
+        if (res.ok) {
           console.log('[YouTubeLauncher] DIAL launch succeeded via', endpoint);
           return true;
         }
@@ -74,67 +85,41 @@ export const youtubeLauncherService = {
     return false;
   },
 
+  launchPlain() {
+    return new Promise((resolve) => {
+      try {
+        window.tizen.application.launch(YOUTUBE_APP_ID, () => resolve(true), () => resolve(false));
+      } catch (e) {
+        resolve(false);
+      }
+    });
+  },
+
   /**
-   * Open a video or playlist in the official Samsung TV YouTube application
+   * Open a video or playlist in the TV's YouTube application.
    * @param {Object} options
    * @param {string} [options.videoId] - YouTube 11-char Video ID
    * @param {string} [options.playlistId] - YouTube Playlist ID
-   * @returns {Promise<boolean>} Whether launch was initiated
+   * @returns {Promise<boolean>} Whether a launch was initiated
    */
   async openInYouTubeApp({ videoId, playlistId }) {
-    let targetUrl = '';
-    if (playlistId) {
-      targetUrl = `https://www.youtube.com/playlist?list=${playlistId}`;
-    } else if (videoId) {
-      targetUrl = `https://www.youtube.com/watch?v=${videoId}`;
-    }
+    const params = buildYouTubeParams({ videoId, playlistId });
+    if (!params) return false;
 
-    // 1. Send DIAL request which instructs YouTube to play the specific video/playlist
-    try {
-      await this.sendDialLaunch({ videoId, playlistId });
-    } catch (e) {
-      console.warn('[YouTubeLauncher] DIAL launch attempt warning:', e);
-    }
-
-    // 2. Ensure YouTube app is brought to foreground on Tizen
     if (this.isTizenAvailable()) {
-      try {
-        if (window.tizen.ApplicationControl && targetUrl) {
-          const appControl = new window.tizen.ApplicationControl(
-            'http://tizen.org/appcontrol/operation/view',
-            targetUrl,
-            null,
-            null,
-            [
-              new window.tizen.ApplicationControlData('payload', [`v=${videoId || ''}`]),
-              new window.tizen.ApplicationControlData('url', [targetUrl])
-            ]
-          );
-          window.tizen.application.launchAppControl(
-            appControl,
-            YOUTUBE_APP_ID,
-            () => console.log('[YouTubeLauncher] launchAppControl completed'),
-            () => {
-              try {
-                window.tizen.application.launch(YOUTUBE_APP_ID);
-              } catch (e) {}
-            }
-          );
-        } else {
-          window.tizen.application.launch(YOUTUBE_APP_ID);
-        }
-        return true;
-      } catch (err) {
-        console.error('[YouTubeLauncher] Tizen app launch error:', err);
-      }
+      if (await this.launchWithPayload(params)) return true;
+      if (await this.sendDialLaunch({ videoId, playlistId })) return true;
+      return this.launchPlain();
     }
 
     // Web / Desktop / Simulator fallback: Open in browser tab
-    if (targetUrl && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && window.open) {
+      const targetUrl = videoId
+        ? `https://www.youtube.com/watch?v=${videoId}${playlistId ? `&list=${playlistId}` : ''}`
+        : `https://www.youtube.com/playlist?list=${playlistId}`;
       window.open(targetUrl, '_blank');
       return true;
     }
-
     return false;
   }
 };
