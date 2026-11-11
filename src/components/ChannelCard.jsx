@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Heart, Radio } from 'lucide-react';
 import { storageService } from '../services/storageService.js';
-import { prebufferService } from '../services/prebufferService.js';
 
 export function ChannelCard({ channel, onPlay, isFavorite, onToggleFavorite }) {
   const [logoError, setLogoError] = useState(false);
@@ -52,11 +51,6 @@ export function ChannelCard({ channel, onPlay, isFavorite, onToggleFavorite }) {
       data-nav-zone="grid"
       data-nav-id={`channel-${channel.id}`}
       tabIndex={0}
-      onFocus={() => {
-        if (channel.streams?.[0]?.url) {
-          prebufferService.preloadStream(channel.streams[0].url);
-        }
-      }}
       onClick={() => onPlay(channel)}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}

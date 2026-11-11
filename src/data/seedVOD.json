@@ -3,14 +3,24 @@
     "id": "play-madrasat-al-mushaghbeen",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "School of Mischief",
     "titleAr": "مسرحية مدرسة المشاغبين",
     "year": 1973,
     "duration": "3h 45m",
     "rating": "9.6",
     "director": "جلال الشرقاوي",
-    "cast": ["عادل إمام", "سعيد صالح", "أحمد زكي", "يونس شلبي", "سهير البابلي", "حسن مصطفى"],
+    "cast": [
+      "عادل إمام",
+      "سعيد صالح",
+      "أحمد زكي",
+      "يونس شلبي",
+      "سهير البابلي",
+      "حسن مصطفى"
+    ],
     "genre": "Comedy / Classic Theater",
     "genreAr": "كوميديا / مسرح كلاسيكي",
     "synopsis": "The legendary Egyptian comedic masterpiece about a group of rebellious high school students transformed by a dedicated philosophy teacher.",
@@ -19,20 +29,30 @@
     "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
     "poster": "https://img.youtube.com/vi/-xieo900Smg/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    "featured": true
   },
   {
     "id": "play-al-eyal-kibrit",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "The Kids Have Grown Up",
     "titleAr": "مسرحية العيال كبرت",
     "year": 1979,
     "duration": "3h 30m",
     "rating": "9.5",
     "director": "سمير العصفوري",
-    "cast": ["سعيد صالح", "أحمد زكي", "يونس شلبي", "حسن مصطفى", "كريمة مختار", "نادية شكري"],
+    "cast": [
+      "سعيد صالح",
+      "أحمد زكي",
+      "يونس شلبي",
+      "حسن مصطفى",
+      "كريمة مختار",
+      "نادية شكري"
+    ],
     "genre": "Comedy / Family Drama",
     "genreAr": "كوميديا / دراما عائلية",
     "synopsis": "When four siblings discover their father plans to abandon the family, they join forces in hilarious schemes to stop him.",
@@ -41,20 +61,29 @@
     "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
     "poster": "https://img.youtube.com/vi/hH2CRfrkhNc/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    "featured": true
   },
   {
     "id": "play-shahid-mashafsh-haga",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "Witness Who Saw Nothing",
     "titleAr": "مسرحية شاهد ما شفش حاجة",
     "year": 1976,
     "duration": "3h 15m",
     "rating": "9.4",
     "director": "هاني مطاوع",
-    "cast": ["عادل إمام", "عمر الحريري", "ناهد جبر", "نظيم شعراوي", "سمير ولي الدين"],
+    "cast": [
+      "عادل إمام",
+      "عمر الحريري",
+      "ناهد جبر",
+      "نظيم شعراوي",
+      "سمير ولي الدين"
+    ],
     "genre": "Comedy / Courtroom Satire",
     "genreAr": "كوميديا / سخرية قضائية",
     "synopsis": "Sarhan Abdel-Basir, a naive children's TV actor, inadvertently finds himself the sole witness in a high-profile murder trial.",
@@ -63,20 +92,29 @@
     "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
     "poster": "https://img.youtube.com/vi/u9IyBuzFKSM/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1585647347384-2593bc35786b?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+    "featured": true
   },
   {
     "id": "play-al-zaeem",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "The Leader",
     "titleAr": "مسرحية الزعيم",
     "year": 1993,
     "duration": "3h 50m",
     "rating": "9.5",
     "director": "شريف عرفة",
-    "cast": ["عادل إمام", "أحمد راتب", "رجاء الجداوي", "مصطفى متولي", "يوسف داوود"],
+    "cast": [
+      "عادل إمام",
+      "أحمد راتب",
+      "رجاء الجداوي",
+      "مصطفى متولي",
+      "يوسف داوود"
+    ],
     "genre": "Political Satire / Comedy",
     "genreAr": "كوميديا / هجاء سياسي",
     "synopsis": "A humble, impoverished lookalike is forced to impersonate the authoritarian dictator of a fictional Arab nation after the dictator dies suddenly.",
@@ -85,20 +123,29 @@
     "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
     "poster": "https://img.youtube.com/vi/UbJc56TfVng/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+    "featured": true
   },
   {
     "id": "play-sok-ala-banatak",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "Lock Up Your Daughters",
     "titleAr": "مسرحية سك على بناتك",
     "year": 1980,
     "duration": "3h 20m",
     "rating": "9.4",
     "director": "فؤاد المهندس",
-    "cast": ["فؤاد المهندس", "شيريهان", "سناء يونس", "أحمد راتب", "محمد أبو الحسن"],
+    "cast": [
+      "فؤاد المهندس",
+      "شيريهان",
+      "سناء يونس",
+      "أحمد راتب",
+      "محمد أبو الحسن"
+    ],
     "genre": "Comedy / Family",
     "genreAr": "كوميديا / مسرح عائلي",
     "synopsis": "Dr. Raafat struggles to marry off his three eccentric daughters so he can finally marry the woman he loves.",
@@ -107,20 +154,29 @@
     "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
     "poster": "https://img.youtube.com/vi/1KNshcqQLNI/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+    "featured": true
   },
   {
     "id": "play-byebye-london",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "Bye Bye London",
     "titleAr": "مسرحية باي باي لندن",
     "year": 1981,
     "duration": "3h 10m",
     "rating": "9.5",
     "director": "منصور المنصور",
-    "cast": ["عبد الحسين عبد الرضا", "غانم الصالح", "مريم الغضبان", "هيفاء عادل", "داوود حسين"],
+    "cast": [
+      "عبد الحسين عبد الرضا",
+      "غانم الصالح",
+      "مريم الغضبان",
+      "هيفاء عادل",
+      "داوود حسين"
+    ],
     "genre": "Kuwaiti Comedy / Social Satire",
     "genreAr": "كوميديا كويتية / نقد اجتماعي",
     "synopsis": "Abdulhussain Abdulredha's iconic satirical play about a Kuwaiti tourist traveling to London for medical treatment.",
@@ -128,20 +184,28 @@
     "youtubeId": "CPneFAHc1yM",
     "poster": "https://img.youtube.com/vi/CPneFAHc1yM/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+    "featured": true
   },
   {
     "id": "play-al-motazawwgoun",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "The Married Couple",
     "titleAr": "مسرحية المتزوجون",
     "year": 1978,
     "duration": "3h 35m",
     "rating": "9.3",
     "director": "حسن عبد السلام",
-    "cast": ["سمير غانم", "جورج سيدهم", "شيرين", "نجاح الموجي"],
+    "cast": [
+      "سمير غانم",
+      "جورج سيدهم",
+      "شيرين",
+      "نجاح الموجي"
+    ],
     "genre": "Comedy",
     "genreAr": "كوميديا كلاسيكية",
     "synopsis": "Mesbah and Hanaa's hilarious struggle with social classes and marriage differences, featuring Samir Ghanem's timeless comedy.",
@@ -149,20 +213,28 @@
     "youtubeId": "5VMZ8RHAoIs",
     "poster": "https://img.youtube.com/vi/5VMZ8RHAoIs/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    "featured": true
   },
   {
     "id": "play-raya-sakina",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "Raya and Sakina",
     "titleAr": "مسرحية ريا وسكينة",
     "year": 1982,
     "duration": "3h 40m",
     "rating": "9.5",
     "director": "حسين كمال",
-    "cast": ["شادية", "سهير البابلي", "عبد المنعم مدبولي", "أحمد بدير"],
+    "cast": [
+      "شادية",
+      "سهير البابلي",
+      "عبد المنعم مدبولي",
+      "أحمد بدير"
+    ],
     "genre": "Musical Comedy",
     "genreAr": "كوميديا غنائية / مسرح",
     "synopsis": "The iconic musical comedy theater production starring Shadia and Sohair El Bably in a comedic take on Alexandria's infamous duo.",
@@ -170,20 +242,28 @@
     "youtubeId": "TNVQuT8F_uw",
     "poster": "https://img.youtube.com/vi/TNVQuT8F_uw/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    "featured": true
   },
   {
     "id": "play-el-joker",
     "type": "play",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "The Joker",
     "titleAr": "مسرحية الجوكر",
     "year": 1979,
     "duration": "3h 25m",
     "rating": "9.4",
     "director": "جلال الشرقاوي",
-    "cast": ["محمد صبحي", "هناء الشوربجي", "محمود القلعاوي", "ماجدة الخطيب"],
+    "cast": [
+      "محمد صبحي",
+      "هناء الشوربجي",
+      "محمود القلعاوي",
+      "ماجدة الخطيب"
+    ],
     "genre": "Comedy / Impersonation",
     "genreAr": "كوميديا / تنكر ومسرح",
     "synopsis": "Mohamed Sobhy's extraordinary theatrical performance playing multiple characters (Ayoub, Am Zakaria, and Dr. Higab).",
@@ -191,20 +271,29 @@
     "youtubeId": "fjivtFkxUSw",
     "poster": "https://img.youtube.com/vi/fjivtFkxUSw/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+    "featured": true
   },
   {
     "id": "playlist-arabic-plays",
     "type": "playlist",
     "category": "plays",
-    "categories": ["plays", "playlists"],
+    "categories": [
+      "plays",
+      "playlists"
+    ],
     "title": "Arabic Theatrical Plays Complete Collection",
     "titleAr": "قائمة روائع المسرح العربي الكلاسيكي",
     "year": 2024,
     "duration": "25+ Plays",
     "rating": "9.8",
     "director": "نخبة رواد المسرح",
-    "cast": ["عادل إمام", "سعيد صالح", "سمير غانم", "فؤاد المهندس", "عبد الحسين عبد الرضا"],
+    "cast": [
+      "عادل إمام",
+      "سعيد صالح",
+      "سمير غانم",
+      "فؤاد المهندس",
+      "عبد الحسين عبد الرضا"
+    ],
     "genre": "Theatrical Anthology",
     "genreAr": "موسوعة مسرحية كاملة",
     "synopsis": "A comprehensive official YouTube playlist containing the complete recordings of the most celebrated Arabic and Egyptian theatrical plays in HD.",
@@ -213,20 +302,27 @@
     "youtubeId": "-xieo900Smg",
     "poster": "https://img.youtube.com/vi/-xieo900Smg/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    "featured": true
   },
   {
     "id": "movie-bab-el-hadid",
     "type": "movie",
     "category": "cinema",
-    "categories": ["cinema"],
+    "categories": [
+      "cinema"
+    ],
     "title": "Cairo Station (Bab El Hadid)",
     "titleAr": "فيلم باب الحديد",
     "year": 1958,
     "duration": "1h 17m",
     "rating": "9.1",
     "director": "يوسف شاهين",
-    "cast": ["يوسف شاهين", "هند رستم", "فريد شوقي", "حسن البارودي"],
+    "cast": [
+      "يوسف شاهين",
+      "هند رستم",
+      "فريد شوقي",
+      "حسن البارودي"
+    ],
     "genre": "Drama / Masterpiece",
     "genreAr": "دراما / شاهكار كلاسيكي",
     "synopsis": "Youssef Chahine's neo-realist masterpiece exploring obsession, desire, and class struggle at Cairo's bustling central railway station.",
@@ -234,20 +330,28 @@
     "youtubeId": "ma9sDu-aLZw",
     "poster": "https://img.youtube.com/vi/ma9sDu-aLZw/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    "featured": true
   },
   {
     "id": "movie-ishaaet-hob",
     "type": "movie",
     "category": "cinema",
-    "categories": ["cinema"],
+    "categories": [
+      "cinema"
+    ],
     "title": "A Rumor of Love",
     "titleAr": "فيلم إشاعة حب",
     "year": 1960,
     "duration": "1h 50m",
     "rating": "9.2",
     "director": "فطين عبد الوهاب",
-    "cast": ["عمر الشريف", "سعاد حسني", "يوسف وهبي", "عبد المنعم إبراهيم", "هند رستم"],
+    "cast": [
+      "عمر الشريف",
+      "سعاد حسني",
+      "يوسف وهبي",
+      "عبد المنعم إبراهيم",
+      "هند رستم"
+    ],
     "genre": "Romantic Comedy",
     "genreAr": "كوميديا رومانسية ذهبية",
     "synopsis": "Hussein, a shy and awkward young man, is given an extravagant makeover by his uncle who invents a fabricated romance between Hussein and movie star Hind Rostom.",
@@ -255,20 +359,28 @@
     "youtubeId": "ZLOeG7EuF7Y",
     "poster": "https://img.youtube.com/vi/ZLOeG7EuF7Y/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    "featured": true
   },
   {
     "id": "movie-ibn-hamido",
     "type": "movie",
     "category": "cinema",
-    "categories": ["cinema"],
+    "categories": [
+      "cinema"
+    ],
     "title": "Son of Hamido",
     "titleAr": "فيلم ابن حميدو",
     "year": 1957,
     "duration": "1h 45m",
     "rating": "9.3",
     "director": "فطين عبد الوهاب",
-    "cast": ["إسماعيل ياسين", "أحمد رمزي", "هند رستم", "زينات صدقي", "عبد الفتاح القصري"],
+    "cast": [
+      "إسماعيل ياسين",
+      "أحمد رمزي",
+      "هند رستم",
+      "زينات صدقي",
+      "عبد الفتاح القصري"
+    ],
     "genre": "Comedy / Adventure",
     "genreAr": "كوميديا / مغامرات",
     "synopsis": "Undercover police officers Ibn Hamido and Hassan infiltrate a Suez fishing village to bust a narcotics smuggling ring, falling for the daughters of their eccentric landlord.",
@@ -276,20 +388,29 @@
     "youtubeId": "Zx6Cgiuzhyk",
     "poster": "https://img.youtube.com/vi/Zx6Cgiuzhyk/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+    "featured": true
   },
   {
     "id": "series-raafat-al-haggan",
     "type": "series",
     "category": "drama",
-    "categories": ["drama", "playlists"],
+    "categories": [
+      "drama",
+      "playlists"
+    ],
     "title": "Raafat Al-Haggan (Full Series)",
     "titleAr": "مسلسل رأفت الهجان (كامل)",
     "year": 1988,
     "duration": "3 Seasons / 56 Episodes",
     "rating": "9.8",
     "director": "يحيى العلمي",
-    "cast": ["محمود عبد العزيز", "يسرا", "يوسف شعبان", "محمد الدفراوي", "نبيل الحلفاوي"],
+    "cast": [
+      "محمود عبد العزيز",
+      "يسرا",
+      "يوسف شعبان",
+      "محمد الدفراوي",
+      "نبيل الحلفاوي"
+    ],
     "genre": "Espionage / Historical Drama",
     "genreAr": "جاسوسية / دراما تاريخية وطنية",
     "synopsis": "The epic dramatization of Egyptian intelligence operative Refaat Al-Gammal who lived for decades undercover in Tel Aviv.",
@@ -298,20 +419,30 @@
     "youtubeId": "V8d4b3j620o",
     "poster": "https://img.youtube.com/vi/V8d4b3j620o/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+    "featured": true
   },
   {
     "id": "series-al-zeer-salem",
     "type": "series",
     "category": "drama",
-    "categories": ["drama", "playlists"],
+    "categories": [
+      "drama",
+      "playlists"
+    ],
     "title": "Al-Zeer Salem (Epic Drama)",
     "titleAr": "ملحمة الزير سالم (كامل)",
     "year": 2000,
     "duration": "40 Episodes",
     "rating": "9.7",
     "director": "حاتم علي",
-    "cast": ["سلوم حداد", "رفيق علي أحمد", "سمر سامي", "خالد تاجا", "تيم حسن", "فرح بسيسو"],
+    "cast": [
+      "سلوم حداد",
+      "رفيق علي أحمد",
+      "سمر سامي",
+      "خالد تاجا",
+      "تيم حسن",
+      "فرح بسيسو"
+    ],
     "genre": "Historical Epic / Poetry",
     "genreAr": "ملحمة تاريخية وشعرية",
     "synopsis": "Hatem Ali's acclaimed historical series recounting the forty-year Basus War between Bakr and Taghlib, starring Salloum Haddad.",
@@ -320,20 +451,29 @@
     "youtubeId": "bFqY9e48Gk4",
     "poster": "https://img.youtube.com/vi/bFqY9e48Gk4/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+    "featured": true
   },
   {
     "id": "series-layali-al-helmiya",
     "type": "series",
     "category": "drama",
-    "categories": ["drama", "playlists"],
+    "categories": [
+      "drama",
+      "playlists"
+    ],
     "title": "Layali Al-Helmiya (Full Series)",
     "titleAr": "مسلسل ليالي الحلمية (الأجزاء الكاملة)",
     "year": 1987,
     "duration": "5 Seasons",
     "rating": "9.6",
     "director": "إسماعيل عبد الحافظ",
-    "cast": ["يحيى الفخراني", "صلاح السعدني", "صفية العمري", "ممدوح عبد العليم", "آثار الحكيم"],
+    "cast": [
+      "يحيى الفخراني",
+      "صلاح السعدني",
+      "صفية العمري",
+      "ممدوح عبد العليم",
+      "آثار الحكيم"
+    ],
     "genre": "Social Epic",
     "genreAr": "ملحمة اجتماعية كلاسيكية",
     "synopsis": "Osama Anwar Okasha's masterpiece chronicling the social and political transformation of modern Egypt through the rivalry between Selim El-Badry and Soliman Ghanem.",
@@ -342,20 +482,27 @@
     "youtubeId": "uIeD2h4oQ3k",
     "poster": "https://img.youtube.com/vi/uIeD2h4oQ3k/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4"
+    "featured": true
   },
   {
     "id": "playlist-charlie-chaplin",
     "type": "playlist",
     "category": "classics",
-    "categories": ["classics", "playlists"],
+    "categories": [
+      "classics",
+      "playlists"
+    ],
     "title": "Charlie Chaplin Cinema Masterpieces",
     "titleAr": "روائع سينما شارلي شابلن الكلاسيكية",
     "year": 1921,
     "duration": "Complete Playlist",
     "rating": "9.5",
     "director": "Charlie Chaplin",
-    "cast": ["Charlie Chaplin", "Jackie Coogan", "Edna Purviance"],
+    "cast": [
+      "Charlie Chaplin",
+      "Jackie Coogan",
+      "Edna Purviance"
+    ],
     "genre": "Silent Cinema / Comedy Genius",
     "genreAr": "سينما صامتة / عبقرية كوميدية",
     "synopsis": "Official full-length legal collection of Charlie Chaplin's immortal silent comedies and feature films including The Kid and City Lights.",
@@ -364,20 +511,26 @@
     "youtubeId": "qNseEVlaCl4",
     "poster": "https://img.youtube.com/vi/qNseEVlaCl4/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    "featured": true
   },
   {
     "id": "movie-night-living-dead",
     "type": "movie",
     "category": "classics",
-    "categories": ["classics"],
+    "categories": [
+      "classics"
+    ],
     "title": "Night of the Living Dead",
     "titleAr": "فيلم ليلة الموتى الأحياء (كلاسيك)",
     "year": 1968,
     "duration": "1h 36m",
     "rating": "8.9",
     "director": "George A. Romero",
-    "cast": ["Duane Jones", "Judith O'Dea", "Karl Hardman"],
+    "cast": [
+      "Duane Jones",
+      "Judith O'Dea",
+      "Karl Hardman"
+    ],
     "genre": "Horror / Cult Classic",
     "genreAr": "رعب كلاسيكي / سينما عالمية",
     "synopsis": "George Romero's historic public domain classic that revolutionized the horror genre, following survivors trapped in a farmhouse.",
@@ -385,20 +538,27 @@
     "youtubeId": "H91bEGJYBU4",
     "poster": "https://img.youtube.com/vi/H91bEGJYBU4/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    "featured": true
   },
   {
     "id": "movie-charade",
     "type": "movie",
     "category": "classics",
-    "categories": ["classics"],
+    "categories": [
+      "classics"
+    ],
     "title": "Charade",
     "titleAr": "فيلم شاريد (الأحجية)",
     "year": 1963,
     "duration": "1h 53m",
     "rating": "8.8",
     "director": "Stanley Donen",
-    "cast": ["Cary Grant", "Audrey Hepburn", "Walter Matthau", "James Coburn"],
+    "cast": [
+      "Cary Grant",
+      "Audrey Hepburn",
+      "Walter Matthau",
+      "James Coburn"
+    ],
     "genre": "Romantic Mystery / Suspense",
     "genreAr": "غموض رومانسي / تشويق كلاسيكي",
     "synopsis": "Regina Lampert falls for charming Peter Joshua while pursued by dangerous men seeking her late husband's stolen fortune in Paris.",
@@ -406,6 +566,6 @@
     "youtubeId": "ty8N8XkFsqs",
     "poster": "https://img.youtube.com/vi/ty8N8XkFsqs/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80",
-    "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+    "featured": true
   }
 ]
