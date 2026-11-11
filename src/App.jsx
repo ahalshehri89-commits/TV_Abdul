@@ -11,13 +11,17 @@ import { VODView } from './components/VODView.jsx';
 import { SportsMatchCenter } from './components/SportsMatchCenter.jsx';
 import { MultiViewDashboard } from './components/MultiViewDashboard.jsx';
 import { EPGModal } from './components/EPGModal.jsx';
+import { MyFilesView } from './components/MyFilesView.jsx';
+import { FilePlayerView } from './components/FilePlayerView.jsx';
+import { uiLock } from './services/uiLock.js';
 import { catalogService } from './services/catalogService.js';
 import { storageService } from './services/storageService.js';
 import { remoteKeyManager, TV_KEYS } from './services/remoteKeyManager.js';
 import { spatialNav } from './services/spatialNav.js';
 
 export function App() {
-  const [activeView, setActiveView] = useState('live_tv'); // 'live_tv' | 'vod' | 'sports'
+  const [activeView, setActiveView] = useState('live_tv'); // 'live_tv' | 'vod' | 'sports' | 'files'
+  const [activeFile, setActiveFile] = useState(null); // seekable media playing in FilePlayerView
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeCountry, setActiveCountry] = useState('all');
   const [allChannels, setAllChannels] = useState([]);
@@ -34,6 +38,7 @@ export function App() {
   const [toastMsg, setToastMsg] = useState(null);
 
   const lastFocusedChannelIdRef = useRef(null);
+  const filesBackRef = useRef(null);
   const toastTimerRef = useRef(null);
 
   const showToast = (msg) => {
@@ -107,10 +112,13 @@ export function App() {
   useEffect(() => {
     const handleRemoteAction = (action, event) => {
       // If player is active, VideoPlayerView handles its own keys
-      if (activeChannel) return false;
+      if (activeChannel || activeFile) return false;
 
       // If modal is active, modal handles its own keys
       if (isSearchOpen || isSettingsOpen || isCountryModalOpen) return false;
+
+      // A fullscreen overlay inside a view (e.g. the picture viewer) owns the remote
+      if (uiLock.isLocked()) return false;
 
       switch (action.type) {
         case TV_KEYS.UP:
@@ -145,6 +153,9 @@ export function App() {
           break;
         }
         case TV_KEYS.BACK:
+          if (activeView === 'files' && filesBackRef.current && filesBackRef.current()) {
+            return true;
+          }
           if (activeView !== 'live_tv') {
             setActiveView('live_tv');
             setTimeout(() => spatialNav.focusFirst(), 100);
@@ -177,7 +188,7 @@ export function App() {
 
     const unsubscribe = remoteKeyManager.subscribe(handleRemoteAction);
     return () => unsubscribe();
-  }, [activeChannel, isSearchOpen, isSettingsOpen, isCountryModalOpen, activeCategory, activeCountry]);
+  }, [activeChannel, activeFile, activeView, isSearchOpen, isSettingsOpen, isCountryModalOpen, activeCategory, activeCountry]);
 
   const handlePlayChannel = async (channel) => {
     lastFocusedChannelIdRef.current = document.activeElement?.getAttribute('data-nav-id') || `channel-${channel.id}`;
@@ -243,6 +254,27 @@ export function App() {
     }
   };
 
+  const handlePlayFile = (fileItem) => {
+    lastFocusedChannelIdRef.current = document.activeElement?.getAttribute('data-nav-id') || null;
+    setActiveFile(fileItem);
+  };
+
+  const handleCloseFilePlayer = () => {
+    setActiveFile(null);
+    // My Files restores its own highlight; other views fall back to the remembered card.
+    if (activeView !== 'files') {
+      setTimeout(() => {
+        if (!lastFocusedChannelIdRef.current || !spatialNav.focus(lastFocusedChannelIdRef.current)) {
+          spatialNav.focusFirst();
+        }
+      }, 200);
+    }
+  };
+
+  if (activeFile) {
+    return <FilePlayerView item={activeFile} onClose={handleCloseFilePlayer} />;
+  }
+
   // If video player is active, render ONLY the video player to free the hardware video plane
   if (activeChannel) {
     return (
@@ -288,6 +320,8 @@ export function App() {
               const cat = document.querySelector('.tv-vod-categories .tv-category-pill.active') ||
                           document.querySelector('[data-nav-id="btn-hero-play"]');
               if (cat) spatialNav.focus(cat);
+            } else if (v === 'files') {
+              // My Files places the highlight itself once the drive listing has loaded
             } else if (v === 'sports') {
               const match = document.querySelector('.tv-sports-grid [data-nav-zone="grid"]');
               if (match) spatialNav.focus(match);
@@ -354,6 +388,8 @@ export function App() {
           }
         />
       )}
+
+      {activeView === 'files' && <MyFilesView onPlayFile={handlePlayFile} backHandlerRef={filesBackRef} />}
 
       {activeView === 'sports' && (
         <SportsMatchCenter onTuneChannel={handlePlayChannel} />

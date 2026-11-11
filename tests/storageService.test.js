@@ -43,3 +43,22 @@ describe('StorageService', () => {
     expect(recents.length).toBe(1);
   });
 });
+
+describe('StorageService resume positions', () => {
+  it('saves and returns a resume position', async () => {
+    const { storageService } = await import('../src/services/storageService.js');
+    storageService.saveResumePosition('file:a.mkv|100', 600, 3600);
+    expect(storageService.getResumePosition('file:a.mkv|100')).toBe(600);
+    expect(storageService.getResumePosition('unknown')).toBe(0);
+  });
+
+  it('clears the entry near the start and near the end', async () => {
+    const { storageService } = await import('../src/services/storageService.js');
+    storageService.saveResumePosition('k', 600, 3600);
+    storageService.saveResumePosition('k', 10, 3600);
+    expect(storageService.getResumePosition('k')).toBe(0);
+    storageService.saveResumePosition('k', 600, 3600);
+    storageService.saveResumePosition('k', 3500, 3600);
+    expect(storageService.getResumePosition('k')).toBe(0);
+  });
+});

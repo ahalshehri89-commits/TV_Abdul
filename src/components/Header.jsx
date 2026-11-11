@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Settings, Heart, Tv, Globe, Film, Trophy, Grid, Calendar } from 'lucide-react';
+import { Search, Settings, Heart, Tv, Globe, Film, Trophy, Grid, Calendar, Usb } from 'lucide-react';
 import { storageService } from '../services/storageService.js';
 import { catalogService } from '../services/catalogService.js';
 
@@ -65,7 +65,7 @@ export function Header({
           onClick={() => onSelectView && onSelectView('vod')}
         >
           <Film size={17} />
-          <span>Movies & Plays (VOD)</span>
+          <span>Movies & Plays</span>
         </button>
 
         <button
@@ -76,7 +76,18 @@ export function Header({
           onClick={() => onSelectView && onSelectView('sports')}
         >
           <Trophy size={17} />
-          <span>Live Sports Center</span>
+          <span>Sports</span>
+        </button>
+
+        <button
+          className={`tv-platform-tab ${activeView === 'files' ? 'active' : ''}`}
+          data-nav="true"
+          data-nav-zone="header"
+          data-nav-id="tab-files"
+          onClick={() => onSelectView && onSelectView('files')}
+        >
+          <Usb size={17} />
+          <span>My Files</span>
         </button>
       </nav>
 

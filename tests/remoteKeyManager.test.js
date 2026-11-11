@@ -31,8 +31,13 @@ describe('RemoteKeyManager', () => {
 
   it('should normalize Info and Favorite shortcuts', () => {
     expect(remoteKeyManager.normalizeKey({ keyCode: 457, key: 'Info' })).toEqual({ type: TV_KEYS.INFO });
-    expect(remoteKeyManager.normalizeKey({ keyCode: 403, key: 'ColorF0Red' })).toEqual({ type: TV_KEYS.FAVORITE });
-    expect(remoteKeyManager.normalizeKey({ keyCode: 405, key: 'ColorF2Yellow' })).toEqual({ type: TV_KEYS.FAVORITE });
-    expect(remoteKeyManager.normalizeKey({ keyCode: 70, key: 'f' })).toEqual({ type: TV_KEYS.FAVORITE });
+    expect(remoteKeyManager.normalizeKey({ keyCode: 403, key: 'ColorF0Red' })).toEqual({ type: TV_KEYS.FAVORITE, color: 'red' });
+    expect(remoteKeyManager.normalizeKey({ keyCode: 405, key: 'ColorF2Yellow' })).toEqual({ type: TV_KEYS.FAVORITE, color: 'yellow' });
+    expect(remoteKeyManager.normalizeKey({ keyCode: 70, key: 'f' })).toEqual({ type: TV_KEYS.FAVORITE, color: 'yellow' });
+  });
+
+  it('should normalize fast-forward and rewind keys', () => {
+    expect(remoteKeyManager.normalizeKey({ keyCode: 417, key: 'MediaFastForward' })).toEqual({ type: TV_KEYS.FAST_FORWARD });
+    expect(remoteKeyManager.normalizeKey({ keyCode: 412, key: 'MediaRewind' })).toEqual({ type: TV_KEYS.REWIND });
   });
 });

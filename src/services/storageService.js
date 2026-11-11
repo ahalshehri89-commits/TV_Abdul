@@ -8,8 +8,13 @@ const STORAGE_KEYS = {
   RECENT: 'freetv:recent',
   LAST_CHANNEL: 'freetv:last_channel',
   SETTINGS: 'freetv:settings',
-  CUSTOM_PLAYLISTS: 'freetv:custom_playlists'
+  CUSTOM_PLAYLISTS: 'freetv:custom_playlists',
+  RESUME: 'freetv:resume'
 };
+
+const MAX_RESUME_ENTRIES = 300;
+const RESUME_MIN_SECONDS = 30;
+const RESUME_FINISHED_RATIO = 0.95;
 
 const DEFAULT_SETTINGS = {
   preferredQuality: 'auto', // 'auto', '1080p', '720p', 'lowest'
@@ -118,6 +123,56 @@ class StorageService {
       console.warn('Failed to save settings:', e);
       return DEFAULT_SETTINGS;
     }
+  }
+
+  /**
+   * Resume positions for seekable media (files, on-demand titles), keyed by a stable id.
+   */
+  getResumeMap() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.RESUME);
+      return data ? JSON.parse(data) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /** @returns {number} seconds to resume from, or 0 to start from the beginning */
+  getResumePosition(key) {
+    if (!key) return 0;
+    const entry = this.getResumeMap()[key];
+    return entry ? entry.position || 0 : 0;
+  }
+
+  /**
+   * Remember where playback stopped. Positions in the first 30 seconds or the last 5%
+   * are treated as "not started" / "finished" and clear the entry instead.
+   */
+  saveResumePosition(key, position, duration = 0) {
+    if (!key) return;
+    try {
+      const map = this.getResumeMap();
+      const finished = duration > 0 && position / duration >= RESUME_FINISHED_RATIO;
+      if (position < RESUME_MIN_SECONDS || finished) {
+        delete map[key];
+      } else {
+        map[key] = { position: Math.floor(position), duration: Math.floor(duration), timestamp: Date.now() };
+        const keys = Object.keys(map);
+        if (keys.length > MAX_RESUME_ENTRIES) {
+          keys
+            .sort((a, b) => map[a].timestamp - map[b].timestamp)
+            .slice(0, keys.length - MAX_RESUME_ENTRIES)
+            .forEach((oldKey) => delete map[oldKey]);
+        }
+      }
+      localStorage.setItem(STORAGE_KEYS.RESUME, JSON.stringify(map));
+    } catch (e) {
+      console.warn('Failed to save resume position:', e);
+    }
+  }
+
+  clearResumePosition(key) {
+    this.saveResumePosition(key, 0, 0);
   }
 
   getCustomPlaylists() {
