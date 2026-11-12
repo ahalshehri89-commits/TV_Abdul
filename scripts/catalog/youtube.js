@@ -9,12 +9,13 @@
 
 const API = 'https://www.googleapis.com/youtube/v3';
 export const MIN_VIDEO_SECONDS = 20 * 60;
+const MAX_VIDEO_SECONDS = 6 * 60 * 60;
 const MIN_PLAYLIST_ITEMS = 3;
 const MAX_UPLOAD_PAGES = 60; // newest 3,000 uploads per channel
 const MAX_PLAYLIST_PAGES = 10; // 500 playlists per channel
 
 // Playlists and videos that are not programmes: promos, clips, songs, interviews.
-export const NOT_A_PROGRAMME = /برومو|بروموهات|إعلان|اعلان|تريلر|كواليس|تتر|أغنية|اغنية|أغاني|اغاني|كليب|لقاء|مقطع|مقاطع|مشهد|مشاهد|ملخص|قريبا|قريباً|شورت|promo|trailer|teaser|shorts?\b|clip|behind the scenes|\bsong\b|highlights?/i;
+export const NOT_A_PROGRAMME = /بث مباشر|برومو|بروموهات|إعلان|اعلان|تريلر|كواليس|تتر|أغنية|اغنية|أغاني|اغاني|كليب|لقاء|مقطع|مقاطع|مشهد|مشاهد|ملخص|قريبا|قريباً|شورت|promo|trailer|teaser|shorts?\b|clip|behind the scenes|\bsong\b|highlights?/i;
 export const EPISODE = /الحلقة|حلقة|\bepisode\b|\bep\.?\s*\d/i;
 
 /**
@@ -54,7 +55,8 @@ function bestThumbnail(thumbnails) {
 /** Catalog entry for a video, or null if it is short, private, or cannot be embedded. */
 export function toVideoItem(video, channel) {
   const duration = parseIsoDuration(video.contentDetails && video.contentDetails.duration);
-  if (duration < MIN_VIDEO_SECONDS) return null;
+  // Under 20 minutes is a clip; over 6 hours is a recorded live stream, not a programme.
+  if (duration < MIN_VIDEO_SECONDS || duration > MAX_VIDEO_SECONDS) return null;
   const status = video.status || {};
   if (status.privacyStatus && status.privacyStatus !== 'public') return null;
   if (status.embeddable === false) return null;

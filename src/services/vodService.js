@@ -22,6 +22,7 @@ export const VOD_CATEGORIES = [
   { id: 'plays', name: 'Plays', nameAr: 'مسرحيات' },
   { id: 'cinema', name: 'Arabic Cinema', nameAr: 'أفلام عربية' },
   { id: 'drama', name: 'Series', nameAr: 'مسلسلات' },
+  { id: 'shows', name: 'Classic TV', nameAr: 'برامج ومنوعات' },
   { id: 'documentary', name: 'Documentaries', nameAr: 'وثائقيات' },
   { id: 'kids', name: 'Kids', nameAr: 'أطفال' },
   { id: 'classics', name: 'World Classics', nameAr: 'كلاسيكيات عالمية' }

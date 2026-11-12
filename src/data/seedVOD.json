@@ -1,372 +1,10 @@
 [
   {
-    "id": "play-madrasat-al-mushaghbeen",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "School of Mischief",
-    "titleAr": "مسرحية مدرسة المشاغبين",
-    "year": 1973,
-    "duration": "3h 45m",
-    "rating": "9.6",
-    "director": "جلال الشرقاوي",
-    "cast": [
-      "عادل إمام",
-      "سعيد صالح",
-      "أحمد زكي",
-      "يونس شلبي",
-      "سهير البابلي",
-      "حسن مصطفى"
-    ],
-    "genre": "Comedy / Classic Theater",
-    "genreAr": "كوميديا / مسرح كلاسيكي",
-    "synopsis": "The legendary Egyptian comedic masterpiece about a group of rebellious high school students transformed by a dedicated philosophy teacher.",
-    "synopsisAr": "المسرحية الكوميدية الأشهر في تاريخ المسرح العربي؛ تدور حول خمسة طلاب متمردين في مدرسة ثانوية وكيف استطاعت معلمة جديدة تغيير مسار حياتهم بروح من الضحك والبهجة.",
-    "youtubeId": "-xieo900Smg",
-    "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
-    "poster": "https://img.youtube.com/vi/-xieo900Smg/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "play-al-eyal-kibrit",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "The Kids Have Grown Up",
-    "titleAr": "مسرحية العيال كبرت",
-    "year": 1979,
-    "duration": "3h 30m",
-    "rating": "9.5",
-    "director": "سمير العصفوري",
-    "cast": [
-      "سعيد صالح",
-      "أحمد زكي",
-      "يونس شلبي",
-      "حسن مصطفى",
-      "كريمة مختار",
-      "نادية شكري"
-    ],
-    "genre": "Comedy / Family Drama",
-    "genreAr": "كوميديا / دراما عائلية",
-    "synopsis": "When four siblings discover their father plans to abandon the family, they join forces in hilarious schemes to stop him.",
-    "synopsisAr": "تحفة المسرح الكوميدي؛ يكتشف أربعة أشقاء صدفة رسالة سرية لوالدهم يقرر فيها الهرب والزواج من أخرى، فيجتمعون في خطط فكاهية لإنقاذ أسرتهم.",
-    "youtubeId": "hH2CRfrkhNc",
-    "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
-    "poster": "https://img.youtube.com/vi/hH2CRfrkhNc/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "play-shahid-mashafsh-haga",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "Witness Who Saw Nothing",
-    "titleAr": "مسرحية شاهد ما شفش حاجة",
-    "year": 1976,
-    "duration": "3h 15m",
-    "rating": "9.4",
-    "director": "هاني مطاوع",
-    "cast": [
-      "عادل إمام",
-      "عمر الحريري",
-      "ناهد جبر",
-      "نظيم شعراوي",
-      "سمير ولي الدين"
-    ],
-    "genre": "Comedy / Courtroom Satire",
-    "genreAr": "كوميديا / سخرية قضائية",
-    "synopsis": "Sarhan Abdel-Basir, a naive children's TV actor, inadvertently finds himself the sole witness in a high-profile murder trial.",
-    "synopsisAr": "سرحان عبد البصير رجل مسالم يقدم برامج أطفال تلفزيونية يجد نفسه فجأة الشاهد الوحيد في قضية مقتل جارته الراقصة، ليتحول التحقيق إلى موجة لا تنتهي من الضحك.",
-    "youtubeId": "u9IyBuzFKSM",
-    "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
-    "poster": "https://img.youtube.com/vi/u9IyBuzFKSM/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1585647347384-2593bc35786b?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "play-al-zaeem",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "The Leader",
-    "titleAr": "مسرحية الزعيم",
-    "year": 1993,
-    "duration": "3h 50m",
-    "rating": "9.5",
-    "director": "شريف عرفة",
-    "cast": [
-      "عادل إمام",
-      "أحمد راتب",
-      "رجاء الجداوي",
-      "مصطفى متولي",
-      "يوسف داوود"
-    ],
-    "genre": "Political Satire / Comedy",
-    "genreAr": "كوميديا / هجاء سياسي",
-    "synopsis": "A humble, impoverished lookalike is forced to impersonate the authoritarian dictator of a fictional Arab nation after the dictator dies suddenly.",
-    "synopsisAr": "زينهم رجل بسيط مسالم يشبه حاكم البلاد المستبد تماماً، وعند وفاة الحاكم فجأة تقرر حاشيته الاستعانة به ليحل محله خوفاً من ضياع نفوذهم.",
-    "youtubeId": "UbJc56TfVng",
-    "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
-    "poster": "https://img.youtube.com/vi/UbJc56TfVng/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "play-sok-ala-banatak",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "Lock Up Your Daughters",
-    "titleAr": "مسرحية سك على بناتك",
-    "year": 1980,
-    "duration": "3h 20m",
-    "rating": "9.4",
-    "director": "فؤاد المهندس",
-    "cast": [
-      "فؤاد المهندس",
-      "شيريهان",
-      "سناء يونس",
-      "أحمد راتب",
-      "محمد أبو الحسن"
-    ],
-    "genre": "Comedy / Family",
-    "genreAr": "كوميديا / مسرح عائلي",
-    "synopsis": "Dr. Raafat struggles to marry off his three eccentric daughters so he can finally marry the woman he loves.",
-    "synopsisAr": "الدكتور رأفت يحاول بكل الطرق تزويج بناته الثلاث غريبات الأطوار (سوسو وفوزية وندى) ليتسنى له الزواج من حبيبته عصمت وسط مفارقات كوميدية شهيرة.",
-    "youtubeId": "1KNshcqQLNI",
-    "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
-    "poster": "https://img.youtube.com/vi/1KNshcqQLNI/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "play-al-motazawwgoun",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "The Married Couple",
-    "titleAr": "مسرحية المتزوجون",
-    "year": 1978,
-    "duration": "3h 35m",
-    "rating": "9.3",
-    "director": "حسن عبد السلام",
-    "cast": [
-      "سمير غانم",
-      "جورج سيدهم",
-      "شيرين",
-      "نجاح الموجي"
-    ],
-    "genre": "Comedy",
-    "genreAr": "كوميديا كلاسيكية",
-    "synopsis": "Mesbah and Hanaa's hilarious struggle with social classes and marriage differences, featuring Samir Ghanem's timeless comedy.",
-    "synopsisAr": "تناقش المسرحية الفوارق الطبقية ومشاكل الزواج من خلال مسعود الأجير البسيط الذي يتزوج لينا الفتاة الأرستقراطية وسط أداء كوميدي خالد لسمير غانم وجورج سيدهم.",
-    "youtubeId": "5VMZ8RHAoIs",
-    "poster": "https://img.youtube.com/vi/5VMZ8RHAoIs/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "play-raya-sakina",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "Raya and Sakina",
-    "titleAr": "مسرحية ريا وسكينة",
-    "year": 1982,
-    "duration": "3h 40m",
-    "rating": "9.5",
-    "director": "حسين كمال",
-    "cast": [
-      "شادية",
-      "سهير البابلي",
-      "عبد المنعم مدبولي",
-      "أحمد بدير"
-    ],
-    "genre": "Musical Comedy",
-    "genreAr": "كوميديا غنائية / مسرح",
-    "synopsis": "The iconic musical comedy theater production starring Shadia and Sohair El Bably in a comedic take on Alexandria's infamous duo.",
-    "synopsisAr": "أعظم العروض الغنائية الكوميدية التي جمعت عملاقتي الفن شادية وسهير البابلي مع عبد المنعم مدبولي وأحمد بدير في معالجة مسرحية كوميدية بديعة.",
-    "youtubeId": "TNVQuT8F_uw",
-    "poster": "https://img.youtube.com/vi/TNVQuT8F_uw/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "play-el-joker",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "The Joker",
-    "titleAr": "مسرحية الجوكر",
-    "year": 1979,
-    "duration": "3h 25m",
-    "rating": "9.4",
-    "director": "جلال الشرقاوي",
-    "cast": [
-      "محمد صبحي",
-      "هناء الشوربجي",
-      "محمود القلعاوي",
-      "ماجدة الخطيب"
-    ],
-    "genre": "Comedy / Impersonation",
-    "genreAr": "كوميديا / تنكر ومسرح",
-    "synopsis": "Mohamed Sobhy's extraordinary theatrical performance playing multiple characters (Ayoub, Am Zakaria, and Dr. Higab).",
-    "synopsisAr": "إبداع محمد صبحي الاستثنائي في تجسيد شخصيات متعددة (عم أيوب، عم زكريا، الدكتور حجاب) لكشف فساد ملجأ أيتام وسط ضحكات متواصلة.",
-    "youtubeId": "fjivtFkxUSw",
-    "poster": "https://img.youtube.com/vi/fjivtFkxUSw/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "playlist-arabic-plays",
-    "type": "playlist",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "Arabic Theatrical Plays Complete Collection",
-    "titleAr": "قائمة روائع المسرح العربي الكلاسيكي",
-    "year": 2024,
-    "duration": "25+ Plays",
-    "rating": "9.8",
-    "director": "نخبة رواد المسرح",
-    "cast": [
-      "عادل إمام",
-      "سعيد صالح",
-      "سمير غانم",
-      "فؤاد المهندس",
-      "عبد الحسين عبد الرضا"
-    ],
-    "genre": "Theatrical Anthology",
-    "genreAr": "موسوعة مسرحية كاملة",
-    "synopsis": "A comprehensive official YouTube playlist containing the complete recordings of the most celebrated Arabic and Egyptian theatrical plays in HD.",
-    "synopsisAr": "قائمة تشغيل رسمية تضم أرشيفاً كاملاً لأشهر المسرحيات الكوميدية والاجتماعية في العالم العربي بجودة عالية مع إمكانية التنقل بين المسرحيات.",
-    "youtubePlaylistId": "PL0FoLi-_XKV7aEm-ADraZtqSIktofcIIi",
-    "youtubeId": "-xieo900Smg",
-    "poster": "https://img.youtube.com/vi/-xieo900Smg/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "movie-bab-el-hadid",
-    "type": "movie",
-    "category": "cinema",
-    "categories": [
-      "cinema"
-    ],
-    "title": "Cairo Station (Bab El Hadid)",
-    "titleAr": "فيلم باب الحديد",
-    "year": 1958,
-    "duration": "1h 17m",
-    "rating": "9.1",
-    "director": "يوسف شاهين",
-    "cast": [
-      "يوسف شاهين",
-      "هند رستم",
-      "فريد شوقي",
-      "حسن البارودي"
-    ],
-    "genre": "Drama / Masterpiece",
-    "genreAr": "دراما / شاهكار كلاسيكي",
-    "synopsis": "Youssef Chahine's neo-realist masterpiece exploring obsession, desire, and class struggle at Cairo's bustling central railway station.",
-    "synopsisAr": "شاهكار المخرج العالمي يوسف شاهين؛ تدور الأحداث في محطة مصر للقطارات وتصور بدقة غير مسبوقة صراع الطبقات والهوس العاطفي والواقعية الجديدة.",
-    "youtubeId": "ma9sDu-aLZw",
-    "poster": "https://img.youtube.com/vi/ma9sDu-aLZw/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "movie-ishaaet-hob",
-    "type": "movie",
-    "category": "cinema",
-    "categories": [
-      "cinema"
-    ],
-    "title": "A Rumor of Love",
-    "titleAr": "فيلم إشاعة حب",
-    "year": 1960,
-    "duration": "1h 50m",
-    "rating": "9.2",
-    "director": "فطين عبد الوهاب",
-    "cast": [
-      "عمر الشريف",
-      "سعاد حسني",
-      "يوسف وهبي",
-      "عبد المنعم إبراهيم",
-      "هند رستم"
-    ],
-    "genre": "Romantic Comedy",
-    "genreAr": "كوميديا رومانسية ذهبية",
-    "synopsis": "Hussein, a shy and awkward young man, is given an extravagant makeover by his uncle who invents a fabricated romance between Hussein and movie star Hind Rostom.",
-    "synopsisAr": "حسين شاب خجول يحب ابنة عمه سميحة التي لا تلتفت إليه، فيبتكر عمه حيلة ذكية بنشر شائعة عن علاقة غرامية بين حسين ونجمة السينما هند رستم.",
-    "youtubeId": "ZLOeG7EuF7Y",
-    "poster": "https://img.youtube.com/vi/ZLOeG7EuF7Y/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "movie-ibn-hamido",
-    "type": "movie",
-    "category": "cinema",
-    "categories": [
-      "cinema"
-    ],
-    "title": "Son of Hamido",
-    "titleAr": "فيلم ابن حميدو",
-    "year": 1957,
-    "duration": "1h 45m",
-    "rating": "9.3",
-    "director": "فطين عبد الوهاب",
-    "cast": [
-      "إسماعيل ياسين",
-      "أحمد رمزي",
-      "هند رستم",
-      "زينات صدقي",
-      "عبد الفتاح القصري"
-    ],
-    "genre": "Comedy / Adventure",
-    "genreAr": "كوميديا / مغامرات",
-    "synopsis": "Undercover police officers Ibn Hamido and Hassan infiltrate a Suez fishing village to bust a narcotics smuggling ring, falling for the daughters of their eccentric landlord.",
-    "synopsisAr": "ابن حميدو وحسن ضابطا مباحث يتنكران كصيادين في السويس للقبض على عصابة تهريب مخدرات، ويقيمان في منزل المعلم حنفي وسط كوميديا إسماعيل ياسين الخالدة.",
-    "youtubeId": "Zx6Cgiuzhyk",
-    "poster": "https://img.youtube.com/vi/Zx6Cgiuzhyk/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
     "id": "series-raafat-al-haggan",
     "type": "series",
     "category": "drama",
     "categories": [
-      "drama",
-      "playlists"
+      "drama"
     ],
     "title": "Raafat Al-Haggan (Full Series)",
     "titleAr": "مسلسل رأفت الهجان (كامل)",
@@ -385,49 +23,19 @@
     "genreAr": "جاسوسية / دراما تاريخية وطنية",
     "synopsis": "The epic dramatization of Egyptian intelligence operative Refaat Al-Gammal who lived for decades undercover in Tel Aviv.",
     "synopsisAr": "الملحمة الوطنية الدرامية الأبرز؛ تجسيد لبطولات رجل المخابرات المصري رفعت الجمال الذي عاش سنوات طويلة تحت اسم ديفيد سمحون وقدم بطولات خالدة لوطنه.",
-    "youtubePlaylistId": "PLVNs5vCZBKDH8nm0_LdndRtXXSdcJg58z",
-    "poster": "https://img.youtube.com/vi/V8d4b3j620o/hqdefault.jpg",
+    "youtubePlaylistId": "PLUOtJ4Uut5ULALFuJGjHbHSdJXQ8xmi9B",
+    "poster": "https://i.ytimg.com/vi/LEm8KEXVrus/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "series-al-zeer-salem",
-    "type": "series",
-    "category": "drama",
-    "categories": [
-      "drama",
-      "playlists"
-    ],
-    "title": "Al-Zeer Salem (Epic Drama)",
-    "titleAr": "ملحمة الزير سالم (كامل)",
-    "year": 2000,
-    "duration": "40 Episodes",
-    "rating": "9.7",
-    "director": "حاتم علي",
-    "cast": [
-      "سلوم حداد",
-      "رفيق علي أحمد",
-      "سمر سامي",
-      "خالد تاجا",
-      "تيم حسن",
-      "فرح بسيسو"
-    ],
-    "genre": "Historical Epic / Poetry",
-    "genreAr": "ملحمة تاريخية وشعرية",
-    "synopsis": "Hatem Ali's acclaimed historical series recounting the forty-year Basus War between Bakr and Taghlib, starring Salloum Haddad.",
-    "synopsisAr": "شاهكار المخرج الراحل حاتم علي؛ ملحمة حرب البسوس التي دامت أربعين عاماً بين بكر وتغلب وقصة الشاعر والفارس عدي بن ربيعة (الزير سالم أبو ليلى المهلهل).",
-    "youtubePlaylistId": "PLOpvfjrLz9uc5Vcdv4nhRf8usKCZSZJC4",
-    "poster": "https://img.youtube.com/vi/bFqY9e48Gk4/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
+    "featured": true,
+    "count": 56,
+    "channel": "Maspero Zaman"
   },
   {
     "id": "series-layali-al-helmiya",
     "type": "series",
     "category": "drama",
     "categories": [
-      "drama",
-      "playlists"
+      "drama"
     ],
     "title": "Layali Al-Helmiya (Full Series)",
     "titleAr": "مسلسل ليالي الحلمية (الأجزاء الكاملة)",
@@ -446,37 +54,252 @@
     "genreAr": "ملحمة اجتماعية كلاسيكية",
     "synopsis": "Osama Anwar Okasha's masterpiece chronicling the social and political transformation of modern Egypt through the rivalry between Selim El-Badry and Soliman Ghanem.",
     "synopsisAr": "أيقونة الدراما التلفزيونية المصرية للكاتب أسامة أنور عكاشة؛ صراع الباشا سليم البدري والعمدة سليمان غانم وتوثيق المجتمع المصري عبر عقود طويلة.",
-    "youtubePlaylistId": "PL9KkecclNUBT1kacNIj-zX3mDtMnK6Acw",
-    "poster": "https://img.youtube.com/vi/uIeD2h4oQ3k/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBSFBqCbuptsbm3gfHNFqYV-",
+    "poster": "https://i.ytimg.com/vi/nmeq5l7OvJ8/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
+    "featured": true,
+    "count": 155,
+    "channel": "Maspero Drama"
+  },
+  {
+    "id": "ytl-PLRh7qWd2skgA",
+    "category": "drama",
+    "title": "لن أعيش في جلباب أبي - الحلقات الكاملة",
+    "count": 38,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/02cbbNjktxI/hqdefault.jpg",
+    "youtubePlaylistId": "PLRh7qWd2skgA",
     "featured": true
   },
   {
-    "id": "playlist-charlie-chaplin",
-    "type": "playlist",
-    "category": "classics",
-    "categories": [
-      "classics"
-    ],
-    "title": "Charlie Chaplin Festival",
-    "titleAr": "روائع سينما شارلي شابلن الكلاسيكية",
-    "year": 1938,
-    "duration": 4646,
-    "rating": "9.5",
-    "director": "Charlie Chaplin",
-    "cast": [
-      "Charlie Chaplin",
-      "Jackie Coogan",
-      "Edna Purviance"
-    ],
-    "genre": "Silent Cinema / Comedy Genius",
-    "genreAr": "سينما صامتة / عبقرية كوميدية",
-    "synopsis": "Official full-length legal collection of Charlie Chaplin's immortal silent comedies and feature films including The Kid and City Lights.",
-    "synopsisAr": "مجموعة قانونية كاملة لأعظم أفلام العبقري شارلي شابلن التي سحرت العالم وأسست لفنون الكوميديا والإنسانية في السينما العالمية.",
-    "poster": "https://archive.org/services/img/charlie_chaplin_film_fest",
-    "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "featured": true,
-    "url": "https://archive.org/download/charlie_chaplin_film_fest/charlie_chaplin_film_fest.mp4"
+    "id": "ytl-PL9KkecclNUBSb8LrHsbiRiSB6A8ZNBwBG",
+    "category": "drama",
+    "title": "المال والبنون جـ1",
+    "count": 23,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/4Api2xLFJ-E/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBSb8LrHsbiRiSB6A8ZNBwBG",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBRnltJux6x_rSA5b5jlbixA",
+    "category": "drama",
+    "title": "أرابيسك | أيام حسن النعماني | صلاح السعدني",
+    "count": 42,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/LMXX_v6i7uQ/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBRnltJux6x_rSA5b5jlbixA",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBQ5PKdLmxLRyGuZTRYyuGBD",
+    "category": "drama",
+    "title": "زيزينيا جـ1",
+    "count": 43,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/wTH4dTSLLBM/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBQ5PKdLmxLRyGuZTRYyuGBD",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBTWq__1c0x34DbqbaDF7Xb_",
+    "category": "drama",
+    "title": "الضوء الشارد",
+    "count": 32,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/zcIowg4cTgg/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBTWq__1c0x34DbqbaDF7Xb_",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBTV7wu4vxdM8X0TPVyyFdWt",
+    "category": "drama",
+    "title": "عائلة الحاج متولي",
+    "count": 37,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/D6VCYRXUYSM/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBTV7wu4vxdM8X0TPVyyFdWt",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBSj0YwMLZ-jUeR6ioTT_Ipv",
+    "category": "drama",
+    "title": "بوابة الحلواني جـ1",
+    "count": 25,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/Xj4eo9jIyCk/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBSj0YwMLZ-jUeR6ioTT_Ipv",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBRlrFHLrhs0Jnr3tuIV6-cl",
+    "category": "drama",
+    "title": "هوانم جاردن سيتي جـ1",
+    "count": 29,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/2bdIQFOU3RA/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBRlrFHLrhs0Jnr3tuIV6-cl",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBRR_NDfzTa6LN0zVnkpt2st",
+    "category": "drama",
+    "title": "ذئاب الجبل",
+    "count": 19,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/IeE2LTbXURw/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBRR_NDfzTa6LN0zVnkpt2st",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBS_NOsWBMrnoKKkpVUKlQY5",
+    "category": "drama",
+    "title": "الشهد والدموع جـ2 | يوسف شعبان - عفاف شعيب",
+    "count": 22,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/imBgpA8T7l8/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBS_NOsWBMrnoKKkpVUKlQY5",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBR5nT5JpyYRh7qlXqFS-GpQ",
+    "category": "drama",
+    "title": "حديث الصباح والمساء",
+    "count": 30,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/Xz50f9vIEpM/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBR5nT5JpyYRh7qlXqFS-GpQ",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL9KkecclNUBThAgxKbKwiFoNeWfsK3cR0",
+    "category": "drama",
+    "title": "فوازير \"زي النهاردة\" | نيللي 1996",
+    "count": 32,
+    "channel": "Maspero Drama",
+    "poster": "https://i.ytimg.com/vi/rnAyOrsd4VY/hqdefault.jpg",
+    "youtubePlaylistId": "PL9KkecclNUBThAgxKbKwiFoNeWfsK3cR0",
+    "featured": true
+  },
+  {
+    "id": "yt-zp-Tyxkcs9c",
+    "category": "shows",
+    "title": "طاش ما طاش | ذاكرة سعيدان",
+    "duration": 2153,
+    "channel": "Thikrayat (SBA)",
+    "poster": "https://i.ytimg.com/vi/zp-Tyxkcs9c/hqdefault.jpg",
+    "youtubeId": "zp-Tyxkcs9c",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL286rhkFF5MocdhlRV5r5aI7H-J6Cgigx",
+    "category": "drama",
+    "title": "مسلسل شباب البومب 10",
+    "count": 98,
+    "channel": "Rotana Drama",
+    "poster": "https://i.ytimg.com/vi/k8DgnxYYR0k/hqdefault.jpg",
+    "youtubePlaylistId": "PL286rhkFF5MocdhlRV5r5aI7H-J6Cgigx",
+    "featured": true
+  },
+  {
+    "id": "ytl-PL1WffNXpFRg2T2loL908Q3PVrow5vffQN",
+    "category": "drama",
+    "title": "مسلسل واحة الغروب",
+    "count": 30,
+    "channel": "El Adl Group",
+    "poster": "https://i.ytimg.com/vi/MDn3Dd1uoGM/hqdefault.jpg",
+    "youtubePlaylistId": "PL1WffNXpFRg2T2loL908Q3PVrow5vffQN",
+    "featured": true
+  },
+  {
+    "id": "yt-9JmN1nOuwjA",
+    "category": "plays",
+    "title": "مسرحية  هاللو شلبي  |   سعيد صالح  | عبد المنعم مدبولي |  مديحة كامل",
+    "duration": 12342,
+    "channel": "Maspero Zaman",
+    "poster": "https://i.ytimg.com/vi/9JmN1nOuwjA/hqdefault.jpg",
+    "youtubeId": "9JmN1nOuwjA",
+    "featured": true
+  },
+  {
+    "id": "yt-4yt8AnF4lkg",
+    "category": "plays",
+    "title": "مسرحية عيني في عينك |  سهير البابلي  | فاروق الفيشاوي  | صلاح منصور  كاملة",
+    "duration": 10277,
+    "channel": "Maspero Zaman",
+    "poster": "https://i.ytimg.com/vi/4yt8AnF4lkg/hqdefault.jpg",
+    "youtubeId": "4yt8AnF4lkg",
+    "featured": true
+  },
+  {
+    "id": "ytl-PLOQKcZPcwZeNOEHUaNioIYbxQPX1JI8kK",
+    "category": "kids",
+    "title": "Detective Conan - المحقق كونان",
+    "count": 24,
+    "channel": "Spacetoon Go",
+    "poster": "https://i.ytimg.com/vi/uXohp1mBHrQ/hqdefault.jpg",
+    "youtubePlaylistId": "PLOQKcZPcwZeNOEHUaNioIYbxQPX1JI8kK",
+    "featured": true
+  },
+  {
+    "id": "yt-j_8IWLzi4mY",
+    "category": "cinema",
+    "title": "صاحب المقام | الفيلم الكامل جودة عالية جدا HD يسرا .. أسر ياسين .. أمينة خليل",
+    "duration": 6359,
+    "channel": "Rotana Cinema",
+    "poster": "https://i.ytimg.com/vi/j_8IWLzi4mY/hqdefault.jpg",
+    "youtubeId": "j_8IWLzi4mY",
+    "featured": true
+  },
+  {
+    "id": "yt-KAlZGGCz7Lk",
+    "category": "cinema",
+    "title": "كوميديا أحمد حلمي ودنيا سمير غانم في فيلم اكس لارج بجودة عالية كامل",
+    "duration": 8121,
+    "channel": "Rotana Cinema",
+    "poster": "https://i.ytimg.com/vi/KAlZGGCz7Lk/hqdefault.jpg",
+    "youtubeId": "KAlZGGCz7Lk",
+    "featured": true
+  },
+  {
+    "id": "yt-yIOUFskj_Co",
+    "category": "cinema",
+    "title": "فيلم انت حبيبي وبس كامل | حصرياً بجودة عالية | محمود الليثي - بوسي - صافينار",
+    "duration": 4897,
+    "channel": "Rotana Cinema",
+    "poster": "https://i.ytimg.com/vi/yIOUFskj_Co/hqdefault.jpg",
+    "youtubeId": "yIOUFskj_Co",
+    "featured": true
+  },
+  {
+    "id": "yt-8QS9ffvhU9Q",
+    "category": "cinema",
+    "title": "فيلم الاكشن والاثارة.. جواب اعتقال - بطولة النجم محمد رمضان \"HD\"",
+    "duration": 5960,
+    "channel": "Rotana Cinema",
+    "poster": "https://i.ytimg.com/vi/8QS9ffvhU9Q/hqdefault.jpg",
+    "youtubeId": "8QS9ffvhU9Q",
+    "featured": true
+  },
+  {
+    "id": "yt-2NTeyYe4dno",
+    "category": "cinema",
+    "title": "فيلم مطلوب حيا او ميتا بطولة ليلى علوي و سعيد صالح",
+    "duration": 6091,
+    "channel": "Rotana Cinema",
+    "poster": "https://i.ytimg.com/vi/2NTeyYe4dno/hqdefault.jpg",
+    "youtubeId": "2NTeyYe4dno",
+    "featured": true
+  },
+  {
+    "id": "yt-gr8ExWtFglY",
+    "category": "cinema",
+    "title": "فيلم عمر وسلمى الجزء 2 كامل \" تامر حسني \" - أعلى جودة HD",
+    "duration": 6039,
+    "channel": "Rotana Cinema",
+    "poster": "https://i.ytimg.com/vi/gr8ExWtFglY/hqdefault.jpg",
+    "youtubeId": "gr8ExWtFglY",
+    "featured": true
   },
   {
     "id": "movie-night-living-dead",
@@ -504,5 +327,32 @@
     "backdrop": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1920&q=80",
     "featured": true,
     "url": "https://archive.org/download/night_of_the_living_dead_dvd/Night.mp4"
+  },
+  {
+    "id": "playlist-charlie-chaplin",
+    "type": "playlist",
+    "category": "classics",
+    "categories": [
+      "classics"
+    ],
+    "title": "Charlie Chaplin Festival",
+    "titleAr": "روائع سينما شارلي شابلن الكلاسيكية",
+    "year": 1938,
+    "duration": 4646,
+    "rating": "9.5",
+    "director": "Charlie Chaplin",
+    "cast": [
+      "Charlie Chaplin",
+      "Jackie Coogan",
+      "Edna Purviance"
+    ],
+    "genre": "Silent Cinema / Comedy Genius",
+    "genreAr": "سينما صامتة / عبقرية كوميدية",
+    "synopsis": "Official full-length legal collection of Charlie Chaplin's immortal silent comedies and feature films including The Kid and City Lights.",
+    "synopsisAr": "مجموعة قانونية كاملة لأعظم أفلام العبقري شارلي شابلن التي سحرت العالم وأسست لفنون الكوميديا والإنسانية في السينما العالمية.",
+    "poster": "https://archive.org/services/img/charlie_chaplin_film_fest",
+    "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
+    "featured": true,
+    "url": "https://archive.org/download/charlie_chaplin_film_fest/charlie_chaplin_film_fest.mp4"
   }
 ]

@@ -17,7 +17,7 @@ describe('VODService', () => {
 
   it('offers the expected categories', () => {
     const ids = VOD_CATEGORIES.map((c) => c.id);
-    ['all', 'featured', 'plays', 'cinema', 'drama', 'documentary', 'kids', 'classics'].forEach((id) => expect(ids).toContain(id));
+    ['all', 'featured', 'plays', 'cinema', 'drama', 'shows', 'documentary', 'kids', 'classics'].forEach((id) => expect(ids).toContain(id));
   });
 
   it('ships a featured shelf with no placeholder video links', () => {
@@ -27,7 +27,7 @@ describe('VODService', () => {
       expect(item.streamUrl).toBeUndefined();
       expect(Boolean(item.youtubeId || item.youtubePlaylistId || item.url)).toBe(true);
     });
-    expect(vodService.getItemById('play-madrasat-al-mushaghbeen').youtubeId).toBe('-xieo900Smg');
+    expect(vodService.getItemById('series-raafat-al-haggan').youtubePlaylistId).toBe('PLUOtJ4Uut5ULALFuJGjHbHSdJXQ8xmi9B');
   });
 
   it('merges the downloaded catalog after the featured shelf', () => {
@@ -40,7 +40,7 @@ describe('VODService', () => {
 
   it('does not repeat a featured title that also appears in the downloaded catalog', () => {
     const before = vodService.getCount();
-    vodService.applyCatalog({ items: [{ id: 'yt-dup', category: 'plays', title: 'Dup', youtubeId: '-xieo900Smg' }, remoteItems[0]] });
+    vodService.applyCatalog({ items: [{ id: 'ytl-dup', category: 'drama', title: 'Dup', youtubePlaylistId: 'PLUOtJ4Uut5ULALFuJGjHbHSdJXQ8xmi9B' }, remoteItems[0]] });
     expect(vodService.getCount()).toBe(before + 1);
   });
 
