@@ -1,6 +1,6 @@
-# TV_Abdul: Project Context, Memory & Architecture Guide
+# TV_Abdul: Architecture And Engineering Notes
 
-This document preserves the comprehensive architecture, hardware findings, and implementation rules for **TV_Abdul** for future development sessions and **v2.0**.
+How the app is built, the Samsung TV rules it depends on, and what has and has not been verified on the TV.
 
 ---
 
@@ -77,20 +77,20 @@ This document preserves the comprehensive architecture, hardware findings, and i
 ## 5. Build, Package & Deployment Workflow
 
 ```bash
-# 1. Run unit tests (97 tests across 15 test files)
+# 1. Run unit tests
 npm test
 
 # 2. Compile Vite production bundle
 npm run build
 
 # 3. Package signed Tizen WGT with profile TV_Abdul
-cd dist && ../tools/data/tools/ide/bin/tizen.sh package -t wgt -s TV_Abdul -- /Users/abdullahalshehri/Desktop/TV_Abdul/dist
+./tools/data/tools/ide/bin/tizen.sh package -t wgt -s TV_Abdul -- "$PWD/dist"
 
 # 4. Connect TV over local Wi-Fi / Ethernet
 ./tools/data/tools/sdb connect <TV_IP>:26101
 
 # 5. Install WGT to Samsung TV
-cd dist && ../tools/data/tools/ide/bin/tizen.sh install -s <TV_IP>:26101 -n TV_Abdul.wgt -- /Users/abdullahalshehri/Desktop/TV_Abdul/dist
+./tools/data/tools/ide/bin/tizen.sh install -s <TV_IP>:26101 -n TV_Abdul.wgt -- "$PWD/dist"
 
 # 6. Launch on TV
 ./tools/data/tools/sdb -s <TV_IP>:26101 shell 0 execute Abdul00101.TVAbdul
@@ -98,7 +98,7 @@ cd dist && ../tools/data/tools/ide/bin/tizen.sh install -s <TV_IP>:26101 -n TV_A
 
 ---
 
-## 6. What Is Real In v2.1 (state on 12 November 2026)
+## 6. What Is Verified In v2.1 (12 November 2026)
 
 Everything below was either measured on the TV or is covered by unit tests; items that are
 not yet proven on the TV say so.
@@ -115,8 +115,8 @@ not yet proven on the TV say so.
   launch (`PAYLOAD` = `{"values":"v=<id>"}`); whether YouTube lands on the video still has to be
   confirmed by eye.
 * **Direct-file playback:** Internet Archive films play through AVPlay with a known duration.
-* **Data downloads:** catalog (386 public-domain films), programme guide (94 channels) and
-  football fixtures all load on the TV.
+* **Data downloads:** catalog (about 6,100 titles from owner channels and Internet Archive),
+  programme guide (94 channels) and football fixtures all load on the TV.
 
 ### Built and unit-tested, not yet proven on the TV
 * **My Files (USB):** folder browser, video playback with seek/resume, `.srt` subtitles
@@ -139,9 +139,9 @@ not yet proven on the TV say so.
   tight limits; set `VITE_SPORTS_API_KEY` in `.env.local` for your own key.
 
 ### Known gaps
-* The featured shelf (`src/data/seedVOD.json`) is mostly uploads from non-owner YouTube
-  channels. Dead links were removed and the world classics now come from Internet Archive,
-  but the Arabic titles still need replacing with owner-channel uploads.
+* Owner-channel titles carry long YouTube adverts in the in-app player (55 seconds and more
+  were measured). The player labels them and offers the Red key to open the YouTube app.
+* The classic Adel Imam plays are not on any approved owner channel, so they are not listed.
 * The network-folder source for My Files is not built.
 * Match cards are information only; `match.watch` is reserved for a channel link.
 

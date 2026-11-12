@@ -1,6 +1,6 @@
-# TV_Abdul: Native Samsung Smart TV Live Streaming Application
+# TV_Abdul: Samsung Smart TV Application
 
-**TV_Abdul** is a dedicated, remote-controlled native Samsung Smart TV application running on **Tizen OS**. It provides an elegant 10-foot television interface for discovering and watching thousands of free, publicly available live TV channels from around the world.
+**TV_Abdul** is a dedicated, remote-controlled native Samsung Smart TV application running on **Tizen OS**. It provides a 10-foot television interface for free, publicly available live TV channels, on-demand films and series from official sources, football fixtures, and your own files on a USB drive.
 
 ---
 
@@ -20,13 +20,16 @@ My Files is shown as it appears in a desktop browser; on the TV it lists the con
 
 ## Key Features
 
-- **Native Samsung AVPlay Engine (`webapis.avplay`):** Direct hardware-accelerated HLS/DASH playback for Samsung Smart TVs, with seamless fallback to HTML5 `<video>` + `Hls.js` in development and browser environments.
-- **Full TV Remote Control Navigation:** Custom spatial navigation engine optimized for Samsung D-Pad (Up, Down, Left, Right), Enter, Hardware Back (`keyCode 10009`), Channel Up/Down (`427`, `428`), and Media playback keys.
-- **Hybrid Catalog Engine:** Includes a pre-bundled seed database of 132 verified online channels across 9 major categories for instant cold boot with zero network latency, plus live synchronization and search via the FreeTV API.
-- **Automatic Stream Failover:** Multi-stream redundancy with automatic detection of broken feeds and seamless failover to backup sources without crashing the player.
-- **10-Foot Television User Interface:** Dark-themed UI inspired by Samsung TV Plus and Apple TV, with overscan protection, active glowing focus rings, channel logo fallbacks, and an auto-hiding On-Screen Display (OSD).
-- **Persistent Local Storage:** Retains favorite channels, recently watched history, and last-viewed channel across TV reboots.
-- **Sideload Packaging:** Bundles directly into a standalone, installable `.wgt` (Tizen Web Widget) package ready for Samsung TV Developer Mode.
+- **Live TV:** more than 4,300 free, publicly available channels from 150+ countries, with favourites, a country filter, search, automatic failover between a channel's sources, and a daily background refresh of the channel list.
+- **Movies & Series:** about 6,100 on-demand titles: series, plays, films, classic TV, documentaries and kids' programmes from official YouTube owner channels (played inside the app, with a hand-off to the TV's YouTube app when a title cannot be embedded), plus public-domain world cinema from Internet Archive played directly by the TV.
+- **Match Centre:** real fixtures and results for the Saudi Pro League, Premier League, Champions League and La Liga.
+- **My Files:** browse a USB drive connected to the TV and play videos with seek, resume, `.srt` and embedded subtitles and audio-track switching, or view pictures.
+- **Programme guide:** real schedules for the channels that publish one.
+- **My Playlists:** add your own M3U playlist address in Settings and its channels join the guide.
+- **Samsung AVPlay engine (`webapis.avplay`):** hardware-accelerated playback on the TV, with an HTML5 + `Hls.js` fallback for development in a desktop browser.
+- **Remote-first interface:** a spatial navigation engine for the D-pad, Back, channel and media keys, with a 1920x1080 ten-foot layout.
+
+How it is built, the Samsung TV rules it relies on, and what has been verified on the TV are described in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ---
 
@@ -39,7 +42,8 @@ My Files is shown as it appears in a desktop browser; on the TV it lists the con
 | **Return / Back** | `10009` *(or `27`, `8`)* | Return from video player to guide; close dialogs; exit app |
 | **Channel Up / Channel Down** | `427, 428` *(or `33, 34`)* | Instant channel zapping during playback |
 | **Media Play / Pause** | `415, 19, 10252, 179` | Toggle video stream play and pause |
-| **Left / Right (in Player)** | `37, 39` | Cycle between alternative stream feeds for the channel |
+| **Left / Right (in Player)** | `37, 39` | Live TV: switch between a channel's sources. Films and files: seek |
+| **Red** | `403` | In the YouTube player: open the title in the TV's YouTube app |
 | **Search Button** | `Search` | Open TV search modal with instant query filtering |
 
 ---
@@ -48,47 +52,26 @@ My Files is shown as it appears in a desktop browser; on the TV it lists the con
 
 ```text
 TV_Abdul/
-├── config.xml                  # Official Samsung Tizen Application Manifest
-├── icon.png                    # 512x512 Samsung TV application icon
-├── package.json                # Project dependencies and build scripts
-├── vite.config.js              # TV-optimized Vite configuration (base: './')
-├── index.html                  # Application entry point with Tizen WebAPIs
-├── TV_Abdul.wgt                # Ready-to-install Samsung Tizen package
-├── SOURCE_ANALYSIS.md          # Technical research of FreeTV API & stream codecs
-├── INSTALLATION.md             # Complete Windows sideloading guide for Samsung TV
-├── TEST_RESULTS.md             # Verification logs & codec inspection reports
-├── scripts/
-│   └── package-wgt.js          # Automated Tizen .wgt archiver script
+├── config.xml              # Samsung Tizen application manifest
+├── index.html              # Application entry point
+├── hosted/yt.html          # HTTPS page that hosts YouTube's embedded player for the app
 ├── src/
-│   ├── main.jsx                # Application mounting entry point
-│   ├── App.jsx                 # View state coordinator & hardware key router
-│   ├── index.css               # 10-foot TV styles & focus indicators
-│   ├── data/
-│   │   ├── seedChannels.json   # 132 curated, verified online channels with streams
-│   │   └── categories.json     # 29 categories from source catalog
-│   ├── components/
-│   │   ├── Header.jsx          # TV top bar, clock, favorites counter
-│   │   ├── CategoryBar.jsx     # Focusable category navigation pills
-│   │   ├── ChannelCard.jsx     # Focusable channel card with logo & badges
-│   │   ├── ChannelGrid.jsx     # 5-column responsive TV grid
-│   │   ├── VideoPlayerView.jsx # Fullscreen video view with OSD & channel zapping
-│   │   ├── SearchModal.jsx     # Remote-friendly TV search modal
-│   │   └── SettingsModal.jsx   # System info, playback engine & cache controls
-│   └── services/
-│       ├── remoteKeyManager.js # Samsung Tizen key registration & normalization
-│       ├── spatialNav.js       # 2D Euclidean spatial navigation engine
-│       ├── storageService.js   # LocalStorage favorites and history persistence
-│       ├── catalogService.js   # Channel discovery & multi-stream resolver
-│       └── player/
-│           ├── PlayerInterface.js   # Abstract player contract & state machine
-│           ├── SamsungAVPlayer.js   # Hardware AVPlay (webapis.avplay) engine
-│           ├── Html5Player.js       # HTML5 + Hls.js fallback engine
-│           └── PlayerFactory.js     # Engine selector & automatic failover
-└── tests/
-    ├── catalogService.test.js  # Catalog filtering and search unit tests
-    ├── remoteKeyManager.test.js# Tizen keycode normalization unit tests
-    └── storageService.test.js  # Persistence unit tests
+│   ├── App.jsx             # View coordinator and remote-key router
+│   ├── config.js           # Hosted-page and data addresses, sports key
+│   ├── components/         # Screens: channel grid, players, VOD, sports, My Files, guide, settings
+│   ├── services/           # Catalog, players (AVPlay / HTML5), navigation, storage, guide, sports, playlists
+│   └── data/               # Bundled channel list and featured on-demand shelf
+├── scripts/
+│   ├── catalog/            # Builds the on-demand catalog (YouTube owner channels, Internet Archive)
+│   ├── epg/                # Builds the programme guide from public XMLTV feeds
+│   ├── dev/                # Deploy-to-TV script and debug log collector
+│   └── package-wgt.js      # Packages dist/ into TV_Abdul.wgt
+├── tests/                  # Vitest unit tests
+├── docs/ARCHITECTURE.md    # Engineering notes
+└── .github/workflows/      # Daily job that refreshes the catalog and guide
 ```
+
+The daily job publishes its output to the `gh-pages` branch, which the TV reads. It needs a `YOUTUBE_API_KEY` repository secret for the YouTube part of the catalog.
 
 ---
 
@@ -117,4 +100,4 @@ npm run package
 
 For complete step-by-step instructions on enabling Developer Mode, connecting via SDB / Tizen Studio, creating Samsung certificates, and sideloading `TV_Abdul.wgt` from a Windows PC, refer to:
 
-👉 **[INSTALLATION.md](file:///Users/abdullahalshehri/Desktop/TV_Abdul/INSTALLATION.md)**
+👉 **[INSTALLATION.md](INSTALLATION.md)**
