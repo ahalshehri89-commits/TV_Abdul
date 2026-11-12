@@ -2118,3 +2118,96 @@ body.tv-in-player #root,
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid rgba(245, 158, 11, 0.35);
 }
+
+/* ============================================================
+   Layout corrections (v2.1)
+   ============================================================ */
+
+/* Scrolling views are flex columns: without this their rows are squeezed instead of scrolling,
+   which crushed the category row under the featured banner. */
+.tv-vod-view > *,
+.tv-files-view > *,
+.tv-sports-center > * {
+  flex-shrink: 0;
+}
+
+/* Header: four tabs and six actions must fit on one line at 1920px. */
+.tv-header {
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.tv-logo-area {
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.tv-brand-title {
+  font-size: 28px;
+}
+
+.tv-platform-nav {
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.tv-platform-tab {
+  padding: 10px 16px;
+  gap: 8px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.tv-header-actions {
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.tv-header-btn {
+  padding: 10px 12px;
+  gap: 8px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.tv-clock {
+  margin-left: 6px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+/* On-demand shelf: YouTube artwork is 16:9, so cards are too. */
+.tv-vod-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.tv-vod-card-poster-wrapper {
+  aspect-ratio: 16 / 9;
+}
+
+.tv-vod-card-title-ar {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.35;
+  min-height: 46px;
+  unicode-bidi: plaintext;
+}
+
+.tv-vod-hero {
+  min-height: 300px;
+  padding: 28px 40px;
+}
+
+.tv-vod-hero-title-ar {
+  font-size: 34px;
+}
+
+.tv-vod-hero-synopsis {
+  font-size: 17px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -40,7 +40,7 @@ export function Header({
         <h1 className="tv-brand-title">TV_Abdul</h1>
         <div className="tv-live-pill">
           <span className="tv-live-dot" />
-          <span>v2.0</span>
+          <span>v2.1</span>
         </div>
       </div>
 
@@ -65,7 +65,7 @@ export function Header({
           onClick={() => onSelectView && onSelectView('vod')}
         >
           <Film size={17} />
-          <span>Movies & Plays</span>
+          <span>Movies &amp; Series</span>
         </button>
 
         <button
@@ -113,7 +113,7 @@ export function Header({
           onClick={onOpenEPG}
         >
           <Calendar size={18} color="#94a3b8" />
-          <span>EPG Guide</span>
+          <span>Guide</span>
         </button>
 
         {/* Country / Region Filter Button */}
@@ -126,7 +126,7 @@ export function Header({
         >
           <Globe size={18} color={activeCountry !== 'all' ? '#38bdf8' : '#94a3b8'} />
           <span>
-            {activeCountryObj ? `${activeCountryObj.flag} ${activeCountryObj.name}` : '🌐 All Countries'}
+            {activeCountryObj && activeCountryObj.code !== 'all' ? `${activeCountryObj.flag} ${activeCountryObj.name}` : 'Countries'}
           </span>
         </button>
 
@@ -138,7 +138,7 @@ export function Header({
           onClick={() => onSelectCategory('favorites')}
         >
           <Heart size={18} color="#f43f5e" fill="#f43f5e" />
-          <span>Favorites ({favoritesCount})</span>
+          <span>{favoritesCount}</span>
         </button>
 
         <button

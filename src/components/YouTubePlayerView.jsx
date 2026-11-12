@@ -50,11 +50,12 @@ function writePlaylistProgress(listId, progress) {
  */
 export function buildPlayerUrl(base, { youtubeId, youtubePlaylistId }, resume = {}) {
   const params = [];
-  if (youtubePlaylistId) {
+  // A title that names one video plays that video, even when it also belongs to a playlist.
+  if (youtubeId) {
+    params.push(`v=${encodeURIComponent(youtubeId)}`);
+  } else if (youtubePlaylistId) {
     params.push(`list=${encodeURIComponent(youtubePlaylistId)}`);
     if (resume.index > 0) params.push(`index=${resume.index}`);
-  } else if (youtubeId) {
-    params.push(`v=${encodeURIComponent(youtubeId)}`);
   }
   if (resume.position > 0) params.push(`start=${Math.floor(resume.position)}`);
   return `${base}?${params.join('&')}`;
@@ -82,7 +83,7 @@ export function YouTubePlayerView({ item, onClose }) {
   const seekStreakRef = useRef({ count: 0, at: 0 });
   const closedRef = useRef(false);
 
-  const isPlaylist = Boolean(item.youtubePlaylistId);
+  const isPlaylist = Boolean(item.youtubePlaylistId) && !item.youtubeId;
   const resumeKey = `yt:${item.youtubeId || ''}`;
 
   const playerUrl = useRef(
@@ -137,11 +138,11 @@ export function YouTubePlayerView({ item, onClose }) {
       const current = tickRef.current;
       youtubeLauncherService.openInYouTubeApp({
         videoId: current.videoId || item.youtubeId,
-        playlistId: item.youtubePlaylistId
+        playlistId: isPlaylist ? item.youtubePlaylistId : undefined
       });
       timersRef.current.close = setTimeout(close, 2500);
     },
-    [close, item.youtubeId, item.youtubePlaylistId, saveProgress]
+    [close, isPlaylist, item.youtubeId, item.youtubePlaylistId, saveProgress]
   );
 
   // Messages from the hosted player page

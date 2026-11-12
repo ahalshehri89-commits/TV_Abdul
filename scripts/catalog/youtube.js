@@ -10,8 +10,33 @@
 const API = 'https://www.googleapis.com/youtube/v3';
 export const MIN_VIDEO_SECONDS = 20 * 60;
 const MIN_PLAYLIST_ITEMS = 3;
-const MAX_UPLOAD_PAGES = 20; // newest 1,000 uploads per channel
+const MAX_UPLOAD_PAGES = 60; // newest 3,000 uploads per channel
 const MAX_PLAYLIST_PAGES = 10; // 500 playlists per channel
+
+// Playlists and videos that are not programmes: promos, clips, songs, interviews.
+export const NOT_A_PROGRAMME = /برومو|بروموهات|إعلان|اعلان|تريلر|كواليس|تتر|أغنية|اغنية|أغاني|اغاني|كليب|لقاء|مقطع|مقاطع|مشهد|مشاهد|ملخص|قريبا|قريباً|شورت|promo|trailer|teaser|shorts?\b|clip|behind the scenes|\bsong\b|highlights?/i;
+export const EPISODE = /الحلقة|حلقة|\bepisode\b|\bep\.?\s*\d/i;
+
+/**
+ * Shelf for a title, from the words in it; falls back to the channel's default shelf.
+ * Archive channels mix plays, films and series, so the channel alone is not enough.
+ */
+export function classifyTitle(title, fallback) {
+  if (/مسرحي/.test(title)) return 'plays';
+  if (/وثائقي/.test(title)) return 'documentary';
+  if (/مسلسل|مسلسلات|سلسلة/.test(title)) return 'drama';
+  if (/فيلم|الفيلم|أفلام|افلام|\bmovie\b|\bfilm\b/i.test(title)) return 'cinema';
+  return fallback;
+}
+
+/**
+ * True for a single upload that should not be listed by itself: a promo or clip, or one
+ * episode of a series (the series playlist carries it). Documentary episodes stand alone.
+ */
+export function isUnlistedVideoTitle(title, channel) {
+  if (NOT_A_PROGRAMME.test(title)) return true;
+  return channel.videos !== 'documentary' && (EPISODE.test(title) || title.includes('#'));
+}
 
 /** Parse an ISO-8601 duration such as "PT1H32M5S" into seconds. */
 export function parseIsoDuration(value) {
@@ -34,9 +59,10 @@ export function toVideoItem(video, channel) {
   if (status.privacyStatus && status.privacyStatus !== 'public') return null;
   if (status.embeddable === false) return null;
   if (video.snippet && video.snippet.liveBroadcastContent && video.snippet.liveBroadcastContent !== 'none') return null;
+  if (isUnlistedVideoTitle(video.snippet.title, channel)) return null;
   return {
     id: `yt-${video.id}`,
-    category: channel.videos,
+    category: classifyTitle(video.snippet.title, channel.videos),
     title: video.snippet.title,
     duration,
     channel: channel.name,
@@ -50,9 +76,10 @@ export function toPlaylistItem(playlist, channel) {
   const count = (playlist.contentDetails && playlist.contentDetails.itemCount) || 0;
   if (count < MIN_PLAYLIST_ITEMS) return null;
   if (playlist.status && playlist.status.privacyStatus && playlist.status.privacyStatus !== 'public') return null;
+  if (NOT_A_PROGRAMME.test(playlist.snippet.title)) return null;
   return {
     id: `ytl-${playlist.id}`,
-    category: channel.playlists,
+    category: classifyTitle(playlist.snippet.title, channel.playlists),
     title: playlist.snippet.title,
     count,
     channel: channel.name,

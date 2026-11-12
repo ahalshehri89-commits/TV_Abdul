@@ -22,7 +22,11 @@ import { remoteKeyManager, TV_KEYS } from './services/remoteKeyManager.js';
 import { spatialNav } from './services/spatialNav.js';
 
 export function App() {
-  const [activeView, setActiveView] = useState('live_tv'); // 'live_tv' | 'vod' | 'sports' | 'files'
+  // 'live_tv' | 'vod' | 'sports' | 'files'. "?view=vod" opens a tab directly (used for layout checks).
+  const [activeView, setActiveView] = useState(() => {
+    const requested = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('view') : null;
+    return ['vod', 'sports', 'files'].includes(requested) ? requested : 'live_tv';
+  });
   const [activeFile, setActiveFile] = useState(null); // seekable media playing in FilePlayerView
   const [activeYouTube, setActiveYouTube] = useState(null); // YouTube title playing in YouTubePlayerView
   const [activeCategory, setActiveCategory] = useState('all');

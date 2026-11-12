@@ -80,6 +80,15 @@ describe('YouTube catalog', () => {
     expect(toVideoItem(video({ status: { privacyStatus: 'private' } }), channel)).toBeNull();
   });
 
+  it('drops promos and single episodes, and files titles by their wording', () => {
+    const titled = (title) => video({ snippet: { title, thumbnails: {}, liveBroadcastContent: 'none' } });
+    expect(toVideoItem(titled('برومو فيلم جديد'), channel)).toBeNull();
+    expect(toVideoItem(titled('مسلسل الأيام الحلقة 3'), channel)).toBeNull();
+    expect(toVideoItem(titled('مسرحية العيال كبرت'), channel).category).toBe('plays');
+    const docs = { id: 'UCd', name: 'DW', videos: 'documentary', playlists: null };
+    expect(toVideoItem(titled('رحلة النيل | الحلقة الثانية'), docs)).not.toBeNull();
+  });
+
   it('keeps playlists with at least three items as series', () => {
     const playlist = { id: 'PL1', snippet: { title: 'مسلسل', thumbnails: {} }, contentDetails: { itemCount: 30 } };
     expect(toPlaylistItem(playlist, channel)).toMatchObject({ id: 'ytl-PL1', category: 'drama', count: 30, youtubePlaylistId: 'PL1' });

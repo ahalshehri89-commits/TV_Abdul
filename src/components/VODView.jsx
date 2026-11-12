@@ -26,7 +26,9 @@ export function VODView({ onPlayItem }) {
 
   const categories = vodService.getCategories();
   const items = vodService.getItems({ category: activeCategory });
-  const featuredItem = items.find((item) => item.featured) || null;
+  // The banner belongs to the front shelves only; on the other shelves it would push the titles off screen.
+  const showHero = activeCategory === 'all' || activeCategory === 'featured';
+  const featuredItem = showHero ? items.find((item) => item.featured) || null : null;
   const shown = items.slice(0, limit);
 
   useEffect(() => {
