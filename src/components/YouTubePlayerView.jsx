@@ -295,6 +295,8 @@ export function YouTubePlayerView({ item, onClose }) {
   const progress = tick.duration > 0 ? Math.min(100, (shownTime / tick.duration) * 100) : 0;
   const isPaused = tick.state === YT_PAUSED;
   const osdVisible = phase === 'playing' && (showOsd || isPaused || pendingSeek !== null);
+  // While YouTube shows an advert the player reports "not started" although time is running.
+  const isAdvert = phase === 'playing' && tick.state === -1 && tick.time > 0.5;
 
   return (
     <div className="tv-player-view tv-youtube-view">
@@ -311,6 +313,15 @@ export function YouTubePlayerView({ item, onClose }) {
         <div className="tv-player-buffering">
           <div className="tv-spinner" />
           <span style={{ fontSize: '20px', fontWeight: 600, color: '#f8fafc' }}>{item.title}</span>
+        </div>
+      )}
+
+      {isAdvert && (
+        <div className="tv-youtube-advert">
+          <span>YouTube advert — the programme starts after it</span>
+          <span>
+            <span className="tv-remote-key tv-remote-key-red">RED</span> Open in the YouTube app instead
+          </span>
         </div>
       )}
 

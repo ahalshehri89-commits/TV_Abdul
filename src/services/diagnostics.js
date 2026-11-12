@@ -144,7 +144,7 @@ export async function probeYouTubeBatch(wrapperUrl, specs) {
           if (message.state === 1 && message.time > 3) finish(`PLAYS quality=${message.quality} duration=${Math.round(message.duration)} count=${message.count}`);
         }
       };
-      const timer = setTimeout(() => finish(`NO START (last state ${last ? last.state : 'none'}, t=${last ? last.time : 0})`), 25000);
+      const timer = setTimeout(() => finish(`NO START (last state ${last ? last.state : 'none'}, t=${last ? last.time : 0})`), 90000);
       window.addEventListener('message', onMessage);
       document.body.appendChild(frame);
     });
