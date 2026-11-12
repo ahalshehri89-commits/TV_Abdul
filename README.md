@@ -4,6 +4,20 @@
 
 ---
 
+## Screenshots
+
+Captured from the v2.1 build at the TV's 1920x1080 resolution.
+
+| Live TV | Movies & Series |
+| :---: | :---: |
+| ![Live TV channel guide](screenshots/01_live_tv.png) | ![Movies and series catalog](screenshots/02_movies_and_series.png) |
+| **Match Centre** | **My Files** |
+| ![Match centre with real fixtures](screenshots/03_match_centre.png) | ![My Files USB browser](screenshots/04_my_files.png) |
+
+My Files is shown as it appears in a desktop browser; on the TV it lists the connected USB drive.
+
+---
+
 ## Key Features
 
 - **Native Samsung AVPlay Engine (`webapis.avplay`):** Direct hardware-accelerated HLS/DASH playback for Samsung Smart TVs, with seamless fallback to HTML5 `<video>` + `Hls.js` in development and browser environments.
