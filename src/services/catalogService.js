@@ -14,6 +14,7 @@ export const PRIMARY_CATEGORIES = [
   { id: 'arabic', name: 'Arabic' },
   { id: 'fast', name: 'FAST Networks 24/7' },
   { id: 'favorites', name: 'Favorites' },
+  { id: 'my_playlists', name: 'My Playlists' },
   { id: 'recent', name: 'Recently Watched' },
   { id: 'news', name: 'News' },
   { id: 'sports', name: 'Sports' },
@@ -38,6 +39,7 @@ class CatalogService {
     this.apiEndpoint = storageService.getSettings().apiEndpoint || 'https://freetv.fuckyouthisismywebsite.com';
     this.dynamicCache = new Map();
     this.listeners = new Set();
+    this.playlistChannelIds = new Map(); // playlist address -> ids of the channels it added
     this.loadCachedData();
   }
 
@@ -103,6 +105,31 @@ class CatalogService {
     setTimeout(() => {
       this.syncCloud({ force: false }).catch(() => {});
     }, 5000);
+  }
+
+  /**
+   * Replace the channels contributed by one user playlist.
+   */
+  setPlaylistChannels(url, channels) {
+    this.removePlaylistChannels(url, { silent: true });
+    const ids = [];
+    channels.forEach((ch) => {
+      this.seedMap.set(ch.id, { ...ch, number: this.seedMap.size + 1 });
+      ids.push(ch.id);
+    });
+    this.playlistChannelIds.set(url, ids);
+    this.notify('catalogUpdated', { total: this.seedMap.size, source: 'playlist' });
+  }
+
+  removePlaylistChannels(url, { silent = false } = {}) {
+    const ids = this.playlistChannelIds.get(url) || [];
+    ids.forEach((id) => this.seedMap.delete(id));
+    this.playlistChannelIds.delete(url);
+    if (!silent && ids.length > 0) this.notify('catalogUpdated', { total: this.seedMap.size, source: 'playlist' });
+  }
+
+  getPlaylistChannelCount(url) {
+    return (this.playlistChannelIds.get(url) || []).length;
   }
 
   getCategories() {

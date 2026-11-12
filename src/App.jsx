@@ -15,6 +15,7 @@ import { MyFilesView } from './components/MyFilesView.jsx';
 import { FilePlayerView } from './components/FilePlayerView.jsx';
 import { YouTubePlayerView } from './components/YouTubePlayerView.jsx';
 import { uiLock } from './services/uiLock.js';
+import { playlistService } from './services/playlistService.js';
 import { catalogService } from './services/catalogService.js';
 import { storageService } from './services/storageService.js';
 import { remoteKeyManager, TV_KEYS } from './services/remoteKeyManager.js';
@@ -102,10 +103,12 @@ export function App() {
     remoteKeyManager.init();
     catalogService.startBackgroundSync();
 
-    const unsubCatalog = catalogService.subscribe((event) => {
+    const unsubCatalog = catalogService.subscribe((event, payload) => {
       if (event === 'catalogUpdated') {
         loadChannels(activeCategory, activeCountry);
-        showToast('Channel list updated with latest streams 🌐');
+        if (!payload || payload.source !== 'playlist') {
+          showToast('Channel list updated with latest streams 🌐');
+        }
       }
     });
 
@@ -120,6 +123,12 @@ export function App() {
       remoteKeyManager.destroy();
     };
   }, [activeCategory, activeCountry, loadChannels]);
+
+  // Load the user's own playlists once at start-up
+  useEffect(() => {
+    playlistService.attach(catalogService);
+    playlistService.loadAll();
+  }, []);
 
   // Global Remote Control Handler for Home Screen
   useEffect(() => {

@@ -3,6 +3,7 @@ import { storageService } from '../services/storageService.js';
 import { catalogService } from '../services/catalogService.js';
 import { remoteKeyManager, TV_KEYS } from '../services/remoteKeyManager.js';
 import { spatialNav } from '../services/spatialNav.js';
+import { playlistService } from '../services/playlistService.js';
 import { Settings, X, Trash2, CheckCircle, Info, RefreshCw, Cloud, Plus, List } from 'lucide-react';
 
 export function SettingsModal({ onClose, onRefreshData }) {
@@ -11,6 +12,8 @@ export function SettingsModal({ onClose, onRefreshData }) {
   const [playlists, setPlaylists] = useState(storageService.getCustomPlaylists());
   const [statusMsg, setStatusMsg] = useState('');
   const [isSyncing, setIsSyncing] = useState(false);
+  const [isAddingPlaylist, setIsAddingPlaylist] = useState(false);
+  const [playlistError, setPlaylistError] = useState('');
   const isTizen = typeof window !== 'undefined' && Boolean(window.tizen);
   const hasAVPlay = typeof window !== 'undefined' && Boolean(window.webapis && window.webapis.avplay);
 
@@ -159,15 +162,17 @@ export function SettingsModal({ onClose, onRefreshData }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <List size={18} color="#38bdf8" />
               <span style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff' }}>
-                Custom M3U8 Playlist Loader (قوائم التشغيل الخاصة)
+                My Playlists — M3U address (قوائم التشغيل الخاصة)
               </span>
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
               <input
                 type="text"
-                placeholder="https://example.com/playlist.m3u8"
+                placeholder="https://example.com/playlist.m3u"
                 value={customUrl}
                 onChange={(e) => setCustomUrl(e.target.value)}
+                data-nav="true"
+                data-nav-id="input-playlist-url"
                 style={{
                   flex: 1,
                   background: 'rgba(15, 23, 42, 0.8)',
@@ -182,25 +187,51 @@ export function SettingsModal({ onClose, onRefreshData }) {
                 className="tv-header-btn"
                 data-nav="true"
                 data-nav-id="btn-add-playlist"
-                onClick={() => {
-                  if (customUrl) {
-                    const updated = storageService.addCustomPlaylist(customUrl);
-                    setPlaylists(updated);
+                disabled={isAddingPlaylist}
+                onClick={async () => {
+                  if (!customUrl || isAddingPlaylist) return;
+                  setIsAddingPlaylist(true);
+                  setPlaylistError('');
+                  setStatusMsg('');
+                  const result = await playlistService.add(customUrl);
+                  setIsAddingPlaylist(false);
+                  if (result.ok) {
+                    setPlaylists(storageService.getCustomPlaylists());
                     setCustomUrl('');
-                    setStatusMsg('Custom playlist added successfully.');
+                    setStatusMsg(`Playlist added: ${result.count} channels are now under "My Playlists".`);
                     if (onRefreshData) onRefreshData();
+                  } else {
+                    setPlaylistError(result.error);
                   }
                 }}
               >
                 <Plus size={16} />
-                <span>Add M3U</span>
+                <span>{isAddingPlaylist ? 'Loading…' : 'Add M3U'}</span>
               </button>
             </div>
-            {playlists.length > 0 && (
-              <div style={{ fontSize: '13px', color: '#94a3b8' }}>
-                Active Playlists: {playlists.join(', ')}
+            {playlistError && <div style={{ fontSize: '15px', color: '#f87171' }}>{playlistError}</div>}
+            {playlists.map((url, idx) => (
+              <div key={url} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: '#cbd5e1' }}>
+                <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{url}</span>
+                <span style={{ color: '#94a3b8', whiteSpace: 'nowrap' }}>
+                  {catalogService.getPlaylistChannelCount(url)} channels
+                </span>
+                <button
+                  className="tv-header-btn"
+                  data-nav="true"
+                  data-nav-id={`btn-remove-playlist-${idx}`}
+                  onClick={async () => {
+                    await playlistService.remove(url);
+                    setPlaylists(storageService.getCustomPlaylists());
+                    setStatusMsg('Playlist removed.');
+                    if (onRefreshData) onRefreshData();
+                  }}
+                >
+                  <Trash2 size={15} />
+                  <span>Remove</span>
+                </button>
               </div>
-            )}
+            ))}
           </div>
 
           {statusMsg && (
