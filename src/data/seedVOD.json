@@ -157,36 +157,6 @@
     "featured": true
   },
   {
-    "id": "play-byebye-london",
-    "type": "play",
-    "category": "plays",
-    "categories": [
-      "plays",
-      "playlists"
-    ],
-    "title": "Bye Bye London",
-    "titleAr": "مسرحية باي باي لندن",
-    "year": 1981,
-    "duration": "3h 10m",
-    "rating": "9.5",
-    "director": "منصور المنصور",
-    "cast": [
-      "عبد الحسين عبد الرضا",
-      "غانم الصالح",
-      "مريم الغضبان",
-      "هيفاء عادل",
-      "داوود حسين"
-    ],
-    "genre": "Kuwaiti Comedy / Social Satire",
-    "genreAr": "كوميديا كويتية / نقد اجتماعي",
-    "synopsis": "Abdulhussain Abdulredha's iconic satirical play about a Kuwaiti tourist traveling to London for medical treatment.",
-    "synopsisAr": "أيقونة المسرح الخليجي والكويتي؛ يسافر شارد بن جمعة إلى لندن للسياحة والعلاج ويتعرض لسلسلة من المواقف الفكاهية وعمليات الاحتيال الكوميدية.",
-    "youtubeId": "CPneFAHc1yM",
-    "poster": "https://img.youtube.com/vi/CPneFAHc1yM/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
     "id": "play-al-motazawwgoun",
     "type": "play",
     "category": "plays",
@@ -416,7 +386,6 @@
     "synopsis": "The epic dramatization of Egyptian intelligence operative Refaat Al-Gammal who lived for decades undercover in Tel Aviv.",
     "synopsisAr": "الملحمة الوطنية الدرامية الأبرز؛ تجسيد لبطولات رجل المخابرات المصري رفعت الجمال الذي عاش سنوات طويلة تحت اسم ديفيد سمحون وقدم بطولات خالدة لوطنه.",
     "youtubePlaylistId": "PLVNs5vCZBKDH8nm0_LdndRtXXSdcJg58z",
-    "youtubeId": "V8d4b3j620o",
     "poster": "https://img.youtube.com/vi/V8d4b3j620o/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80",
     "featured": true
@@ -448,7 +417,6 @@
     "synopsis": "Hatem Ali's acclaimed historical series recounting the forty-year Basus War between Bakr and Taghlib, starring Salloum Haddad.",
     "synopsisAr": "شاهكار المخرج الراحل حاتم علي؛ ملحمة حرب البسوس التي دامت أربعين عاماً بين بكر وتغلب وقصة الشاعر والفارس عدي بن ربيعة (الزير سالم أبو ليلى المهلهل).",
     "youtubePlaylistId": "PLOpvfjrLz9uc5Vcdv4nhRf8usKCZSZJC4",
-    "youtubeId": "bFqY9e48Gk4",
     "poster": "https://img.youtube.com/vi/bFqY9e48Gk4/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80",
     "featured": true
@@ -479,7 +447,6 @@
     "synopsis": "Osama Anwar Okasha's masterpiece chronicling the social and political transformation of modern Egypt through the rivalry between Selim El-Badry and Soliman Ghanem.",
     "synopsisAr": "أيقونة الدراما التلفزيونية المصرية للكاتب أسامة أنور عكاشة؛ صراع الباشا سليم البدري والعمدة سليمان غانم وتوثيق المجتمع المصري عبر عقود طويلة.",
     "youtubePlaylistId": "PL9KkecclNUBT1kacNIj-zX3mDtMnK6Acw",
-    "youtubeId": "uIeD2h4oQ3k",
     "poster": "https://img.youtube.com/vi/uIeD2h4oQ3k/hqdefault.jpg",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
     "featured": true
@@ -489,13 +456,12 @@
     "type": "playlist",
     "category": "classics",
     "categories": [
-      "classics",
-      "playlists"
+      "classics"
     ],
-    "title": "Charlie Chaplin Cinema Masterpieces",
+    "title": "Charlie Chaplin Festival",
     "titleAr": "روائع سينما شارلي شابلن الكلاسيكية",
-    "year": 1921,
-    "duration": "Complete Playlist",
+    "year": 1938,
+    "duration": 4646,
     "rating": "9.5",
     "director": "Charlie Chaplin",
     "cast": [
@@ -507,11 +473,10 @@
     "genreAr": "سينما صامتة / عبقرية كوميدية",
     "synopsis": "Official full-length legal collection of Charlie Chaplin's immortal silent comedies and feature films including The Kid and City Lights.",
     "synopsisAr": "مجموعة قانونية كاملة لأعظم أفلام العبقري شارلي شابلن التي سحرت العالم وأسست لفنون الكوميديا والإنسانية في السينما العالمية.",
-    "youtubePlaylistId": "PLoWFarC9LN8H_jEKkCZ3qZ3cB-LfEKPAq",
-    "youtubeId": "qNseEVlaCl4",
-    "poster": "https://img.youtube.com/vi/qNseEVlaCl4/hqdefault.jpg",
+    "poster": "https://archive.org/services/img/charlie_chaplin_film_fest",
     "backdrop": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
+    "featured": true,
+    "url": "https://archive.org/download/charlie_chaplin_film_fest/charlie_chaplin_film_fest.mp4"
   },
   {
     "id": "movie-night-living-dead",
@@ -523,7 +488,7 @@
     "title": "Night of the Living Dead",
     "titleAr": "فيلم ليلة الموتى الأحياء (كلاسيك)",
     "year": 1968,
-    "duration": "1h 36m",
+    "duration": 5732,
     "rating": "8.9",
     "director": "George A. Romero",
     "cast": [
@@ -535,37 +500,9 @@
     "genreAr": "رعب كلاسيكي / سينما عالمية",
     "synopsis": "George Romero's historic public domain classic that revolutionized the horror genre, following survivors trapped in a farmhouse.",
     "synopsisAr": "الفيلم العالمي التاريخي الذي أعاد تعريف سينما الرعب والغموض؛ عمل كلاسيكي من الملكية العامة حظي بإشادة نقدية عالمية واسعة.",
-    "youtubeId": "H91bEGJYBU4",
-    "poster": "https://img.youtube.com/vi/H91bEGJYBU4/hqdefault.jpg",
+    "poster": "https://archive.org/services/img/night_of_the_living_dead_dvd",
     "backdrop": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
-  },
-  {
-    "id": "movie-charade",
-    "type": "movie",
-    "category": "classics",
-    "categories": [
-      "classics"
-    ],
-    "title": "Charade",
-    "titleAr": "فيلم شاريد (الأحجية)",
-    "year": 1963,
-    "duration": "1h 53m",
-    "rating": "8.8",
-    "director": "Stanley Donen",
-    "cast": [
-      "Cary Grant",
-      "Audrey Hepburn",
-      "Walter Matthau",
-      "James Coburn"
-    ],
-    "genre": "Romantic Mystery / Suspense",
-    "genreAr": "غموض رومانسي / تشويق كلاسيكي",
-    "synopsis": "Regina Lampert falls for charming Peter Joshua while pursued by dangerous men seeking her late husband's stolen fortune in Paris.",
-    "synopsisAr": "تحفة كلاسيكية تجمع النجمين كاري غرانت وأودري هيبورن في مغامرة رومانسية غامضة في باريس لكشف لغز ثروة مفقودة.",
-    "youtubeId": "ty8N8XkFsqs",
-    "poster": "https://img.youtube.com/vi/ty8N8XkFsqs/hqdefault.jpg",
-    "backdrop": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1920&q=80",
-    "featured": true
+    "featured": true,
+    "url": "https://archive.org/download/night_of_the_living_dead_dvd/Night.mp4"
   }
 ]

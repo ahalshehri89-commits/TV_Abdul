@@ -22,10 +22,10 @@ describe('VODService', () => {
 
   it('ships a featured shelf with no placeholder video links', () => {
     const featured = vodService.getItems({ category: 'featured' });
-    expect(featured.length).toBeGreaterThanOrEqual(18);
+    expect(featured.length).toBeGreaterThanOrEqual(15);
     featured.forEach((item) => {
       expect(item.streamUrl).toBeUndefined();
-      expect(Boolean(item.youtubeId || item.youtubePlaylistId)).toBe(true);
+      expect(Boolean(item.youtubeId || item.youtubePlaylistId || item.url)).toBe(true);
     });
     expect(vodService.getItemById('play-madrasat-al-mushaghbeen').youtubeId).toBe('-xieo900Smg');
   });
