@@ -129,6 +129,7 @@ export function FilePlayerView({ item, onClose }) {
             setIsPaused(false);
             const total = playerController.getDuration();
             if (total > 0) {
+              if (!durationRef.current) console.log(`[player] playing, duration ${Math.round(total)}s, at ${Math.round(playerController.getCurrentTime())}s`);
               durationRef.current = total;
               setDuration(total);
             }
@@ -181,6 +182,7 @@ export function FilePlayerView({ item, onClose }) {
 
     const startPosition = storageService.getResumePosition(item.resumeKey);
     lastSavedRef.current = startPosition;
+    console.log(`[player] opening "${item.name}" from ${Math.floor(startPosition)}s`);
     playerController.playFile(item, { startPosition });
     if (item.subtitles && item.subtitles.length > 0) {
       loadSidecar(item.subtitles[0]);

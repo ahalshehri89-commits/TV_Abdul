@@ -8,7 +8,7 @@ This document preserves the comprehensive architecture, hardware findings, and i
 * **Application Name:** `TV_Abdul`
 * **Application ID:** `Abdul00101.TVAbdul`
 * **Package ID:** `Abdul00101`
-* **Target Hardware:** Samsung Q60CA 65" (`QA65Q60CAUXSA`, 2023 QLED, Tizen 7.0 / Platform 9.0)
+* **Target Hardware:** Samsung Q60CA 65" (`QA65Q60CAUXSA`, 2023 QLED; the TV reports Tizen 9.0 with a Chromium 120 web engine as of November 2026)
 * **Resolution:** 1920x1080 (1080p Full HD UI canvas with hardware upscaling)
 * **GitHub Repository:** [https://github.com/ahalshehri89-commits/TV_Abdul](https://github.com/ahalshehri89-commits/TV_Abdul)
 
@@ -77,7 +77,7 @@ This document preserves the comprehensive architecture, hardware findings, and i
 ## 5. Build, Package & Deployment Workflow
 
 ```bash
-# 1. Run unit tests (41 tests across 11 test suites)
+# 1. Run unit tests (97 tests across 16 test files)
 npm test
 
 # 2. Compile Vite production bundle
@@ -98,102 +98,54 @@ cd dist && ../tools/data/tools/ide/bin/tizen.sh install -s <TV_IP>:26101 -n TV_A
 
 ---
 
-## 6. Version 2.0 (v2.0) Completed Milestone Overview
-All pillars of **v2.0** have been fully engineered, verified with 39 Vitest tests, and deployed to the Samsung TV on branch `v2.0`:
-* **Pillar 1: Content Explosion (VOD & Mega-Networks):**
-  - **Free Movies & Series Hub (VOD):** Netflix/Shahid style catalog featuring iconic Arabic theatrical plays (*مدرسة المشاغبين*, *العيال كبرت*, *شاهد ما شفش حاجة*, *الزعيم*, *سك على بناتك*, *باي باي لندن*, *المتزوجون*), Egyptian golden cinema (*باب الحديد*, *إشاعة حب*, *ابن حميدو*, *الزوجة الثانية*, *دعاء الكروان*), historic drama series (*رأفت الهجان*, *الزير سالم*, *ليالي الحلمية*), and Hollywood/world classics with persistent playback resume memory.
-  - **FAST Networks Ingestion:** 24/7 dedicated high-bitrate single-show linear networks (*Top Gear 24/7*, *Gordon Ramsay 24/7*, *UFC Classics 24/7*, *Red Bull TV*, *Bloomberg TV Global*, *Euronews*, *Anime All Day*, *Earth Cam 4K*).
-* **Pillar 2: Live Sports & 65" Screen Experience:**
-  - **Live Match Center:** Real-time fixture schedule for Saudi Pro League, UEFA Champions League, and Premier League with active scoreboards and 1-click auto-tuning.
-  - **65" Quad-Screen Multi-View Dashboard:** Split the 65-inch display into 4 (2x2 Quad) or 2 (1x2 Dual) simultaneous live video streams with D-Pad directional audio focus switching and OK-to-fullscreen expansion.
-* **Pillar 3: Core Player & Engine Optimization:**
-  - **VLC Stream Demuxer Engine:** `mpegts.js` MSE remuxer + AVPlay HTTP header spoofing (`USER_AGENT: VLC/3.0.20 LibVLC/3.0.20`, referer, adaptive 4K properties).
-  - **Interactive EPG Schedule Guide:** Dynamic 24-hour timeline schedule guide with live "Now Playing" progress percentages.
-  - **Screen-Off / Audio-Only Mode:** Power-saving pitch black OLED screensaver for Quran and radio stations with burn-in prevention and 1-key remote wake.
-  - **Instant Zapping Manifest Pre-Buffering:** Background manifest preloader reducing channel switch time from ~2.5s down to ~0.3s.
-  - **Custom M3U8 Playlist Loader:** Settings UI allowing users to load and merge custom IPTV playlists into their local guide.
+## 6. What Is Real In v2.1 (state on 12 November 2026)
 
-### Pillar 1: Revolutionary Content Explosion (VOD & Mega-Networks)
-1. **Free Movies & TV Series Hub (VOD On-Demand):**
-   * Expand into on-demand streaming with a Netflix/Shahid-style catalog.
-   * Ingest 10,000+ Arabic and global films, classic Egyptian cinema, historic Ramadan drama series, and classic theatrical plays (مسرحيات).
-   * Rich media UI with posters, synopsis, cast, genres, resume playback, and watch history.
-2. **FAST Channel Network Ingestion (Pluto TV, Samsung TV Plus, Plex, Rakuten):**
-   * Direct integration of free ad-supported television networks, adding thousands of dedicated single-show 24/7 channels (Top Gear, Gordon Ramsay, National Geographic, Anime, UFC Classics).
-   * High-bitrate 1080p commercial CDN delivery with 99.9% uptime.
-3. **Official 24/7 YouTube Live Stream Channels (Zero-Buffer Feeds):**
-   * Direct ingestion of official 24/7 YouTube live feeds as numbered linear channels:
-     * 24/7 Makkah & Madinah Haramain 4K live broadcasts.
-     * 24/7 Official news networks (Sky News Arabia, Al Jazeera Mubasher, France 24 Arabic, Bloomberg, DW).
-     * 24/7 4K Earth from Space (NASA) and relaxing nature/wildlife cameras.
-   * 100% reliable streams that never expire or suffer from geo-blocks.
+Everything below was either measured on the TV or is covered by unit tests; items that are
+not yet proven on the TV say so.
 
-### Pillar 2: Revolutionary Live Sports & 65" Screen Experience
-4. **Live Sports Event Match Center (Auto-Routed Game Channels):**
-   * Real-time fixture schedule for Saudi Pro League, UEFA Champions League, Premier League, La Liga, and El Clásico.
-   * Live match cards with kick-off timers on the home screen.
-   * One-click tuning: clicking a match automatically routes directly to the working broadcast channel with Arabic or English commentary indicators.
-5. **65" Multi-View / Quad-Screen Sports Dashboard:**
-   * Split the 65-inch QLED screen into 2 or 4 simultaneous live streams (watch 4 Premier League or Saudi matches side-by-side).
-   * Remote D-Pad toggles audio between windows; pressing OK expands any box to fullscreen.
+### Works, checked on the TV
+* **Live TV:** 4,300+ channels, AVPlay playback, favourites, country filter, background sync.
+* **In-app YouTube playback:** videos and playlists play inside the app at up to 1080p, through
+  the hosted page `hosted/yt.html` (served by GitHub Pages from the `gh-pages` branch).
+  YouTube rejects embeds from the packaged app's own `file://` origin with error 153, which is
+  why the hosted page exists. Playlists must be embedded through `embed/videoseries`; an empty
+  player never becomes ready on the TV.
+* **Hand-off to the YouTube app:** automatic when a title cannot be embedded (errors 101/150,
+  page unreachable, no start in 12 s) and manual with the Red key. The TV accepts the deep-link
+  launch (`PAYLOAD` = `{"values":"v=<id>"}`); whether YouTube lands on the video still has to be
+  confirmed by eye.
+* **Direct-file playback:** Internet Archive films play through AVPlay with a known duration.
+* **Data downloads:** catalog (386 public-domain films), programme guide (94 channels) and
+  football fixtures all load on the TV.
 
-### Pillar 3: Core Player & Engine Optimization
-6. **VLC Stream Compatibility Engine (MPEG-TS Demuxer & Header Spoofing):**
-   * Integrate client-side `mpegts.js` remuxing to convert raw `.ts` streams into `fMP4` via MSE in memory.
-   * Add AVPlay HTTP header spoofing (`USERAGENT`, `Referer`, cookies) to unlock the 137 VLC-dependent channels (e.g., OSN Movies Action, Cartoon Network Arabic, Arryadia, Canal+ Sport).
-7. **Instant Channel Zapping (Pre-Buffering Pipeline):**
-   * Preload adjacent stream manifests (`idx + 1` / `idx - 1`) in memory when highlighting cards, cutting channel change time from ~2.5s down to ~0.3s.
-8. **Electronic Program Guide (EPG):**
-   * Full interactive schedule grid parsing XMLTV feeds for live TV channels ("Now Playing" & "Coming Up Next").
-9. **Custom Playlist & Xtream Codes Loader:**
-   * Settings UI allowing users to input private M3U/M3U8 URLs or Xtream Codes credentials (server, user, pass) with category auto-grouping.
-10. **Screen-Off / Audio-Only Mode:**
-    * Mode for news and radio stations (Quran, Rotana FM) turning off the QLED panel while keeping audio playing to conserve power.
-11. **Picture-in-Picture (PiP) Browsing:**
-    * Downsize the active AVPlay video to a 480x270 thumbnail in the bottom corner while browsing the channel grid.
-12. **Numeric Keypad Quick Zapping & Custom Reordering:**
-    * Direct channel number input using remote digits 0–9 and custom sorting for favorite channels.
+### Built and unit-tested, not yet proven on the TV
+* **My Files (USB):** folder browser, video playback with seek/resume, `.srt` subtitles
+  (UTF-8, UTF-16, Windows-1256), embedded subtitle/audio track switching, picture viewer.
+  The TV accepted the `filesystem.read` and `externalstorage` privileges and lists its
+  storages, but no USB drive was connected during development.
+* **M3U playlist loader:** Settings -> My Playlists. A playlist is only saved after it downloads
+  and contains channels; its channels appear under the "My Playlists" category.
+* **Quad view:** unchanged from v2.0 and never tested on the TV. It decodes in software.
 
----
+### Data pipeline
+* `.github/workflows/data.yml` runs daily (from the default branch only) and publishes
+  `data/catalog.json` and `data/epg.json` to the `gh-pages` branch.
+* `scripts/catalog/` builds the catalog: Internet Archive (no key) and the approved YouTube
+  owner channels in `scripts/catalog/channels.json` (needs the `YOUTUBE_API_KEY` repository
+  secret; without it only the Internet Archive part is built).
+* `scripts/epg/` builds the guide from public XMLTV feeds (`scripts/epg/feeds.json`). Channels
+  are matched to the app's list by exact normalised name; unmatched channels get no guide.
+* Sports fixtures come straight from TheSportsDB on the TV. The shared test key works with
+  tight limits; set `VITE_SPORTS_API_KEY` in `.env.local` for your own key.
 
-## 7. Priority Development Notes & Action Items (To Solve Upon Return)
+### Known gaps
+* The featured shelf (`src/data/seedVOD.json`) is mostly uploads from non-owner YouTube
+  channels. Dead links were removed and the world classics now come from Internet Archive,
+  but the Arabic titles still need replacing with owner-channel uploads.
+* The network-folder source for My Files is not built.
+* Match cards are information only; `match.watch` is reserved for a channel link.
 
-The following priority notes were logged prior to user travel and define the exact roadmap when development resumes:
-
-### Note 1: VOD Videos Do Not Open Directly in YouTube App
-* **Problem Description:** Clicking a VOD item launches the Samsung TV YouTube app (`9Ur5IzDKqV.TizenYouTube`), but it lands on the YouTube home screen rather than automatically starting the specific selected movie, play, or playlist.
-* **Technical Findings & Analysis:**
-  1. **Tizen API Limitations:** Standard Tizen `tizen.application.launch()` only opens the application package root.
-  2. **Google TV Sandbox:** Modern builds of `9Ur5IzDKqV.TizenYouTube` on Tizen 7.0 (Chromium 94+) intentionally ignore arbitrary URI deep-link parameters (`vnd.youtube://` or `http://tizen.org/appcontrol/data/url`) passed via `launchAppControl` for security and platform isolation.
-  3. **DIAL REST Service:** The TV runs a DIAL server on port `8080` (`http://127.0.0.1:8080/ws/apps/YouTube`). While it accepts POST commands with `Origin: package://Abdul00101.TVAbdul`, modern YouTube TV clients require an active DIAL pairing token (`screenId` / `loungeToken`) to bind video commands to the active playback session.
-* **Action Plan for Next Session:**
-  - **Option A (In-App Fullscreen Leanback Player):** Embed the full YouTube player inside TV_Abdul using a dedicated, zero-chrome WebKit view with full remote control mapping (OK to play/pause, Left/Right to seek/skip episodes, Back to exit). This eliminates app switching entirely and guarantees instant playback.
-  - **Option B (DIAL Lounge Token Pairing):** Implement the DIAL multiscreen WebSocket lounge pairing handshake (`http://127.0.0.1:8080/ws/apps/YouTube/run`) to pass the video ID directly into YouTube's active playback queue.
-  - **Option C (Direct MP4/HLS Storage):** Host or link direct `.mp4` and `.m3u8` video files playing natively via Samsung AVPlay hardware acceleration without relying on the external YouTube app.
-
----
-
-### Note 2: Sport Channels Do Not Open Real Games
-* **Problem Description:** Match cards in the Live Sports Center (e.g., Al Hilal vs Al Nassr, Real Madrid vs Man City) route to free-to-air regional broadcast streams (Bahrain Sports, Oman Sports, Jordan Sport). These channels show regular regional programming (talk shows, local sports, recordings) rather than the actual live encrypted match (SSC 1 HD / beIN Sports Premium).
-* **Technical Findings & Analysis:**
-  1. **Broadcast Rights Protection:** High-profile commercial matches (Saudi Pro League on SSC, UEFA Champions League & Premier League on beIN Sports) are pay-per-view encrypted streams. Free global IPTV feeds (IPTV-org) do not provide unauthorized live commercial feeds.
-  2. **Static Fixtures vs Live API:** The match cards currently displayed are static mock schedules rather than real-time fixtures fetched from a sports API.
-* **Action Plan for Next Session:**
-  - **Private IPTV / Xtream Codes Integration:** Allow the user to input their private M3U/M3U8 playlist URL or Xtream Codes credentials (server, user, password) that contain genuine, active SSC and beIN Sports commercial streams.
-  - **Automated Stream Routing:** Map live match cards to the user's specific provider channel IDs (`SSC 1 HD`, `beIN Sports 1 Premium`) so clicking a match auto-tunes directly to the authentic game broadcast.
-  - **Real-Time Sports API Integration:** Connect a live sports data API (e.g., Football-Data.org or API-Football) to automatically pull genuine live fixtures, kickoff timers, and real-time scoreboards for today's active games.
-
----
-
-### Note 3: More VOD Content Needed (Massive Catalog Expansion)
-* **Problem Description:** The current VOD catalog contains 18 curated classic theatrical plays, Egyptian golden cinema, and historical series. A massive expansion is needed to turn TV_Abdul into a comprehensive on-demand entertainment hub.
-* **Target Categories & Expansion Goals:**
-  1. **Classic Arabic Plays (مسرحيات كاملة):** Complete collections of Adel Imam, Samir Ghanem, Fouad El-Mohandes, Mohamed Sobhy, and Kuwaiti comedy theater.
-  2. **Golden Arabic Cinema (أفلام كلاسيكية):** Thousands of Egyptian and Arab cinematic classics across comedy, drama, and romance.
-  3. **Ramadan & Historical Drama Series (مسلسلات كاملة):** Full multi-season drama series (Bab Al-Hara, Al-Zeer Salem, Raafat Al-Haggan, Layali Al-Helmiya, Omar).
-  4. **World Cinema Classics (أفلام عالمية من الملكية العامة):** Charlie Chaplin collections, Hitchcock classics, film noir, and timeless Hollywood masterpieces.
-* **Action Plan for Next Session:**
-  - **Xtream Codes VOD API Ingestion:** Implement direct fetching from IPTV provider VOD endpoints (`player_api.php?action=get_vod_streams` and `get_series`) with movie covers, plot summary, cast, ratings, and multi-episode series hierarchy.
-  - **M3U VOD Playlist Parser:** Support loading local or remote `.m3u` files containing `#EXTINF` VOD entries with category auto-grouping (Plays, Movies, Series, Anime, Documentaries).
-  - **Public Domain & Cultural Archive Ingestion:** Ingest curated direct MP4/M3U8 links from Internet Archive and public cultural institutions for zero-buffer playback.
-  - **Global Universal Search:** Implement a unified search bar that queries across both Live TV channels (4,300+) and on-demand VOD titles simultaneously.
+### Development aids (`scripts/dev/`)
+* `deploy-tv.sh <TV_IP> [debug]` builds, signs, installs and launches the app.
+* `tv-log-server.js <file>` collects console output from a debug build (one-way; it never
+  sends anything to the TV). `sdb shell 0 debug` does not work on this TV.

@@ -78,8 +78,13 @@ export function App() {
   useEffect(() => {
     const autoplay = import.meta.env.VITE_DEBUG_HOST && import.meta.env.VITE_DEBUG_AUTOPLAY_YT;
     if (!autoplay) return undefined;
-    const [kind, id] = autoplay.split(':');
+    const [kind, ...rest] = autoplay.split(':');
+    const id = rest.join(':');
     const timer = setTimeout(() => {
+      if (kind === 'file') {
+        setActiveFile({ id: 'debug', name: 'debug file', url: id, resumeKey: 'debug:file' });
+        return;
+      }
       setActiveYouTube({ id: 'debug', title: `debug ${id}`, [kind === 'list' ? 'youtubePlaylistId' : 'youtubeId']: id });
     }, 7000);
     return () => clearTimeout(timer);

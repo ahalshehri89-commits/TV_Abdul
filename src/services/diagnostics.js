@@ -4,6 +4,9 @@
  */
 
 import { fileBrowserService } from './fileBrowserService.js';
+import { vodService } from './vodService.js';
+import { epgService } from './epgService.js';
+import { sportsService, groupMatches } from './sportsService.js';
 
 export async function runDiagnostics() {
   const tizen = window.tizen;
@@ -15,6 +18,18 @@ export async function runDiagnostics() {
     }
   } catch (e) {
     console.log('[diag] platform version unavailable:', e && e.message);
+  }
+
+  try {
+    await vodService.load({ force: true });
+    console.log('[diag] vod titles:', vodService.getCount(), 'classics:', vodService.getItems({ category: 'classics' }).length);
+    await epgService.load({ force: true });
+    console.log('[diag] guide channels:', Object.keys(epgService.channels).length, 'AlJazeera now:', JSON.stringify(epgService.getNowPlaying('AlJazeera.qa')?.current?.title));
+    const sports = await sportsService.load({ force: true });
+    const groups = groupMatches(sports.matches);
+    console.log('[diag] sports:', sports.matches.length, 'matches, upcoming', groups.upcoming.length, 'results', groups.results.length, 'error', sports.error);
+  } catch (e) {
+    console.log('[diag] data checks failed:', e && e.message);
   }
 
   try {
