@@ -16,6 +16,8 @@ export const TV_KEYS = {
   PAUSE: 'PAUSE',
   PLAY_PAUSE: 'PLAY_PAUSE',
   STOP: 'STOP',
+  FAST_FORWARD: 'FAST_FORWARD',
+  REWIND: 'REWIND',
   INFO: 'INFO',
   FAVORITE: 'FAVORITE',
   SEARCH: 'SEARCH',
@@ -128,14 +130,20 @@ class RemoteKeyManager {
     if (code === 19 || key === 'MediaPause') return { type: TV_KEYS.PAUSE };
     if (code === 10252 || code === 179 || key === 'MediaPlayPause') return { type: TV_KEYS.PLAY_PAUSE };
     if (code === 413 || key === 'MediaStop') return { type: TV_KEYS.STOP };
+    if (code === 417 || key === 'MediaFastForward') return { type: TV_KEYS.FAST_FORWARD };
+    if (code === 412 || key === 'MediaRewind') return { type: TV_KEYS.REWIND };
 
     // TV Info & Search
     if (code === 457 || key === 'Info') return { type: TV_KEYS.INFO };
     if (key === 'Search') return { type: TV_KEYS.SEARCH };
 
     // Favorite shortcuts: Color keys (Red 403, Yellow 405), Info 457, or 'f' key
-    if (code === 403 || key === 'ColorF0Red' || code === 405 || key === 'ColorF2Yellow' || key === 'f' || key === 'F') {
-      return { type: TV_KEYS.FAVORITE };
+    // The colour is reported so a view can give Red its own meaning (e.g. "Open in YouTube").
+    if (code === 403 || key === 'ColorF0Red') {
+      return { type: TV_KEYS.FAVORITE, color: 'red' };
+    }
+    if (code === 405 || key === 'ColorF2Yellow' || key === 'f' || key === 'F') {
+      return { type: TV_KEYS.FAVORITE, color: 'yellow' };
     }
 
     // Digits 0-9 for channel zapping

@@ -11,6 +11,12 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
+        // Keep the large channel list and the libraries out of the app's own script
+        manualChunks(id) {
+          if (id.includes('seedChannels.json')) return 'channels';
+          if (id.includes('node_modules')) return id.includes('mpegts') ? 'mpegts' : 'vendor';
+          return undefined;
+        },
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'

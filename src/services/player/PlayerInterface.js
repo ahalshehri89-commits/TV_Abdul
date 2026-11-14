@@ -20,7 +20,10 @@ export class BasePlayer {
     this.listeners = {
       stateChange: new Set(),
       buffering: new Set(),
-      error: new Set()
+      error: new Set(),
+      timeupdate: new Set(),
+      subtitle: new Set(),
+      completed: new Set()
     };
   }
 
@@ -82,4 +85,24 @@ export class BasePlayer {
   setDisplayRect(x, y, width, height) {
     // Default no-op
   }
+
+  // Seekable-media support (files and on-demand video). Times are in seconds.
+  async seekTo(seconds) {}
+
+  getDuration() {
+    return 0;
+  }
+
+  getCurrentTime() {
+    return 0;
+  }
+
+  /** @returns {{audio: Array, text: Array}} selectable tracks, each { index, label } */
+  getTracks() {
+    return { audio: [], text: [] };
+  }
+
+  selectTrack(type, index) {}
+
+  setEmbeddedSubtitlesEnabled(enabled) {}
 }

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { playerController } from '../services/player/PlayerFactory.js';
 import { remoteKeyManager, TV_KEYS } from '../services/remoteKeyManager.js';
-import { AlertCircle, RotateCcw, ArrowLeft, Heart, Layers } from 'lucide-react';
+import { AlertCircle, RotateCcw, ArrowLeft, Heart, Layers, Moon } from 'lucide-react';
+import { AudioOnlyOverlay } from './AudioOnlyOverlay.jsx';
 
 export function VideoPlayerView({
   channel,
@@ -18,6 +19,7 @@ export function VideoPlayerView({
   const [streamInfo, setStreamInfo] = useState(null);
   const [toastMsg, setToastMsg] = useState(null);
   const [timeStr, setTimeStr] = useState('');
+  const [isAudioOnly, setIsAudioOnly] = useState(false);
 
   const videoRef = useRef(null);
   const osdTimerRef = useRef(null);
@@ -221,7 +223,7 @@ export function VideoPlayerView({
 
   return (
     <div className="tv-player-view" onClick={triggerOsd}>
-      {/* Native Samsung Tizen AVPlay object element */}
+      {/* Video Surface */}
       {isAVPlay ? (
         <object
           id="av-player"
@@ -331,6 +333,30 @@ export function VideoPlayerView({
                   <Heart size={18} color="#f43f5e" fill={isFavorite ? '#f43f5e' : 'none'} />
                   <span>{isFavorite ? 'Favorited' : 'Add to Favorites'}</span>
                 </button>
+
+                <button
+                  className="tv-osd-fav-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsAudioOnly(true);
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    background: 'rgba(56, 189, 248, 0.2)',
+                    border: '1px solid rgba(56, 189, 248, 0.6)',
+                    borderRadius: '20px',
+                    padding: '6px 14px',
+                    color: '#38bdf8',
+                    cursor: 'pointer',
+                    fontSize: '15px',
+                    fontWeight: 600
+                  }}
+                >
+                  <Moon size={18} />
+                  <span>Screen Off (Audio Only)</span>
+                </button>
               </div>
               <span className="tv-osd-channel-country">
                 {channel?.flag} {channel?.countryName || channel?.country} • {channel?.categories?.join(', ')}
@@ -403,6 +429,11 @@ export function VideoPlayerView({
           </div>
         </div>
       </div>
+
+      {/* Screen-Off / Audio-Only Overlay */}
+      {isAudioOnly && (
+        <AudioOnlyOverlay channel={channel} onWake={() => setIsAudioOnly(false)} />
+      )}
     </div>
   );
 }

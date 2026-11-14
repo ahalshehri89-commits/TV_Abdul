@@ -35,6 +35,8 @@ class PlayerController {
     this.player.on('buffering', (data) => this.notify('buffering', data));
     this.player.on('error', (data) => this.handleStreamError(data));
     this.player.on('timeupdate', (data) => this.notify('timeupdate', data));
+    this.player.on('subtitle', (data) => this.notify('subtitle', data));
+    this.player.on('completed', (data) => this.notify('completed', data));
   }
 
   attachVideoElement(videoEl) {
@@ -61,13 +63,14 @@ class PlayerController {
   /**
    * Play a channel, initiating from primary or preferred stream
    */
-  async playChannel(channel, streamIndex = 0) {
+  async playChannel(channel, streamIndex = 0, playOptions = {}) {
     if (!this.player) {
       this.init();
     }
 
     this.currentChannel = channel;
     this.currentStreamIndex = streamIndex;
+    this.currentPlayOptions = playOptions;
 
     const streams = channel.streams || [];
     if (streams.length === 0) {
@@ -87,15 +90,19 @@ class PlayerController {
       totalStreams: streams.length
     });
 
-    // Record in history & last channel
-    storageService.addRecentChannel(channel);
-    storageService.setLastChannelId(channel.id);
+    // Record in history & last channel (live channels only, not files or on-demand titles)
+    if (!playOptions.isFile) {
+      storageService.addRecentChannel(channel);
+      storageService.setLastChannelId(channel.id);
+    }
 
     try {
       console.log(`▶ Playing "${channel.name}" on stream [${activeIndex + 1}/${streams.length}]: ${stream.url}`);
       await this.player.open(stream.url, {
         userAgent: stream.userAgent,
-        referrer: stream.referrer
+        referrer: stream.referrer,
+        isFile: Boolean(playOptions.isFile),
+        startPosition: playOptions.startPosition || 0
       });
     } catch (err) {
       console.warn(`Stream [${activeIndex}] failed:`, err);
@@ -125,7 +132,7 @@ class PlayerController {
       });
       // Try next stream after short pause
       setTimeout(() => {
-        this.playChannel(this.currentChannel, nextIndex);
+        this.playChannel(this.currentChannel, nextIndex, this.currentPlayOptions || {});
       }, 1000);
     } else {
       console.error(`❌ All ${streams.length} streams failed for ${this.currentChannel.name}.`);
@@ -138,8 +145,55 @@ class PlayerController {
 
   async retryCurrent() {
     if (this.currentChannel) {
-      await this.playChannel(this.currentChannel, this.currentStreamIndex);
+      await this.playChannel(this.currentChannel, this.currentStreamIndex, this.currentPlayOptions || {});
     }
+  }
+
+  /**
+   * Play a single seekable source (a local file or a direct on-demand URL).
+   * @param {{id: string, name: string, url: string}} file
+   * @param {{startPosition?: number}} options startPosition in seconds
+   */
+  async playFile(file, options = {}) {
+    await this.playChannel(
+      { id: file.id, name: file.name, streams: [{ url: file.url, quality: '' }] },
+      0,
+      { isFile: true, startPosition: options.startPosition || 0 }
+    );
+  }
+
+  async seekTo(seconds) {
+    if (this.player) await this.player.seekTo(seconds);
+  }
+
+  async seekBy(deltaSeconds) {
+    if (!this.player) return 0;
+    const duration = this.player.getDuration();
+    let target = this.player.getCurrentTime() + deltaSeconds;
+    if (duration > 0) target = Math.min(target, Math.max(0, duration - 2));
+    target = Math.max(0, target);
+    await this.player.seekTo(target);
+    return target;
+  }
+
+  getDuration() {
+    return this.player ? this.player.getDuration() : 0;
+  }
+
+  getCurrentTime() {
+    return this.player ? this.player.getCurrentTime() : 0;
+  }
+
+  getTracks() {
+    return this.player ? this.player.getTracks() : { audio: [], text: [] };
+  }
+
+  selectTrack(type, index) {
+    if (this.player) this.player.selectTrack(type, index);
+  }
+
+  setEmbeddedSubtitlesEnabled(enabled) {
+    if (this.player) this.player.setEmbeddedSubtitlesEnabled(enabled);
   }
 
   async playNextStream() {

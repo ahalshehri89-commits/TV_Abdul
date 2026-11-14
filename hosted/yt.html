@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>TV_Abdul YouTube player</title>
+    <style>
+      html,
+      body,
+      #player {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="player"></div>
+    <!--
+      TV_Abdul embedded YouTube player.
+
+      YouTube refuses embedded playback (error 153) when the embedding page has no web origin,
+      which is the case for an app packaged on the TV. This page is served over HTTPS and is
+      loaded by the TV app in a frame; it hosts YouTube's official embedded player and relays a
+      small, fixed set of messages between the app and the player.
+
+      Query: ?v=<videoId> | ?list=<playlistId>  [&index=<n>] [&start=<seconds>]
+      Out (to parent):  { source: 'tvabdul-yt', type: 'ready' | 'tick' | 'error', ... }
+      In (from parent): { target: 'tvabdul-yt', cmd: 'play' | 'pause' | 'seek' | 'next' | 'prev', value? }
+    -->
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var idPattern = /^[A-Za-z0-9_-]{1,64}$/;
+        var videoId = params.get('v') || '';
+        var listId = params.get('list') || '';
+        if (!idPattern.test(videoId)) videoId = '';
+        if (!idPattern.test(listId)) listId = '';
+        var start = Math.max(0, parseInt(params.get('start') || '0', 10) || 0);
+        var index = Math.max(0, parseInt(params.get('index') || '0', 10) || 0);
+        var player = null;
+
+        function send(message) {
+          message.source = 'tvabdul-yt';
+          try {
+            window.parent.postMessage(JSON.stringify(message), '*');
+          } catch (e) {}
+        }
+
+        function tick() {
+          if (!player || !player.getPlayerState) return;
+          var data = (player.getVideoData && player.getVideoData()) || {};
+          var playlist = (player.getPlaylist && player.getPlaylist()) || null;
+          send({
+            type: 'tick',
+            state: player.getPlayerState(),
+            time: player.getCurrentTime ? player.getCurrentTime() : 0,
+            duration: player.getDuration ? player.getDuration() : 0,
+            quality: player.getPlaybackQuality ? player.getPlaybackQuality() : '',
+            title: data.title || '',
+            videoId: data.video_id || '',
+            index: player.getPlaylistIndex ? player.getPlaylistIndex() : -1,
+            count: playlist ? playlist.length : 0
+          });
+        }
+
+        window.onYouTubeIframeAPIReady = function () {
+          send({ type: 'api' });
+          var events = {
+            onReady: function () {
+              send({ type: 'ready' });
+              try {
+                player.playVideo();
+              } catch (e) {}
+              setInterval(tick, 500);
+            },
+            onStateChange: tick,
+            onError: function (event) {
+              send({ type: 'error', code: event.data });
+            }
+          };
+          var playerVars = {
+            autoplay: 1,
+            controls: 0,
+            disablekb: 1,
+            fs: 0,
+            iv_load_policy: 3,
+            playsinline: 1,
+            rel: 0,
+            start: start
+          };
+
+          if (listId) {
+            // A playlist is embedded through YouTube's own playlist address and the player API
+            // is attached to that frame. Creating an empty player and loading the list
+            // afterwards never becomes ready on TV browsers.
+            var query = ['list=' + encodeURIComponent(listId), 'enablejsapi=1', 'origin=' + encodeURIComponent(window.location.origin)];
+            if (index > 0) query.push('index=' + index);
+            Object.keys(playerVars).forEach(function (key) {
+              query.push(key + '=' + playerVars[key]);
+            });
+            var frame = document.createElement('iframe');
+            frame.id = 'player';
+            frame.allow = 'autoplay; encrypted-media';
+            frame.style.cssText = 'border:0;width:100%;height:100%';
+            frame.src = 'https://www.youtube.com/embed/videoseries?' + query.join('&');
+            var placeholder = document.getElementById('player');
+            placeholder.parentNode.replaceChild(frame, placeholder);
+            player = new YT.Player(frame, { events: events });
+          } else {
+            player = new YT.Player('player', {
+              width: '100%',
+              height: '100%',
+              videoId: videoId,
+              playerVars: playerVars,
+              events: events
+            });
+          }
+        };
+
+        window.addEventListener('message', function (event) {
+          var message;
+          try {
+            message = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+          } catch (e) {
+            return;
+          }
+          if (!message || message.target !== 'tvabdul-yt' || !player) return;
+          switch (message.cmd) {
+            case 'play':
+              player.playVideo();
+              break;
+            case 'pause':
+              player.pauseVideo();
+              break;
+            case 'seek':
+              if (typeof message.value === 'number' && isFinite(message.value)) {
+                player.seekTo(Math.max(0, message.value), true);
+              }
+              break;
+            case 'next':
+              player.nextVideo();
+              break;
+            case 'prev':
+              player.previousVideo();
+              break;
+            default:
+              break;
+          }
+          tick();
+        });
+
+        if (!videoId && !listId) {
+          send({ type: 'error', code: 2 });
+          return;
+        }
+        var script = document.createElement('script');
+        script.src = 'https://www.youtube.com/iframe_api';
+        script.onerror = function () {
+          send({ type: 'error', code: -1 });
+        };
+        document.head.appendChild(script);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+[
+  { "query": "collection:(Film_Noir)", "rows": 150 },
+  { "query": "collection:(SciFi_Horror)", "rows": 120 },
+  { "query": "collection:(Comedy_Films)", "rows": 120 },
+  { "query": "collection:(silenthalloffame)", "rows": 80 },
+  { "query": "collection:(feature_films) AND (creator:(Chaplin) OR title:(Chaplin))", "rows": 40 },
+  { "query": "collection:(feature_films) AND creator:(Hitchcock)", "rows": 30 },
+  { "query": "collection:(feature_films) AND creator:(\"Buster Keaton\")", "rows": 30 }
+]
